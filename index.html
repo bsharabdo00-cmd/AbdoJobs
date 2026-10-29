@@ -1,144 +1,68 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="AbdoJobs - وظائف وفرص عمل وتسويق وإعلانات وعقارات في سوريا.">
-<title>AbdoJobs | وظائف وتسويق وعقارات</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="AbdoJobs - وظائف وتسويق وإعلانات وعقارات في سوريا.">
+<title>AbdoJobs | فرصك وإعلاناتك بمكان واحد</title>
 <style>
 :root{--navy:#10233f;--blue:#246bfe;--sky:#eaf2ff;--ink:#182230;--muted:#64748b;--line:#e5eaf2;--white:#fff;--gold:#f5b942}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;font-family:Tahoma,Arial,sans-serif;color:var(--ink);background:#f7f9fc;line-height:1.8}
-a{color:inherit;text-decoration:none}.wrap{width:min(1100px,92%);margin:auto}
-header{background:var(--white);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
-.nav{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 0;flex-wrap:wrap}.brand{font-size:1.35rem;font-weight:900;color:var(--navy)}.brand span{color:var(--blue)}
-nav{display:flex;gap:15px;flex-wrap:wrap;font-size:.92rem;color:#334155}nav a:hover{color:var(--blue)}
-.btn{display:inline-block;background:var(--blue);color:white;padding:10px 17px;border-radius:12px;font-weight:bold;border:0;cursor:pointer}.btn.alt{background:white;color:var(--navy);border:1px solid var(--line)}
-.hero{background:linear-gradient(130deg,#10233f,#174d9d 70%,#246bfe);color:white;padding:58px 0;overflow:hidden}
-.hero-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:28px;align-items:center}.eyebrow{display:inline-block;background:#ffffff1f;border:1px solid #ffffff35;border-radius:99px;padding:5px 12px;font-size:.86rem}
-h1{font-size:clamp(2rem,5vw,3.35rem);line-height:1.35;margin:16px 0}.hero p{font-size:1.06rem;color:#e6efff;max-width:660px}
-.hero-card{background:#ffffff12;border:1px solid #ffffff35;border-radius:22px;padding:24px}.hero-card .big{font-size:3rem}.hero-card ul{padding-right:20px;margin-bottom:0}
-section{padding:46px 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-bottom:22px}.section-head h2{margin:0;color:var(--navy);font-size:1.8rem}.section-head p{margin:4px 0 0;color:var(--muted)}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:white;border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 7px 24px #0b214008}.icon{width:46px;height:46px;border-radius:14px;background:var(--sky);display:grid;place-items:center;font-size:1.5rem;margin-bottom:12px}.card h3{margin:4px 0 8px;color:var(--navy)}.card p{color:var(--muted);margin:0 0 14px}.tag{display:inline-block;background:#f1f5f9;color:#475569;padding:3px 9px;border-radius:99px;font-size:.8rem}
-.notice{background:#fff8e8;border:1px solid #f5dfad;border-radius:14px;padding:14px 16px;color:#694d10;margin-top:18px}
-.marketing{background:#eef4ff}.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}.feature{background:white;border-radius:18px;padding:24px;border:1px solid #dce7fb}.feature h3{margin-top:0;color:var(--navy)}.feature ul{padding-right:20px;color:#475569}
-.about-box{background:var(--navy);color:white;border-radius:22px;padding:30px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}.about-box p{color:#dbe7fb;margin-bottom:0}.avatar{width:105px;height:105px;border-radius:50%;display:grid;place-items:center;background:#ffffff16;border:1px dashed #ffffff80;font-size:2.5rem}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.contact-card{background:white;border:1px solid var(--line);border-radius:18px;padding:24px}.contact-card p{color:var(--muted)}
-footer{background:#0b1729;color:#cbd5e1;padding:25px 0;text-align:center;font-size:.9rem}footer strong{color:white}
-@media(max-width:760px){.hero-grid,.two,.contact-grid,.about-box{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.hero{padding:40px 0}.hero-card{max-width:500px}.avatar{width:78px;height:78px}nav{gap:10px}.nav{align-items:flex-start}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Tahoma,Arial,sans-serif;color:var(--ink);background:#f6f8fc;line-height:1.8}a{color:inherit;text-decoration:none}button,input,select{font:inherit}.wrap{width:min(1120px,92%);margin:auto}
+header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}.nav{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 0;flex-wrap:wrap}.brand{font-size:1.45rem;font-weight:900;color:var(--navy)}.brand span{color:var(--blue)}nav{display:flex;gap:8px;flex-wrap:wrap}nav a{padding:7px 11px;border-radius:10px;color:#334155;font-size:.92rem}nav a:hover,nav a.active{background:var(--sky);color:var(--blue)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;background:var(--blue);color:#fff;padding:10px 16px;border-radius:12px;font-weight:bold;border:0;cursor:pointer}.btn.alt{background:#fff;color:var(--navy);border:1px solid var(--line)}.btn.small{padding:7px 12px;font-size:.9rem}
+.hero{background:linear-gradient(130deg,#10233f,#174d9d 70%,#246bfe);color:#fff;padding:58px 0}.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center}.eyebrow{display:inline-block;background:#ffffff1f;border:1px solid #ffffff35;border-radius:99px;padding:5px 12px;font-size:.86rem}h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.35;margin:15px 0}.hero p{font-size:1.05rem;color:#e6efff;max-width:680px}.hero-card{background:#ffffff12;border:1px solid #ffffff35;border-radius:22px;padding:24px}.hero-card .big{font-size:2.8rem}.hero-card ul{padding-right:22px;margin-bottom:0}
+section.page{padding:34px 0 54px}.page-head{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;margin-bottom:22px}.page-head h1{font-size:2rem;color:var(--navy);margin:0 0 5px}.page-head p{color:var(--muted);margin:0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-bottom:18px}.section-head h2{margin:0;color:var(--navy);font-size:1.55rem}.muted{color:var(--muted)}.tag{display:inline-block;background:#f1f5f9;color:#475569;padding:3px 9px;border-radius:99px;font-size:.8rem}
+.category-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.category{display:block;text-align:right;background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;transition:.18s}.category:hover{transform:translateY(-3px);border-color:#9bbcff;box-shadow:0 10px 28px #0b21400c}.icon{width:48px;height:48px;border-radius:14px;background:var(--sky);display:grid;place-items:center;font-size:1.55rem;margin-bottom:12px}.category h3,.card h3{margin:4px 0 8px;color:var(--navy)}.category p,.card p{color:var(--muted);margin:0 0 12px}
+.toolbar{display:grid;grid-template-columns:1.5fr 1fr 1fr auto;gap:10px;background:#fff;border:1px solid var(--line);padding:14px;border-radius:16px;margin:18px 0}.toolbar input,.toolbar select{width:100%;min-width:0;border:1px solid #d8e0ec;border-radius:11px;padding:10px 12px;background:#fff;color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:19px;box-shadow:0 7px 24px #0b214008;min-width:0}.card .icon{margin-bottom:10px}.card .price{font-weight:900;color:#0f766e;font-size:1.08rem;margin:8px 0}.card .meta{font-size:.9rem;color:var(--muted)}.card .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.card .actions .btn{flex:1}.empty{background:#fff;border:1px dashed #cbd5e1;border-radius:16px;padding:30px;text-align:center;color:var(--muted);grid-column:1/-1}
+.pagination{display:flex;justify-content:center;align-items:center;gap:7px;flex-wrap:wrap;margin-top:24px}.pagination button{border:1px solid var(--line);background:#fff;padding:7px 12px;border-radius:10px;cursor:pointer}.pagination button.current{background:var(--blue);color:#fff;border-color:var(--blue)}.pagination button:disabled{opacity:.4;cursor:not-allowed}
+.notice{background:#fff8e8;border:1px solid #f5dfad;border-radius:14px;padding:14px 16px;color:#694d10;margin-top:18px}.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.feature{background:#fff;border-radius:18px;padding:22px;border:1px solid var(--line)}.feature h3{margin-top:0;color:var(--navy)}.feature ul{padding-right:20px;color:#475569}
+.detail{background:#fff;border:1px solid var(--line);border-radius:20px;padding:clamp(18px,4vw,32px)}.detail h1{font-size:clamp(1.7rem,4vw,2.5rem);color:var(--navy)}.detail .description{white-space:normal}.detail-row{padding:10px 0;border-bottom:1px solid var(--line)}.detail-row:last-child{border-bottom:0}.back{margin-bottom:15px;display:inline-flex}
+.about-box{background:var(--navy);color:#fff;border-radius:22px;padding:28px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}.about-box p{color:#dbe7fb}.avatar{width:100px;height:100px;border-radius:50%;display:grid;place-items:center;background:#ffffff16;border:1px dashed #ffffff80;font-size:2.5rem}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.contact-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px}.contact-card p{color:var(--muted)}
+footer{background:#0b1729;color:#cbd5e1;padding:24px 0;text-align:center;font-size:.9rem}footer strong{color:#fff}.hidden{display:none!important}
+@media(max-width:800px){.hero-grid{grid-template-columns:1fr}.category-grid,.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.toolbar{grid-template-columns:1fr 1fr}.hero{padding:38px 0}}
+@media(max-width:560px){.category-grid,.grid,.feature-grid,.contact-grid,.about-box{grid-template-columns:1fr}.toolbar{grid-template-columns:1fr}.nav{align-items:flex-start}.nav nav{order:3;width:100%;overflow-x:auto;flex-wrap:nowrap}.nav nav a{white-space:nowrap}.page-head h1{font-size:1.65rem}}
 </style>
 </head>
 <body>
 <header><div class="wrap nav">
 <a class="brand" href="#home">Abdo<span>Jobs</span></a>
-<nav aria-label="القائمة الرئيسية"><a href="#jobs">الوظائف</a><a href="#marketing">التسويق والإعلانات</a><a href="#realestate">العقارات</a><a href="#about">من نحن</a><a href="#contact">تواصل معنا</a></nav>
-<a class="btn" href="#contact">انشر إعلانك</a>
+<nav aria-label="القائمة الرئيسية"><a href="#home">الرئيسية</a><a href="#jobs">الوظائف</a><a href="#marketing">التسويق والإعلانات</a><a href="#realestate">العقارات</a><a href="#about">من نحن</a><a href="#contact">تواصل</a></nav>
+<a class="btn small" href="#contact">انشر إعلانك</a>
 </div></header>
 <main>
-<section class="hero" id="home"><div class="wrap hero-grid">
-<div><span class="eyebrow">وظائف • تسويق • إعلانات • عقارات</span>
-<h1>خطوتك القادمة تبدأ من هنا</h1>
-<p>AbdoJobs مساحة تجمع فرص العمل والإعلانات التسويقية والعقارات في سوريا. عندك إعلان؟ راسل إدارة الموقع، وبعد مراجعة التفاصيل ننشره لك.</p>
-<a class="btn" href="#jobs">تصفّح الأقسام</a> <a class="btn alt" href="#contact">راسلنا لنشر إعلانك</a>
-</div>
-<div class="hero-card"><div class="big">📣</div><h2>إعلانك يوصل للناس</h2><p>أرسل تفاصيل إعلانك وصوره، وإدارة AbdoJobs تتولى مراجعته ونشره.</p><ul><li>فرص العمل والشواغر</li><li>التسويق والإعلانات</li><li>بيع وشراء وإيجار العقارات</li></ul></div>
-</div></section>
-<section id="jobs"><div class="wrap">
-<div class="section-head"><div><h2>الوظائف والشواغر</h2><p>فرص العمل داخل سوريا وعن بُعد، بعد مراجعتها من إدارة الموقع.</p></div><span class="tag">النشر بواسطة الإدارة</span></div>
-<div class="grid">
-<article class="card"><div class="icon">📍</div><h3>وظائف ميدانية</h3><p>فرص عمل داخل سوريا في مجالات متنوعة.</p><span class="tag">داخل سوريا</span></article>
-<article class="card"><div class="icon">💻</div><h3>وظائف عن بُعد</h3><p>فرص عبر الإنترنت في المحتوى والتسويق وخدمات أخرى.</p><span class="tag">عن بُعد</span></article>
-<article class="card"><div class="icon">📰</div><h3>إعلام وكتابة محتوى</h3><p>شواغر الصحافة وكتابة الأخبار وإدارة صفحات التواصل.</p><span class="tag">إعلام ومحتوى</span></article>
-</div>
-<div class="section-head" style="margin-top:28px"><div><h2 style="font-size:1.4rem">مثال على إعلان وظيفة عن بُعد</h2><p>هذا نموذج توضيحي لشكل الإعلانات التي يمكن نشرها، وليس شاغراً مؤكداً.</p></div><span class="tag">نموذج تجريبي</span></div>
-<article class="card" style="border-right:5px solid #246bfe">
-<div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap"><div><span class="tag">عن بُعد • دوام مرن</span><h3>مطلوب مساعد لإدارة صفحات التواصل الاجتماعي</h3></div><div class="icon">💻</div></div>
-<p><strong>طبيعة العمل:</strong> تجهيز منشورات بسيطة، متابعة الرسائل والتعليقات، وتنظيم المحتوى على صفحات التواصل.</p>
-<p><strong>المتطلبات:</strong> استخدام جيد لفيسبوك وإنستغرام، الالتزام بالمواعيد، والقدرة على الكتابة والتواصل بوضوح.</p>
-<p><strong>مكان العمل:</strong> عن بُعد — من أي محافظة.</p>
-<p><strong>الراتب وطريقة التقديم:</strong> يحددهما صاحب الشاغر عند نشر إعلان حقيقي.</p>
-<span class="tag">مثال فقط — لا يعني توفر الوظيفة حالياً</span>
-</article>
-<div class="notice">حالياً لا توجد وظائف مؤكدة مضافة. لإضافة شاغر حقيقي، أرسل تفاصيله ورابط التقديم إلى إدارة AbdoJobs حتى تتم مراجعته ونشره.</div>
-</div></section>
-<section class="marketing" id="marketing"><div class="wrap">
-<div class="section-head"><div><h2>التسويق والإعلانات</h2><p>نشر إعلانات المحلات والشركات والمشاريع والخدمات.</p></div></div>
-<div class="two">
-<div class="feature"><h3>📣 الإعلان والترويج</h3><ul><li>إعلانات المحلات والشركات والمشاريع.</li><li>صياغة منشورات ترويجية جذابة.</li><li>تنسيق محتوى يناسب منصات التواصل.</li></ul></div>
-<div class="feature"><h3>🎥 التصوير وصناعة المحتوى</h3><ul><li>تصوير فيديوهات إعلانية قصيرة.</li><li>تجهيز الفيديو للنشر والمونتاج.</li><li>المساعدة في إدارة محتوى الصفحات.</li></ul></div>
-</div></div></section>
-<section id="realestate"><div class="wrap">
-<div class="section-head"><div><h2>العقارات</h2><p>بيع وشراء وإيجار العقارات في سوريا، والإعلانات تُنشر عن طريق الإدارة فقط.</p></div><span class="tag">راسلنا لنشر عقارك</span></div>
-<div class="grid">
-<article class="card" style="border:2px solid #246bfe">
-<div class="icon">🏢</div><span class="tag">إعلان عقاري • للبيع</span>
-<h3>شقة زاوية للبيع في الحسكة</h3>
-<p><strong>الموقع:</strong> مفرق مساكن الأوغاريت، قرب الكنيسة الآشورية — الحسكة.</p>
-<p><strong>المساحة:</strong> 160 م² | <strong>الطابق:</strong> الثالث.</p>
-<p>٤ غرف كبيرة، مطبخ واسع جداً، ومنافع كاملة. شقة زاوية مفتوحة على ثلاث جهات (شرقي، شمالي، غربي)، بإضاءة وتهوية ممتازتين، وأبجورات كاملة. جاهزة للسكن والتسليم مباشر.</p>
-<p><strong>السعر:</strong> يُرجى التواصل للاستفسار.</p>
-<p><strong>أبو علاء:</strong> <a href="tel:0932928921">0932928921</a><br><strong>علي ميرزا:</strong> <a href="tel:0992451333">0992451333</a></p>
-<p><strong>مكتب ميرزا للعقارات:</strong> الحسكة — تل حجر — طريق الكراج، بجانب ساكن العطور.</p>
-</article>
-<article class="card">
-<div class="icon">🌳</div><span class="tag">للبيع • مزرعة</span>
-<h3>مزرعة مميزة للبيع في الحسكة</h3>
-<p><strong>الموقع:</strong> أول مدخل الحسكة الغربي، مقابل صالة دجلة باتجاه الشمال بـ200 متر.</p>
-<p><strong>المساحة:</strong> 462 م² | <strong>مساحة البناء:</strong> 100 م².</p>
-<p>صالون 10×4 م، غرفة نوم، مطبخ أمريكي، حمام مع تواليت داخلي، تواليت خارجي ودرج، ومشجرة بأشجار مثمرة متنوعة.</p>
-<p><strong>الملكية حسب المعلن:</strong> أملاك خاصة، سند ملك باسم جمعة العموري، والفراغ نظامي.</p>
-<p><strong>السعر:</strong> 35,000 دولار.</p>
-<p><strong>علي ميرزا:</strong> <a href="tel:0992451333">0992451333</a></p>
-</article>
-<article class="card">
-<div class="icon">🏢</div><span class="tag">للبيع • بناء كامل أو شقق</span>
-<h3>بناء 4 طوابق مع قبو في حي المفتي</h3>
-<p><strong>الموقع:</strong> شرقي جامع النابلسي، قرب شارع الصرافين الرئيسي (السوق العام) — الحسكة.</p>
-<p><strong>مساحة الأرض:</strong> 200 م² | <strong>القبو:</strong> 200 م² | <strong>كل شقة:</strong> 165 م².</p>
-<p>كل شقة تضم 3 غرف وصالون وحمّامين وتواليت، مع إطلالة شرقية وغربية مفتوحة. التمديدات الصحية والكهربائية منجزة، والسواد والزريقة الناعمة جاهزان، ويتبقى السيراميك والتشطيبات النهائية.</p>
-<p><strong>البيع:</strong> البناء بالكامل أو طوابق وشقق مستقلة. التسليم على الوضع الراهن.</p>
-<p><strong>السعر:</strong> يُرجى التواصل للاستفسار.</p>
-<p><strong>أبو علاء:</strong> <a href="tel:0932928921">0932928921</a><br><strong>علي ميرزا:</strong> <a href="tel:0992451333">0992451333</a></p>
-<p><strong>مكتب ميرزا للعقارات:</strong> الحسكة — تل حجر — طريق الكراج، بجانب ساكن العطور.</p>
-</article>
-<article class="card">
-<div class="icon">🏠</div><span class="tag">للبيع • بيت عربي</span>
-<h3>بيت عربي بطابقين في تل حجر</h3>
-<p><strong>الموقع:</strong> خلف جامع الحفيان مباشرة — تل حجر، الحسكة.</p>
-<p><strong>المساحة:</strong> 160 م².</p>
-<p>الطابق الأرضي: 3 غرف ومطبخ وحوش. الطابق الثاني: 4 غرف. القواعد تتحمل البناء حتى 4 طوابق حسب إفادة المعلن. يحتاج إلى دهان وبعض الأعمال الخفيفة فقط.</p>
-<p><strong>السعر:</strong> 60,000 دولار.</p>
-<p><strong>علي ميرزا:</strong> <a href="tel:0992451333">0992451333</a></p>
-<p><strong>مكتب ميرزا للعقارات:</strong> الحسكة — تل حجر — طريق الكراج، بجانب ساكن العطور.</p>
-</article>
-<article class="card">
-<div class="icon">🏗️</div><span class="tag">للبيع • على الهيكل</span>
-<h3>قبوشامي للبيع في تل حجر</h3>
-<p><strong>الموقع:</strong> شمال مطعم التقوى — تل حجر، الحسكة.</p>
-<p><strong>المساحة:</strong> 150 م².</p>
-<p>يُسلَّم على الهيكل، بواجهة ملبّسة ودرج رخام، ومخطط داخلي يتضمن 4 غرف واسعة ومنافع.</p>
-<p><strong>السعر:</strong> 18,000 دولار.</p>
-<p><strong>أبو علاء:</strong> <a href="tel:0932928921">0932928921</a><br><strong>علي ميرزا:</strong> <a href="tel:0992451333">0992451333</a></p>
-<p><strong>مكتب ميرزا للعقارات:</strong> الحسكة — تل حجر — طريق الكراج، بجانب ساكن العطور.</p>
-</article>
-</div>
-<article class="card"><div class="icon">🏠</div><h3>منازل وشقق</h3><p>إعلانات بيع أو شراء أو إيجار المنازل والشقق، مع المنطقة والسعر والصور.</p><span class="tag">سكني</span></article>
-<article class="card"><div class="icon">🌳</div><h3>أراضٍ</h3><p>إعلانات الأراضي مع الموقع والمساحة والسعر وطريقة التواصل مع المعلن.</p><span class="tag">أراضٍ</span></article>
-<article class="card"><div class="icon">🏬</div><h3>محلات وعقارات تجارية</h3><p>إعلانات المحلات والمكاتب والمستودعات للبيع أو الإيجار.</p><span class="tag">تجاري</span></article>
-</div>
-<div class="notice">لن يظهر أي إعلان عقاري إلا بعد أن يرسل صاحبه التفاصيل والصور للإدارة وتتم مراجعته قبل النشر.</div>
-</div></section>
-<section id="about"><div class="wrap"><div class="about-box">
-<div><h2>من نحن</h2><p>AbdoJobs مشروع يهتم بنشر فرص العمل وتقديم خدمات التسويق والإعلانات والعقارات. يدير الموقع بشار عبدو، وتتم مراجعة الإعلانات ونشرها من خلال الإدارة.</p></div>
-<div class="avatar" aria-label="مكان إضافة صورة صاحب الموقع">👤</div>
-</div><p style="color:#64748b;font-size:.9rem;margin-top:12px">مكان الصورة جاهز، ويمكن إضافة صورتك الأصلية هنا دون تغيير ملامحك.</p></div></section>
-<section id="contact"><div class="wrap">
-<div class="section-head"><div><h2>تواصل معنا</h2><p>لإرسال إعلان وظيفة أو تسويق أو عقار، تواصل مع بشار عبدو.</p></div></div>
-<div class="contact-grid">
-<div class="contact-card"><h3>📩 أرسل إعلانك</h3><p>أرسل نوع الإعلان، والتفاصيل، والصور إن وجدت، والمنطقة، والسعر أو الراتب عند الحاجة، وطريقة التواصل. تتم مراجعة الإعلان قبل نشره.</p><span class="tag">النشر بواسطة الإدارة فقط</span></div>
-<div class="contact-card"><h3>🤝 ملاحظة للمتابعين</h3><p>تحقق من صحة تفاصيل الوظائف والعقارات قبل اتخاذ أي قرار، ولا ترسل أموالاً أو بيانات حساسة لجهة غير موثوقة.</p><p><strong>روابط التواصل:</strong> تُضاف هنا قبل نشر الموقع بشكل نهائي.</p><a class="btn" href="#contact">راسل إدارة الموقع</a></div>
-</div>
-<div class="notice">مهم قبل النشر العام: يجب إدخال روابط صفحتك أو واتسابك وصورتك الأصلية في ملفات الموقع حتى تعمل أزرار التواصل وتظهر صورتك.</div>
-</div></section>
-</main>
-<footer><div class="wrap">© 2026 <strong>AbdoJobs</strong> — وظائف وتسويق وإعلانات وعقارات</div></footer>
-</body></html> a
+<section class="hero" id="hero"><div class="wrap hero-grid"><div><span class="eyebrow">وظائف • تسويق • إعلانات • عقارات</span><h1>كل الفرص بمكان واحد</h1><p>أهلاً بك في AbdoJobs؛ تصفّح الوظائف والعقارات والإعلانات من أقسام مستقلة، وابحث عن الإعلان الذي يناسبك بسهولة.</p><a class="btn" href="#categories">تصفّح الأقسام ←</a> <a class="btn alt" href="#contact">انشر إعلانك</a></div><div class="hero-card"><div class="big">📣</div><h2>منصة مرتّبة وسهلة</h2><ul><li>صفحة مستقلة لكل قسم</li><li>بحث وتصنيف للإعلانات</li><li>تفاصيل مستقلة لكل إعلان</li><li>تقليب صفحات بدل تكديس المنشورات</li></ul></div></div></section>
+<section class="page" id="homePage"><div class="wrap"><div class="section-head"><div><h2 id="categories">اختر القسم الذي تبحث عنه</h2><p class="muted">كل قسم يفتح بصفحته الخاصة.</p></div></div><div class="category-grid">
+<a class="category" href="#jobs"><div class="icon">💼</div><h3>الوظائف والشواغر</h3><p>وظائف داخل سوريا، فرص عن بُعد، وإعلام وكتابة محتوى.</p><span class="btn small">دخول قسم الوظائف ←</span></a>
+<a class="category" href="#marketing"><div class="icon">📣</div><h3>التسويق والإعلانات</h3><p>إعلانات الشركات والمحلات والخدمات وصناعة المحتوى.</p><span class="btn small">دخول قسم التسويق ←</span></a>
+<a class="category" href="#realestate"><div class="icon">🏠</div><h3>العقارات</h3><p>شقق ومنازل وأراضٍ وأبنية وعقارات تجارية.</p><span class="btn small">دخول قسم العقارات ←</span></a>
+</div><div class="section-head" style="margin-top:34px"><div><h2>أحدث العقارات</h2><p class="muted">معاينة سريعة، والتفاصيل داخل صفحة كل إعلان.</p></div><a class="btn alt" href="#realestate">عرض كل العقارات ←</a></div><div id="homeLatest" class="grid"></div></div></section>
+<section class="page hidden" id="jobsPage"><div class="wrap"><div class="page-head"><span class="tag">قسم مستقل</span><h1>الوظائف والشواغر</h1><p>ابحث عن فرص العمل حسب المجال أو نوع العمل. المنشورات التوضيحية ليست شواغر مؤكدة.</p></div><div class="category-grid">
+<div class="category"><div class="icon">📍</div><h3>وظائف ميدانية</h3><p>فرص عمل داخل سوريا في مجالات متنوعة.</p></div><div class="category"><div class="icon">💻</div><h3>وظائف عن بُعد</h3><p>فرص عبر الإنترنت في المحتوى والتسويق وخدمات أخرى.</p></div><div class="category"><div class="icon">📰</div><h3>إعلام وكتابة محتوى</h3><p>الصحافة وكتابة الأخبار وإدارة صفحات التواصل.</p></div></div>
+<div class="section-head" style="margin-top:28px"><div><h2>نموذج توضيحي</h2><p class="muted">مثال لشكل إعلان وظيفة، وليس شاغراً مؤكداً.</p></div><span class="tag">مثال فقط</span></div><article class="card"><span class="tag">عن بُعد • دوام مرن</span><h3>مطلوب مساعد لإدارة صفحات التواصل الاجتماعي</h3><p><strong>طبيعة العمل:</strong> تجهيز منشورات بسيطة، متابعة الرسائل والتعليقات، وتنظيم المحتوى على صفحات التواصل.</p><p><strong>المتطلبات:</strong> استخدام جيد لفيسبوك وإنستغرام، الالتزام بالمواعيد، والقدرة على الكتابة والتواصل بوضوح.</p><p><strong>مكان العمل:</strong> عن بُعد — من أي محافظة.</p><span class="tag">مثال فقط — لا يعني توفر الوظيفة حالياً</span></article><div class="notice">حالياً لا توجد وظائف مؤكدة مضافة. أرسل تفاصيل أي شاغر لإدارة الموقع لمراجعته ونشره.</div></div></section>
+<section class="page hidden" id="marketingPage"><div class="wrap"><div class="page-head"><span class="tag">قسم مستقل</span><h1>التسويق والإعلانات</h1><p>مساحة لإعلانات المحلات والشركات والمشاريع والخدمات.</p></div><div class="feature-grid"><div class="feature"><h3>📣 الإعلان والترويج</h3><ul><li>إعلانات المحلات والشركات والمشاريع.</li><li>صياغة منشورات ترويجية جذابة.</li><li>تنسيق محتوى يناسب منصات التواصل.</li></ul></div><div class="feature"><h3>🎥 التصوير وصناعة المحتوى</h3><ul><li>تصوير فيديوهات إعلانية قصيرة.</li><li>تجهيز الفيديو للنشر والمونتاج.</li><li>المساعدة في إدارة محتوى الصفحات.</li></ul></div></div><div class="notice">لإضافة إعلان تسويقي، أرسل التفاصيل والصور وطريقة التواصل إلى إدارة AbdoJobs.</div></div></section>
+<section class="page hidden" id="realestatePage"><div class="wrap"><div class="page-head"><span class="tag">قسم مستقل • الحسكة وسوريا</span><h1>العقارات</h1><p>تصفح العقارات على دفعات، وابحث حسب المنطقة أو نوع العقار أو السعر. افتح أي إعلان لعرض التفاصيل كاملة.</p></div>
+<div class="toolbar"><input id="searchInput" type="search" placeholder="ابحث بالعنوان أو المنطقة..." aria-label="البحث عن عقار"><select id="typeFilter" aria-label="نوع العقار"><option value="">كل أنواع العقارات</option><option value="شقة">شقق</option><option value="مزرعة">مزارع</option><option value="بناء">أبنية</option><option value="بيت">منازل</option><option value="قبوشامي">على الهيكل</option></select><select id="priceFilter" aria-label="ترتيب السعر"><option value="">ترتيب افتراضي</option><option value="low">السعر: من الأقل للأعلى</option><option value="high">السعر: من الأعلى للأقل</option></select><button class="btn" id="clearFilters">مسح البحث</button></div>
+<div class="section-head"><div><h2>الإعلانات العقارية</h2><p class="muted" id="resultCount">جاري تحميل الإعلانات...</p></div><span class="tag">20 إعلاناً في الصفحة</span></div><div id="propertyGrid" class="grid"></div><div id="pagination" class="pagination"></div><div class="notice">تحقق من الملكية والتفاصيل مع المعلن قبل أي اتفاق أو دفع. المعلومات الواردة في الإعلانات على مسؤولية أصحابها.</div></div></section>
+<section class="page hidden" id="detailPage"><div class="wrap"><a class="btn alt back" href="#realestate">← الرجوع إلى العقارات</a><div id="detailContent"></div></div></section>
+<section class="page hidden" id="aboutPage"><div class="wrap"><div class="about-box"><div><h1 style="font-size:2rem;margin-top:0">من نحن</h1><p>AbdoJobs مشروع يهتم بنشر فرص العمل وتقديم خدمات التسويق والإعلانات والعقارات في سوريا. تتم مراجعة الإعلانات وإضافتها من خلال إدارة الموقع.</p></div><div class="avatar">👤</div></div><p class="muted">يمكن إضافة صورة صاحب الموقع الأصلية وروابط التواصل لاحقاً.</p></div></section>
+<section class="page hidden" id="contactPage"><div class="wrap"><div class="page-head"><h1>تواصل معنا وانشر إعلانك</h1><p>أرسل نوع الإعلان والتفاصيل والصور إن وجدت والمنطقة والسعر أو الراتب وطريقة التواصل.</p></div><div class="contact-grid"><div class="contact-card"><h3>📩 إرسال إعلان</h3><p>حالياً تتم إضافة المنشورات بواسطة إدارة الموقع بعد مراجعتها. أضف هنا رابط واتساب أو فيسبوك الرسمي قبل اعتماد النشر العام.</p><span class="tag">النشر بواسطة الإدارة فقط</span></div><div class="contact-card"><h3>🤝 تنبيه للمتابعين</h3><p>تحقق من صحة تفاصيل الوظائف والعقارات قبل اتخاذ أي قرار، ولا ترسل أموالاً أو بيانات حساسة لجهة غير موثوقة.</p></div></div></div></section>
+</main><footer><div class="wrap">© 2026 <strong>AbdoJobs</strong> — وظائف وتسويق وإعلانات وعقارات</div></footer>
+<script>
+const properties=[
+{id:"apartment",type:"شقة",title:"شقة زاوية للبيع في الحسكة",location:"مفرق مساكن الأوغاريت، قرب الكنيسة الآشورية — الحسكة",area:160,price:null,priceText:"للاستفسار",icon:"🏢",summary:"٤ غرف كبيرة ومطبخ واسع ومنافع كاملة، زاوية مفتوحة على ثلاث جهات.",details:[["المساحة","160 م²"],["الطابق","الثالث"],["التفاصيل","٤ غرف كبيرة، مطبخ واسع جداً، ومنافع كاملة. شقة زاوية مفتوحة على ثلاث جهات (شرقي، شمالي، غربي)، بإضاءة وتهوية ممتازتين، وأبجورات كاملة. جاهزة للسكن والتسليم مباشر."],["السعر","يُرجى التواصل للاستفسار"]],contacts:[["أبو علاء","0932928921"],["علي ميرزا","0992451333"]]},
+{id:"farm",type:"مزرعة",title:"مزرعة مميزة للبيع في الحسكة",location:"أول مدخل الحسكة الغربي، مقابل صالة دجلة باتجاه الشمال بـ200 متر",area:462,price:35000,priceText:"35,000 دولار",icon:"🌳",summary:"أرض 462 م² وبناء 100 م²، مع مشجرة بأشجار مثمرة متنوعة.",details:[["مساحة الأرض","462 م²"],["مساحة البناء","100 م²"],["التفاصيل","صالون 10×4 م، غرفة نوم، مطبخ أمريكي، حمام مع تواليت داخلي، تواليت خارجي ودرج، ومشجرة بأشجار مثمرة متنوعة."],["الملكية حسب المعلن","أملاك خاصة، سند ملك باسم جمعة العموري، والفراغ نظامي."],["السعر","35,000 دولار"]],contacts:[["علي ميرزا","0992451333"]]},
+{id:"building",type:"بناء",title:"بناء 4 طوابق مع قبو في حي المفتي",location:"شرقي جامع النابلسي، قرب شارع الصرافين الرئيسي (السوق العام) — الحسكة",area:200,price:null,priceText:"للاستفسار",icon:"🏢",summary:"بناء للبيع بالكامل أو طوابق وشقق مستقلة، مع قبو.",details:[["مساحة الأرض","200 م²"],["مساحة القبو","200 م²"],["مساحة كل شقة","165 م²"],["التفاصيل","كل شقة تضم 3 غرف وصالون وحمّامين وتواليت، مع إطلالة شرقية وغربية مفتوحة. التمديدات الصحية والكهربائية منجزة، والسواد والزريقة الناعمة جاهزان، ويتبقى السيراميك والتشطيبات النهائية."],["البيع والتسليم","البناء بالكامل أو طوابق وشقق مستقلة. التسليم على الوضع الراهن."],["السعر","يُرجى التواصل للاستفسار"]],contacts:[["أبو علاء","0932928921"],["علي ميرزا","0992451333"]],office:"مكتب ميرزا للعقارات: الحسكة — تل حجر — طريق الكراج، بجانب ساكن العطور."},
+{id:"home",type:"بيت",title:"بيت عربي بطابقين في تل حجر",location:"خلف جامع الحفيان مباشرة — تل حجر، الحسكة",area:160,price:60000,priceText:"60,000 دولار",icon:"🏠",summary:"طابق أرضي 3 غرف ومطبخ وحوش، وطابق ثانٍ 4 غرف.",details:[["المساحة","160 م²"],["التفاصيل","الطابق الأرضي: 3 غرف ومطبخ وحوش. الطابق الثاني: 4 غرف. القواعد تتحمل البناء حتى 4 طوابق حسب إفادة المعلن. يحتاج إلى دهان وبعض الأعمال الخفيفة فقط."],["السعر","60,000 دولار"]],contacts:[["علي ميرزا","0992451333"]],office:"مكتب ميرزا للعقارات: الحسكة — تل حجر — طريق الكراج، بجانب ساكن العطور."},
+{id:"shell",type:"قبوشامي",title:"قبوشامي للبيع في تل حجر",location:"شمال مطعم التقوى — تل حجر، الحسكة",area:150,price:18000,priceText:"18,000 دولار",icon:"🏗️",summary:"على الهيكل، بواجهة ملبّسة ودرج رخام، ومخطط 4 غرف واسعة.",details:[["المساحة","150 م²"],["التفاصيل","يُسلَّم على الهيكل، بواجهة ملبّسة ودرج رخام، ومخطط داخلي يتضمن 4 غرف واسعة ومنافع."],["السعر","18,000 دولار"]],contacts:[["أبو علاء","0932928921"],["علي ميرزا","0992451333"]],office:"مكتب ميرزا للعقارات: الحسكة — تل حجر — طريق الكراج، بجانب ساكن العطور."}
+];
+const pageSize=20;let currentPage=1;
+const pages={home:"homePage",jobs:"jobsPage",marketing:"marketingPage",realestate:"realestatePage",about:"aboutPage",contact:"contactPage"};
+function money(p){return p.price===null?"السعر عند التواصل":p.price.toLocaleString("en-US")+" دولار"}
+function card(p){return '<article class="card"><div class="icon">'+p.icon+'</div><span class="tag">'+p.type+' • للبيع</span><h3>'+p.title+'</h3><p class="meta">📍 '+p.location+'</p><p>'+p.summary+'</p><p class="meta">المساحة: '+p.area+' م²</p><div class="price">'+p.priceText+'</div><div class="actions"><a class="btn" href="#listing/'+p.id+'">تفاصيل الإعلان ←</a></div></article>'}
+function renderLatest(){document.getElementById("homeLatest").innerHTML=properties.slice(0,3).map(card).join("")}
+function renderProperties(){const q=document.getElementById("searchInput").value.trim().toLowerCase();const type=document.getElementById("typeFilter").value;const sort=document.getElementById("priceFilter").value;let list=properties.filter(p=>(!type||p.type===type)&&(!q||(p.title+" "+p.location+" "+p.summary+" "+p.type).toLowerCase().includes(q)));if(sort==="low")list.sort((a,b)=>(a.price===null?Infinity:a.price)-(b.price===null?Infinity:b.price));if(sort==="high")list.sort((a,b)=>(b.price===null?-1:b.price)-(a.price===null?-1:a.price));const pagesCount=Math.max(1,Math.ceil(list.length/pageSize));if(currentPage>pagesCount)currentPage=1;const start=(currentPage-1)*pageSize;document.getElementById("resultCount").textContent="عدد الإعلانات: "+list.length+" — الصفحة "+currentPage+" من "+pagesCount;document.getElementById("propertyGrid").innerHTML=list.length?list.slice(start,start+pageSize).map(card).join(""):'<div class="empty">ما لقينا إعلانات مطابقة للبحث. جرّب كلمة ثانية أو امسح الفلاتر.</div>';let html='<button '+(currentPage===1?'disabled':'')+' data-page="'+(currentPage-1)+'">السابق</button>';for(let i=1;i<=pagesCount;i++)html+='<button class="'+(i===currentPage?'current':'')+'" data-page="'+i+'">'+i+'</button>';html+='<button '+(currentPage===pagesCount?'disabled':'')+' data-page="'+(currentPage+1)+'">التالي</button>';document.getElementById("pagination").innerHTML=html;document.querySelectorAll("#pagination button[data-page]").forEach(b=>b.addEventListener("click",()=>{currentPage=Number(b.dataset.page);renderProperties();document.getElementById("realestatePage").scrollIntoView({behavior:"smooth"})}))}
+function renderDetail(id){const p=properties.find(x=>x.id===id);const root=document.getElementById("detailContent");if(!p){root.innerHTML='<div class="empty">الإعلان غير موجود. <a href="#realestate">العودة إلى العقارات</a></div>';return}let rows=p.details.map(x=>'<div class="detail-row"><strong>'+x[0]+':</strong> '+x[1]+'</div>').join("");let contacts=p.contacts.map(c=>'<p><strong>'+c[0]+':</strong> <a href="tel:'+c[1]+'">'+c[1]+'</a></p>').join("");root.innerHTML='<article class="detail"><span class="tag">'+p.type+' • إعلان عقاري</span><h1>'+p.title+'</h1><p class="muted">📍 '+p.location+'</p><div class="price">'+p.priceText+'</div>'+rows+'<div class="detail-row"><strong>التواصل مع المعلن</strong>'+contacts+(p.office?'<p><strong>'+p.office+'</strong></p>':'')+'</div><p class="muted">يرجى التحقق من التفاصيل والملكية مع المعلن قبل أي اتفاق.</p></article>'}
+function route(){let raw=location.hash.slice(1)||"home";let detailId=null;if(raw.indexOf("listing/")===0){detailId=raw.split("/")[1];raw="detail"}if(!pages[raw]&&raw!=="detail")raw="home";document.getElementById("hero").classList.toggle("hidden",raw!=="home");document.getElementById("homePage").classList.toggle("hidden",raw!=="home");Object.keys(pages).forEach(k=>{if(k!=="home")document.getElementById(pages[k]).classList.toggle("hidden",raw!==k)});document.getElementById("detailPage").classList.toggle("hidden",raw!=="detail");document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+raw));if(raw==="detail")renderDetail(detailId);if(raw==="realestate")renderProperties();window.scrollTo(0,0)}
+document.getElementById("searchInput").addEventListener("input",()=>{currentPage=1;renderProperties()});document.getElementById("typeFilter").addEventListener("change",()=>{currentPage=1;renderProperties()});document.getElementById("priceFilter").addEventListener("change",()=>{currentPage=1;renderProperties()});document.getElementById("clearFilters").addEventListener("click",()=>{document.getElementById("searchInput").value="";document.getElementById("typeFilter").value="";document.getElementById("priceFilter").value="";currentPage=1;renderProperties()});window.addEventListener("hashchange",route);renderLatest();route();
+</script></body></html>
