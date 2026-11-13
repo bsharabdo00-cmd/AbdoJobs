@@ -101,11 +101,12 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 <span style="color:#e58a22">المكتب الإعلامي:</span>
 <span style="color:#1976d2">بشار عبدو_ Bashar Abdo</span>
 </p>
-<div class="post-actions post-live-stats" aria-label="إحصاءات المنشور">
-<button class="post-action" type="button" data-stat="likes" onclick="bumpPostStat(this)">❤️ الإعجابات <strong>19،302</strong></button>
-<button class="post-action" type="button" data-stat="reposts" onclick="bumpPostStat(this)">🔁 إعادة النشر <strong>7،421</strong></button>
-<button class="post-action" type="button" data-stat="saves" onclick="bumpPostStat(this)">🔖 الحفظ <strong>1،099</strong></button>
-<div class="post-action" data-stat="views">📊 المشاهدات <strong>22،341</strong></div>
+<div class="post-actions">
+<button class="post-action" type="button" onclick="togglePostAction(this)" data-count="19302">♡ إعجاب <strong>19,302</strong></button>
+<button class="post-action" type="button" onclick="incrementAction(this)" data-count="7421">🔁 إعادة نشر <strong>7,421</strong></button>
+<button class="post-action" type="button" onclick="toggleSave(this)" data-count="1099">🔖 حفظ <strong>1,099</strong></button>
+<button class="post-action" type="button" onclick="shareAndCount(this)" data-count="3310">📤 مشاركة <strong>3,310</strong></button>
+</div>
 <button class="post-action" type="button" data-stat="shares" onclick="bumpPostStat(this)">↗️ المشاركة <strong>3،310</strong></button>
 </div>
 <p class="post-note">الأرقام المعروضة تبدأ من القيم المحددة، ويزداد العداد عند التفاعل مع الأزرار على هذا الجهاز.</p>
