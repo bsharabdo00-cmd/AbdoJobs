@@ -101,13 +101,14 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 <span style="color:#e58a22">المكتب الإعلامي:</span>
 <span style="color:#1976d2">بشار عبدو_ Bashar Abdo</span>
 </p>
-<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:14px">
-<div style="background:#f3f6fa;border-radius:12px;padding:10px;text-align:center">❤️ الإعجابات<br><strong>19،302</strong></div>
-<div style="background:#f3f6fa;border-radius:12px;padding:10px;text-align:center">🔁 إعادة النشر<br><strong>7،421</strong></div>
-<div style="background:#f3f6fa;border-radius:12px;padding:10px;text-align:center">🔖 الحفظ<br><strong>1،099</strong></div>
-<div style="background:#f3f6fa;border-radius:12px;padding:10px;text-align:center">📊 المشاهدات<br><strong>22،341</strong></div>
-<div style="background:#f3f6fa;border-radius:12px;padding:10px;text-align:center;grid-column:1/-1">↗️ المشاركة<br><strong>3،310</strong></div>
+<div class="post-actions post-live-stats" aria-label="إحصاءات المنشور">
+<button class="post-action" type="button" data-stat="likes" onclick="bumpPostStat(this)">❤️ الإعجابات <strong>19،302</strong></button>
+<button class="post-action" type="button" data-stat="reposts" onclick="bumpPostStat(this)">🔁 إعادة النشر <strong>7،421</strong></button>
+<button class="post-action" type="button" data-stat="saves" onclick="bumpPostStat(this)">🔖 الحفظ <strong>1،099</strong></button>
+<div class="post-action" data-stat="views">📊 المشاهدات <strong>22،341</strong></div>
+<button class="post-action" type="button" data-stat="shares" onclick="bumpPostStat(this)">↗️ المشاركة <strong>3،310</strong></button>
 </div>
+<p class="post-note">الأرقام المعروضة تبدأ من القيم المحددة، ويزداد العداد عند التفاعل مع الأزرار على هذا الجهاز.</p>
 </article>
 
 <section id="contact"><div class="wrap"><div class="contact">
@@ -123,5 +124,22 @@ function incrementAction(button){const count=Number(button.dataset.count||0)+1;s
 function shareAndCount(button){incrementAction(button);sharePost();}
 function toggleSave(button){const saved=button.classList.toggle("active");let count=Number(button.dataset.count||38)+(saved?1:-1);setActionCount(button,count,saved?"تم الحفظ":"حفظ");button.firstChild.textContent=saved?"✓ تم الحفظ ":"🔖 حفظ ";}
 async function sharePost(){const text="أهلاً وسهلاً بكم 🌹 أنا بشار عبدو _ Bashar Abdo، وهذه مساحتي الشخصية أشارك فيها اهتماماتي وأعمالي وتجربتي.";const data={title:"منشوراتي",text:text,url:location.href+"#posts"};try{if(navigator.share){await navigator.share(data);}else if(navigator.clipboard){await navigator.clipboard.writeText(text+"\n"+data.url);alert("تم نسخ المنشور ورابطه لمشاركته.");}else{alert("يمكنك نسخ نص المنشور ومشاركته.");}}catch(e){if(e.name!=="AbortError")alert("تعذرت المشاركة من هذا المتصفح.");}}
+
+function bumpPostStat(button){
+ const key="sultan-post-"+button.dataset.stat;
+ const base={likes:19302,reposts:7421,saves:1099,shares:3310}[button.dataset.stat]||0;
+ const next=(Number(localStorage.getItem(key))||base)+1;
+ localStorage.setItem(key,String(next));
+ button.querySelector("strong").textContent=next.toLocaleString("ar-EG");
+ button.classList.add("active");
+}
+(function(){
+ const el=document.querySelector('#post-sultan-nayef [data-stat="views"]');
+ if(!el)return;
+ const key="sultan-post-views";
+ const next=(Number(localStorage.getItem(key))||22341)+1;
+ localStorage.setItem(key,String(next));
+ el.querySelector("strong").textContent=next.toLocaleString("ar-EG");
+})();
 </script>
 </body></html>
