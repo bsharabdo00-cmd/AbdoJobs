@@ -17,6 +17,12 @@ section{padding:32px 0 48px}.section-head{text-align:center;margin:0 auto 25px}.
 .contact{text-align:center;background:var(--navy);color:white;border-radius:24px;padding:30px}.contact h2{margin:0 0 6px}.contact p{color:#d4deea;margin:0 0 18px}.contact .btn{margin:4px}
 footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font-size:.9rem}footer strong{color:#9ecbff}
 @media(max-width:650px){.nav{padding:10px 0;align-items:flex-start;flex-direction:column;gap:4px}.nav nav{width:100%;display:flex;gap:4px}.nav nav a{font-size:.84rem;padding:6px 9px}.hero{padding:22px 0 10px}.hero-box{border-radius:20px;padding:28px 22px}.hero h1{font-size:2.1rem}.hero p{font-size:.96rem}.social-grid{grid-template-columns:1fr}.section-head h2{font-size:1.55rem}}
+
+/* Facebook-style image lightbox */
+.post-image .zoomable-post-image{transition:filter .2s ease}.post-image .zoomable-post-image:hover{filter:brightness(.97)}
+.image-lightbox{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.94);display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.image-lightbox.open{display:flex}.image-lightbox img{max-width:96vw;max-height:92vh;width:auto;height:auto;object-fit:contain;border-radius:4px;box-shadow:0 12px 50px #0008}
+.image-lightbox button{position:absolute;top:14px;left:16px;width:44px;height:44px;border:0;border-radius:50%;background:#ffffff24;color:white;font-size:30px;cursor:pointer;line-height:1}
 </style>
 </head>
 <body>
@@ -72,7 +78,7 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 <br>من منطلق مسؤوليتنا الإنسانية، نعمل حالياً بكل جهد على تجهيز سلسلة فيديوهات جديدة تسلط الضوء على هذا الواقع المؤلم وتنقل الصورة كما هي دون تزييف. 🎥✨
 </p>
 <div class="post-image" style="margin:14px 0;border-radius:14px;overflow:hidden;border:1px solid #e1e7ee;background:#fff">
-<img src="images/sultan-post.svg" alt="صورة منشور سلطان بن نايف الشمري على منصة X" loading="lazy" style="display:block;width:100%;height:auto">
+<img class="zoomable-post-image" src="images/sultan-post.svg" alt="صورة منشور سلطان بن نايف الشمري على منصة X" loading="lazy" style="display:block;width:100%;height:auto;cursor:zoom-in" title="اضغط لعرض الصورة بالحجم الكامل">
 </div>
 <p style="text-align:center;margin:18px 0 10px;font-weight:800">
 <span style="color:#e58a22">المكتب الإعلامي:</span>
@@ -143,5 +149,14 @@ function bumpPostStat(button){
 
 // Keep pinned introduction posts ahead of regular posts, even when newer cards are added.
 (function(){const section=document.querySelector("#posts .wrap");if(!section)return;const cards=[...section.querySelectorAll(":scope > .post-card")];cards.sort((a,b)=>Number(b.dataset.pinned==="true")-Number(a.dataset.pinned==="true"));cards.forEach(card=>section.appendChild(card));})();
+
+// Open post images in a Facebook-style full-screen viewer.
+(function(){
+ const box=document.createElement('div');box.className='image-lightbox';box.setAttribute('role','dialog');box.setAttribute('aria-modal','true');box.setAttribute('aria-label','عرض الصورة بالحجم الكامل');
+ box.innerHTML='<button type="button" aria-label="إغلاق">×</button><img alt="صورة مكبرة للمنشور">';document.body.appendChild(box);
+ const big=box.querySelector('img');function close(){box.classList.remove('open');big.removeAttribute('src');document.body.style.overflow='';}
+ document.addEventListener('click',function(e){const im=e.target.closest('.zoomable-post-image');if(im){big.src=im.src;big.alt=im.alt;box.classList.add('open');document.body.style.overflow='hidden';}});
+ box.addEventListener('click',close);document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+})();
 </script>
 </body></html>
