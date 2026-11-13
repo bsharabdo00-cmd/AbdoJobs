@@ -23,6 +23,7 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 .image-lightbox{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.94);display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
 .image-lightbox.open{display:flex}.image-lightbox img{max-width:96vw;max-height:92vh;width:auto;height:auto;object-fit:contain;border-radius:4px;box-shadow:0 12px 50px #0008}
 .image-lightbox button{position:absolute;top:14px;left:16px;width:44px;height:44px;border:0;border-radius:50%;background:#ffffff24;color:white;font-size:30px;cursor:pointer;line-height:1}
+.post-visibility{display:flex;align-items:center;gap:4px;margin-top:1px;color:#8a94a3;font-size:.74rem;line-height:1.25}.post-visibility svg{width:13px;height:13px;flex:0 0 13px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 </style>
 </head>
 <body>
@@ -61,7 +62,7 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 <section id="posts"><div class="wrap">
 <div class="section-head"><h2>منشوراتي</h2><p>مساحة أشارككم فيها كلماتي وأفكاري</p></div>
 <article class="post-card" id="post-intro" data-pinned="true">
-<div class="post-top"><div class="post-avatar">ب</div><div class="post-meta"><strong>بشار عبدو _ Bashar Abdo</strong><small><span class="personal-type">منشور شخصي</span> · بداية الانطلاقة · ٩:٤٢ م · ١٥ شباط ٢٠٢٦</small></div><span class="pinned-label">📌 منشور مثبت</span></div>
+<div class="post-top"><div class="post-avatar">ب</div><div class="post-meta"><strong>بشار عبدو _ Bashar Abdo</strong><div class="post-visibility" aria-label="متاح للجميع"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span>الجميع</span></div><small><span class="personal-type">منشور شخصي</span> · بداية الانطلاقة · ٩:٤٢ م · ١٥ شباط ٢٠٢٦</small></div><span class="pinned-label">📌 منشور مثبت</span></div>
 <p class="post-text">أهلاً وسهلاً بكم 🌹<br><br>أنا <span style="color:#1976d2;font-weight:700;">بشار عبدو _ Bashar Abdo</span>، وهذه مساحتي الشخصية أشارك فيها اهتماماتي وأعمالي وتجربتي، وأرحب بالجميع للتعارف والتواصل وتبادل الأفكار.<br><br><strong>رؤيتي:</strong> مشاركة ما أقدمه وتوثيق تجاربي بكل بساطة ووضوح.<br><br><strong>رسالتي:</strong> نشر الإيجابية، وبناء تواصل قائم على الاحترام والثقة.<br><br>اللهم صلِّ على محمد وآل محمد، والحمد لله دائماً وأبداً.</p>
 <div class="post-actions">
 <button class="post-action action-like" type="button" onclick="togglePostAction(this)" data-count="1252" aria-label="إعجاب" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.7c0 5.1-8.8 11-8.8 11s-8.8-5.9-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg><span class="action-label">إعجاب</span><strong>1252</strong></button>
@@ -71,7 +72,7 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 </div><p class="post-note">الأعداد تبدأ من القيم المعروضة، والتفاعل يُحتسب محلياً على جهاز الزائر.</p>
 </article>
 <article class="post-card" id="post-sultan-nayef" data-pinned="true" style="margin-top:22px">
-<div class="post-top"><div class="post-avatar">ب</div><div class="post-meta"><strong>بشار عبدو _ Bashar Abdo</strong><small>٣:٠٠ ص · ٤ حزيران ٢٠٢٦</small><span class="pinned-label">📌 منشور مثبت</span></div></div>
+<div class="post-top"><div class="post-avatar">ب</div><div class="post-meta"><strong>بشار عبدو _ Bashar Abdo</strong><div class="post-visibility" aria-label="متاح للجميع"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span>الجميع</span></div><small>٣:٠٠ ص · ٤ حزيران ٢٠٢٦</small><span class="pinned-label">📌 منشور مثبت</span></div></div>
 <p class="post-text">
 جزاك الله خيراً سمو الأمير: <a href="https://x.com/search?q=%40%D8%B3%D9%84%D8%B7%D8%A7%D9%86%20%D8%A8%D9%86%20%D9%86%D8%A7%D9%8A%D9%81%20%D8%A7%D9%84%D8%B4%D9%85%D8%B1%D9%8A" target="_blank" rel="noopener" style="color:#1976d2;font-weight:800">@سلطان بن نايف الشمري</a> على اهتمامك المستمر ودعمك الدائم للعمل الإنساني.
 <br><br><strong>توضيح من فريقنا إليكم.</strong>
@@ -95,7 +96,7 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 </article>
 
 <article class="post-card" id="post-water-children" style="margin-top:22px">
-<div class="post-top"><div class="post-avatar">ب</div><div class="post-meta"><strong>بشار عبدو _ Bashar Abdo</strong><small>صرخة إنسانية عاطفية · ١٢ تشرين الثاني ٢٠٢٦</small></div></div>
+<div class="post-top"><div class="post-avatar">ب</div><div class="post-meta"><strong>بشار عبدو _ Bashar Abdo</strong><div class="post-visibility" aria-label="متاح للجميع"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span>الجميع</span></div><small>صرخة إنسانية عاطفية · ١٢ تشرين الثاني ٢٠٢٦</small></div></div>
 <p class="post-text">الهجوم على المياه هو هجوم على الأطفال.<br><br>نرفض أن يصبح هذا الوضع أمراً طبيعياً ومقبولاً.<br><br>انضمّوا إلينا للمطالبة بحماية المياه والأطفال.<br><br><span style="color:#1976d2;font-weight:800">#المياه_تحت_القصف</span></p>
 <p style="text-align:center;margin:18px 0 10px;font-weight:800"><span style="color:#e58a22">المكتب الإعلامي:</span> <span style="color:#1976d2">بشار عبدو _ Bashar Abdo</span></p>
 <div class="post-actions">
@@ -109,7 +110,7 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 
 
 <article class="post-card" id="post-media-team-ready" style="margin-top:22px">
-<div class="post-top"><div class="post-avatar">ب</div><div class="post-meta"><strong>بشار عبدو _ Bashar Abdo</strong><small>منشور إعلامي · فريقنا الإعلامي دائماً في الموعد</small></div></div>
+<div class="post-top"><div class="post-avatar">ب</div><div class="post-meta"><strong>بشار عبدو _ Bashar Abdo</strong><div class="post-visibility" aria-label="متاح للجميع"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span>الجميع</span></div><small>منشور إعلامي · فريقنا الإعلامي دائماً في الموعد</small></div></div>
 <p class="post-text">فريقنا الإعلامي دائماً في الموعد، صامد في الميدان، وجاهز في أي لحظة لنقل الصورة الحقيقية إليكم بكل أمانة وشفافية. نعمل بروح الفريق الواحد لنكون دائماً أقرب إلى الحقيقة ومنكم.</p>
 <p style="text-align:center;margin:18px 0 10px;font-weight:800"><span style="color:#e58a22">المكتب الإعلامي:</span> <span style="color:#1976d2">بشار عبدو_ Bashar Abdo</span></p>
 <div class="post-actions">
@@ -122,7 +123,7 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 </article>
 
 <article class="post-card" id="post-field-ready" style="margin-top:22px">
-<div class="post-top"><div class="post-avatar">ب</div><div class="post-meta"><strong>بشار عبدو _ Bashar Abdo</strong><small>منشور إعلامي · جاهزون دائماً للنزول إلى الميدان</small></div></div>
+<div class="post-top"><div class="post-avatar">ب</div><div class="post-meta"><strong>بشار عبدو _ Bashar Abdo</strong><div class="post-visibility" aria-label="متاح للجميع"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span>الجميع</span></div><small>منشور إعلامي · جاهزون دائماً للنزول إلى الميدان</small></div></div>
 <p class="post-text">جاهزون دائماً للنزول إلى الميدان، وصامدون على العهد لنقل الواقع كما هو. فريقنا الإعلامي معكم في قلب الحدث.</p>
 <p style="text-align:center;margin:18px 0 10px;font-weight:800"><span style="color:#e58a22">المكتب الإعلامي:</span> <span style="color:#1976d2">بشار عبدو_ Bashar Abdo</span></p>
 <div class="post-actions">
@@ -135,7 +136,7 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 </article>
 
 <article class="post-card" id="post-media-message" style="margin-top:22px">
-<div class="post-top"><div class="post-avatar">ب</div><div class="post-meta"><strong>بشار عبدو _ Bashar Abdo</strong><small>منشور إعلامي · عن جوهر الرسالة</small></div></div>
+<div class="post-top"><div class="post-avatar">ب</div><div class="post-meta"><strong>بشار عبدو _ Bashar Abdo</strong><div class="post-visibility" aria-label="متاح للجميع"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span>الجميع</span></div><small>منشور إعلامي · عن جوهر الرسالة</small></div></div>
 <p class="post-text"><strong>عن جوهر الرسالة</strong><br><br>الإعلام ليس مجرد نقلٍ للخبر، بل هو أمانة الكلمة ومسؤولية التأثير. في كل يوم عمل جديد، يتجدد الشغف بأن نكون الجسر الذي يعبر عليه الصوت الصادق ليصل إلى من يستحق أن يسمع.</p>
 <p style="text-align:center;margin:18px 0 10px;font-weight:800;color:#e58a22">المكتب الإعلامي</p>
 <div class="post-actions">
@@ -148,7 +149,7 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 </article>
 
 <article class="post-card" id="post-facing-challenges" style="margin-top:22px">
-<div class="post-top"><div class="post-avatar">ب</div><div class="post-meta"><strong>بشار عبدو _ Bashar Abdo</strong><small>منشور إعلامي · عن مواجهة التحديات</small></div></div>
+<div class="post-top"><div class="post-avatar">ب</div><div class="post-meta"><strong>بشار عبدو _ Bashar Abdo</strong><div class="post-visibility" aria-label="متاح للجميع"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span>الجميع</span></div><small>منشور إعلامي · عن مواجهة التحديات</small></div></div>
 <p class="post-text"><strong>عن مواجهة التحديات</strong><br><br>مهنة المتاعب؟ نعم، لكنها أجمل المتاعب حين يكون هدفها إنارة العقول وإيصال الصوت لمن لا صوت له. مستمرون في العمل بكل تفانٍ لننقل الصورة الكاملة.</p>
 <p style="text-align:center;margin:18px 0 10px;font-weight:800;color:#e58a22">المكتب الإعلامي</p>
 <div class="post-actions">
@@ -161,7 +162,7 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 </article>
 
 <article class="post-card" id="post-work-accuracy" style="margin-top:22px">
-<div class="post-top"><div class="post-avatar">ب</div><div class="post-meta"><strong>بشار عبدو _ Bashar Abdo</strong><small>منشور إعلامي · عن العمل والدقة</small></div></div>
+<div class="post-top"><div class="post-avatar">ب</div><div class="post-meta"><strong>بشار عبدو _ Bashar Abdo</strong><div class="post-visibility" aria-label="متاح للجميع"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span>الجميع</span></div><small>منشور إعلامي · عن العمل والدقة</small></div></div>
 <p class="post-text"><strong>عن العمل والدقة</strong><br><br>خلف كل مادة إعلامية تراها، هناك ساعات من البحث، التدقيق، والعمل بروح الفريق الواحد. شغفنا بمهنتنا هو الوقود الذي يدفعنا لتقديم محتوى يليق بعقولكم.</p>
 <p style="text-align:center;margin:18px 0 10px;font-weight:800;color:#e58a22">المكتب الإعلامي</p>
 <div class="post-actions">
@@ -174,7 +175,7 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 </article>
 </div></section>
 <article class="post-card" style="margin-top:22px">
-<div class="post-top"><div class="post-avatar">ب</div><div class="post-meta"><strong>بشار عبدو _ Bashar Abdo</strong><small>منشور جديد · أعمال إنسانية</small></div></div>
+<div class="post-top"><div class="post-avatar">ب</div><div class="post-meta"><strong>بشار عبدو _ Bashar Abdo</strong><div class="post-visibility" aria-label="متاح للجميع"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span>الجميع</span></div><small>منشور جديد · أعمال إنسانية</small></div></div>
 <p class="post-text">أحياناً العين تشوف أشياء القلب ما يقدر يتحملها.. ناس متعففة صابرة على وضع صعب، ومحتاجة بس مين يحس فيها ويوصل صوتها. 💔🤲<br><br>نجهز فيديوهات ثانية جديدة رح تنقل هالواقع بكل صدق وأمانة، حتى نكون صوت لكل حدا ما إلو صوت. 🎥✨<br><br>تابعونا وانتظروا الفيديوهات قريباً على منصة تويتر (X) 🐦📲.. لا تبخلوا بالمشاركة والتفاعل، لأنو وصول هالمقاطع للناس ممكن يكون سبب بفرج ورزق لناس كتير. 🤍🌱</p>
 <div class="post-actions">
 <button class="post-action action-like" type="button" onclick="togglePostAction(this)" data-count="12380" aria-label="إعجاب" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.7c0 5.1-8.8 11-8.8 11s-8.8-5.9-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg><span class="action-label">إعجاب</span><strong>12,380</strong></button>
@@ -184,7 +185,7 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 </div><p class="post-note">الأعداد تبدأ من القيم المعروضة، والتفاعل يُحتسب محلياً على جهاز الزائر.</p>
 </article>
 <article class="post-card" style="margin-top:22px">
-<div class="post-top"><div class="post-avatar">ب</div><div class="post-meta"><strong>بشار عبدو _ Bashar Abdo</strong><small>منشور جديد · توثيق ومتابعة</small></div></div>
+<div class="post-top"><div class="post-avatar">ب</div><div class="post-meta"><strong>بشار عبدو _ Bashar Abdo</strong><div class="post-visibility" aria-label="متاح للجميع"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span>الجميع</span></div><small>منشور جديد · توثيق ومتابعة</small></div></div>
 <p class="post-text"><strong>جزى الله خيراً كل من ساهم معنا وكان سنداً. 🤍🤲</strong><br><br>نؤكد لكم أنه تم إرسال فيديوهات التوثيق لكل مساهم بشكل خاص، إثباتاً للأمانة وتوثيقاً لقيامنا بكل ما وكّلتمونا عليه بكل شفافية. 🎥✅<br>بارك الله فيكم وتقبل منكم صالح الأعمال. ✨🌱<br><br><span style="color:#e58a22;font-weight:800">المكتب الإعلامي:</span> <span style="color:#111;font-weight:700">بشار عبدو_ Bashar Abdo</span></p>
 <div class="post-actions">
 <button class="post-action action-like" type="button" onclick="togglePostAction(this)" data-count="15372" aria-label="إعجاب" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.7c0 5.1-8.8 11-8.8 11s-8.8-5.9-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg><span class="action-label">إعجاب</span><strong>15,372</strong></button>
