@@ -24,6 +24,16 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 .image-lightbox.open{display:flex}.image-lightbox img{max-width:96vw;max-height:92vh;width:auto;height:auto;object-fit:contain;border-radius:4px;box-shadow:0 12px 50px #0008}
 .image-lightbox button{position:absolute;top:14px;left:16px;width:44px;height:44px;border:0;border-radius:50%;background:#ffffff24;color:white;font-size:30px;cursor:pointer;line-height:1}
 .post-visibility{display:flex;align-items:center;gap:4px;margin-top:1px;color:#8a94a3;font-size:.74rem;line-height:1.25}.post-visibility svg{width:13px;height:13px;flex:0 0 13px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+/* Homepage profile statistics */
+.profile-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0 auto 22px;max-width:900px}
+.profile-stat{background:#fff;border:1px solid var(--line);border-radius:17px;padding:15px 10px;text-align:center;box-shadow:0 8px 24px #182b400b}
+.profile-stat strong{display:block;color:var(--navy);font-size:clamp(1.25rem,3vw,1.8rem);line-height:1.4;font-weight:900}
+.profile-stat span{display:block;color:var(--muted);font-size:.85rem}
+.follow-site{display:block;margin:14px auto 0;border:0;border-radius:12px;padding:10px 24px;background:var(--blue);color:#fff;font:inherit;font-weight:800;cursor:pointer}
+.follow-site.following{background:#eaf2fb;color:#155fae;border:1px solid #cfe0f2}
+.stats-note{margin:9px 0 0;text-align:center;color:#8a94a3;font-size:.73rem}
+@media(max-width:560px){.profile-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.profile-stat{padding:12px 8px}}
+
 </style>
 </head>
 <body>
@@ -61,6 +71,14 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 </div></section>
 <section id="posts"><div class="wrap">
 <div class="section-head"><h2>منشوراتي</h2><p>مساحة أشارككم فيها كلماتي وأفكاري</p></div>
+<div class="profile-stats" aria-label="إحصائيات الحساب">
+  <div class="profile-stat"><strong id="profile-post-count">0</strong><span>المنشورات</span></div>
+  <div class="profile-stat"><strong>23,000</strong><span>المتابعون</span></div>
+  <div class="profile-stat"><strong>57</strong><span>أتابعهم</span></div>
+  <div class="profile-stat"><strong>14</strong><span>الإعجابات</span></div>
+</div>
+<button class="follow-site" id="follow-site" type="button" aria-pressed="false">＋ متابعة الموقع</button>
+<p class="stats-note">عداد المنشورات يُحسب تلقائياً من المنشورات الظاهرة في الموقع.</p>
 <article class="post-card" id="post-intro" data-pinned="true">
 <div class="post-top"><div class="post-avatar">ب</div><div class="post-meta"><strong>بشار عبدو_ Bashar Abdo</strong><div class="post-visibility" aria-label="متاح للجميع"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span>الجميع</span></div><small><span class="personal-type">منشور شخصي</span> · بداية الانطلاقة · ٩:٤٢ م · ١٥ شباط ٢٠٢٦</small></div><span class="pinned-label">📌 منشور مثبت</span></div>
 <p class="post-text">أهلاً وسهلاً بكم 🌹<br><br>أنا <span style="color:#1976d2;font-weight:700;">بشار عبدو_ Bashar Abdo</span>، وهذه مساحتي الشخصية أشارك فيها اهتماماتي وأعمالي وتجربتي، وأرحب بالجميع للتعارف والتواصل وتبادل الأفكار.<br><br><strong>رؤيتي:</strong> مشاركة ما أقدمه وتوثيق تجاربي بكل بساطة ووضوح.<br><br><strong>رسالتي:</strong> نشر الإيجابية، وبناء تواصل قائم على الاحترام والثقة.<br><br>اللهم صلِّ على محمد وآل محمد، والحمد لله دائماً وأبداً.</p>
@@ -396,6 +414,27 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 </main>
 <footer>جميع الحقوق محفوظة © <strong>بشار عبدو _ Bashar Abdo</strong></footer>
 <script>
+// Update homepage statistics from the actual post cards.
+(function(){
+ const count=document.querySelectorAll('#posts .wrap > .post-card').length;
+ const output=document.getElementById('profile-post-count');
+ if(output) output.textContent=count.toLocaleString('en-US');
+ const follow=document.getElementById('follow-site');
+ if(!follow)return;
+ const key='bashar-site-followed';
+ const update=()=>{
+   const active=localStorage.getItem(key)==='yes';
+   follow.classList.toggle('following',active);
+   follow.setAttribute('aria-pressed',String(active));
+   follow.textContent=active?'✓ تتابع الموقع':'＋ متابعة الموقع';
+ };
+ update();
+ follow.addEventListener('click',()=>{
+   if(localStorage.getItem(key)==='yes') localStorage.removeItem(key);
+   else localStorage.setItem(key,'yes');
+   update();
+ });
+})();
 function setActionCount(button,count,label){button.dataset.count=count;button.querySelector("strong").textContent=count;button.setAttribute("aria-label",label+" "+count);}
 function togglePostAction(button){const active=button.classList.toggle("active");let count=Number(button.dataset.count||1252)+(active?1:-1);setActionCount(button,count,active?"تم الإعجاب":"إعجاب");button.setAttribute("aria-pressed",String(active));button.querySelector(".action-label").textContent=active?"أعجبني":"إعجاب";}
 function incrementAction(button){const count=Number(button.dataset.count||0)+1;setActionCount(button,count,"إعادة نشر");button.classList.add("active");}
