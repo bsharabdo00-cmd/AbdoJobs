@@ -417,7 +417,7 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 <script>
 // Update homepage statistics from the actual post cards.
 (function(){
- const count=document.querySelectorAll('#posts .wrap > .post-card').length;
+ const count=document.querySelectorAll('#posts article.post-card').length;
  const output=document.getElementById('profile-post-count');
  if(output) output.textContent=count.toLocaleString('en-US');
  const follow=document.getElementById('follow-site');
