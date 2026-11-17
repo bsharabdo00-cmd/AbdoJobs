@@ -124,6 +124,15 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 .profile-popup-content .about-card{box-shadow:none}
 @media(max-width:560px){.profile-popup{padding:10px}.profile-popup-dialog{padding:22px 13px 17px;border-radius:18px;max-height:92vh}}
 
+
+.hero-profile-photo{cursor:zoom-in;transition:transform .2s ease,box-shadow .2s ease}
+.hero-profile-photo:hover{transform:scale(1.035);box-shadow:0 7px 26px #0007}
+.hero-profile-photo:focus-visible{outline:3px solid #f0c36d;outline-offset:4px}
+.profile-image-lightbox{position:fixed;inset:0;z-index:10050;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(5,12,22,.88);backdrop-filter:blur(5px)}
+.profile-image-lightbox.open{display:flex}
+.profile-image-lightbox img{display:block;max-width:min(88vw,680px);max-height:86vh;width:auto;height:auto;object-fit:contain;border:3px solid #f0c36d;border-radius:18px;box-shadow:0 18px 60px #0009}
+.profile-image-lightbox-close{position:absolute;top:18px;right:18px;width:44px;height:44px;border:1px solid #ffffff70;border-radius:50%;background:#172b46;color:#fff;font-size:28px;line-height:1;cursor:pointer}
+.profile-image-lightbox-close:focus-visible{outline:3px solid #f0c36d;outline-offset:3px}
 </style>
 </head>
 <body>
@@ -134,7 +143,7 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 <main>
 <section class="hero" id="home" data-view-panel="home"><div class="wrap"><div class="hero-box">
 <span class="eyebrow">الموقع الشخصي الرسمي</span>
-<div class="hero-title-row"><img class="hero-profile-photo" src="bashar-profile.jpg" alt="الصورة الشخصية لبشار عبدو"><div class="hero-identity"><h1>بشار عبدو _ Bashar Abdo</h1><p class="hero-profession">صانع محتوى • مصوّر • إعلامي</p></div></div>
+<div class="hero-title-row"><img class="hero-profile-photo" src="bashar-profile.jpg" alt="الصورة الشخصية لبشار عبدو" tabindex="0" role="button" aria-label="تكبير الصورة الشخصية" aria-haspopup="dialog"><div class="hero-identity"><h1>بشار عبدو _ Bashar Abdo</h1><p class="hero-profession">صانع محتوى • مصوّر • إعلامي</p></div></div>
 <p>🔴 خذ أسوأ فكرة عني واذهب 🔴<br>⚪ اللهم صلِّ على محمد وآل محمد ⚪<br>⚫ حساباتي الرسمية والوحيدة ⚫</p>
 
 <div class="preview-social" aria-hidden="true"><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/facebook/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/instagram/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/x/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/telegram/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/whatsapp/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/gmail/ffffff" alt=""></span></div>
@@ -686,4 +695,24 @@ function bumpPostStat(button){
 })();
 </script>
 
+
+<div class="profile-image-lightbox" id="profile-image-lightbox" role="dialog" aria-modal="true" aria-label="الصورة الشخصية مكبّرة" aria-hidden="true">
+ <button class="profile-image-lightbox-close" type="button" aria-label="إغلاق الصورة">×</button>
+ <img src="bashar-profile.jpg" alt="الصورة الشخصية لبشار عبدو">
+</div>
+<script>
+(function(){
+ const photo=document.querySelector('.hero-profile-photo');
+ const lightbox=document.getElementById('profile-image-lightbox');
+ if(!photo||!lightbox)return;
+ const closeButton=lightbox.querySelector('.profile-image-lightbox-close');
+ function open(){lightbox.classList.add('open');lightbox.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';closeButton.focus();}
+ function close(){lightbox.classList.remove('open');lightbox.setAttribute('aria-hidden','true');document.body.style.overflow='';photo.focus();}
+ photo.addEventListener('click',open);
+ photo.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();open();}});
+ closeButton.addEventListener('click',close);
+ lightbox.addEventListener('click',event=>{if(event.target===lightbox)close();});
+ document.addEventListener('keydown',event=>{if(event.key==='Escape'&&lightbox.classList.contains('open'))close();});
+})();
+</script>
 </body></html>
