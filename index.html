@@ -185,6 +185,21 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
  .hero-box > .follow-card .follow-card-note,
  .hero-box > .follow-card .message-status{font-size:.61rem}
 }
+
+/* Keep each explanatory phrase INSIDE its own action button */
+.hero-box > .follow-card .follow-action-item{display:block}
+.hero-box > .follow-card .follow-site,
+.hero-box > .follow-card .message-site{display:flex;align-items:center;justify-content:center;gap:8px;min-height:58px;padding:7px 8px}
+.hero-box > .follow-card .button-copy{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;min-width:0;line-height:1.25;text-align:right}
+.hero-box > .follow-card .button-copy>span{font-size:.84rem;font-weight:900;white-space:nowrap}
+.hero-box > .follow-card .button-copy small{display:block;margin:3px 0 0;padding:0;background:transparent;border:0;border-radius:0;color:#f0d39e;font-size:.64rem;font-weight:600;line-height:1.25;white-space:normal}
+.hero-box > .follow-card .message-site .button-copy small{color:#172337}
+@media(max-width:560px){
+ .hero-box > .follow-card .follow-site,.hero-box > .follow-card .message-site{min-height:58px;padding:6px 5px;gap:5px}
+ .hero-box > .follow-card .button-copy>span{font-size:.75rem}
+ .hero-box > .follow-card .button-copy small{font-size:.58rem}
+}
+
 </style>
 </head>
 <body>
@@ -201,8 +216,8 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 <div class="preview-social" aria-hidden="true"><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/facebook/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/instagram/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/x/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/telegram/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/whatsapp/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/gmail/ffffff" alt=""></span></div>
 
 <div class="follow-card"><div class="follow-actions">
-<div class="follow-action-item"><button class="follow-site" id="follow-site" type="button" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M16 11h6"/></svg><span id="follow-label">متابعة الموقع</span></button><small class="follow-card-note">ابقَ على اطلاع بكل جديد</small></div>
-<div class="follow-action-item"><button class="message-site" id="message-site" type="button" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 9 9 0 0 1-4-.9L3 21l1.9-5.5a9 9 0 0 1-.9-4A8.5 8.5 0 0 1 12.5 3h.5a8.5 8.5 0 0 1 8 8z"/></svg><span>مراسلة</span></button><small class="message-status">استقبال الرسائل متوقف</small></div>
+<div class="follow-action-item"><button class="follow-site" id="follow-site" type="button" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M16 11h6"/></svg><span class="button-copy"><span id="follow-label">متابعة الموقع</span><small>ابقَ على اطلاع بكل جديد</small></span></button></div>
+<div class="follow-action-item"><button class="message-site" id="message-site" type="button" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 9 9 0 0 1-4-.9L3 21l1.9-5.5a9 9 0 0 1-.9-4A8.5 8.5 0 0 1 12.5 3h.5a8.5 8.5 0 0 1 8 8z"/></svg><span class="button-copy"><span>مراسلة</span><small>استقبال الرسائل متوقف</small></span></button></div>
 </div></div>
 </div></div></section>
 <section id="home-stats" data-view-panel="home-stats"><div class="wrap"><div class="profile-stats" aria-label="إحصائيات الحساب">
