@@ -237,6 +237,31 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 .follow-unfollow:hover{background:linear-gradient(135deg,#c43b46,#922631)}
 .follow-menu-note{margin:7px 0 0;padding:7px 10px;border:1px solid #e05b6266;border-radius:8px;background:#a92e391c;color:#ffb4b8;font-size:.68rem;line-height:1.6}
 @media(max-width:560px){.hero-box > .follow-card{margin-top:42px}.hero-box > .follow-card .follow-actions{gap:14px}.hero-box > .follow-card .follow-site,.hero-box > .follow-card .message-site{min-height:62px}.hero-box > .follow-card .follow-action-item:first-child:after{left:-8px}.follow-menu{padding:16px}.follow-menu-dialog{padding:26px 15px 16px;border-radius:19px}}
+
+/* Clear, coordinated follow states */
+.hero-box > .follow-card .follow-site{
+ background:linear-gradient(135deg,#315b80 0%,#1b3b5b 100%);
+ border:1px solid #d7b779;
+ color:#fff;
+ box-shadow:0 5px 16px #07142655,inset 0 1px 0 #ffffff24;
+ transition:background .2s ease,border-color .2s ease,box-shadow .2s ease,transform .2s ease;
+}
+.hero-box > .follow-card .follow-site:hover{
+ background:linear-gradient(135deg,#3d6c91 0%,#244b6d 100%);
+ border-color:#f0d39e;
+ box-shadow:0 8px 20px #07142666,0 0 0 2px #e5a33b22;
+}
+.hero-box > .follow-card .follow-site.following{
+ background:linear-gradient(135deg,#397565 0%,#234e49 100%);
+ border:1px solid #a8d2b7;
+ color:#fff;
+ box-shadow:0 5px 16px #07142655,inset 0 1px 0 #ffffff24;
+}
+.hero-box > .follow-card .follow-site.following:hover{
+ background:linear-gradient(135deg,#468775 0%,#2b6258 100%);
+ border-color:#c4e6ca;
+}
+
 </style>
 </head>
 <body>
