@@ -27,6 +27,7 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 /* Homepage profile statistics */
 .profile-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0 auto 22px;max-width:900px}
 .profile-stat{display:flex;flex-direction:column;gap:9px;background:linear-gradient(145deg,#202936,#29394b);border:1px solid #34465a;border-radius:17px;padding:15px 13px;text-align:right;box-shadow:0 10px 26px #182b4018;color:#fff}
+.posts-stat{width:100%;font:inherit;cursor:pointer;text-align:right;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}.posts-stat:hover,.posts-stat:focus-visible{transform:translateY(-3px);border-color:#e5a33b;box-shadow:0 13px 28px #101f3530;outline:none}.posts-stat:focus-visible{outline:2px solid #e5a33b;outline-offset:3px}.posts-stat span{color:#f0d39e}
 .profile-stat-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .profile-stat svg{width:23px;height:23px;flex:0 0 23px;fill:none;stroke:#b8c5d6;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .profile-stat strong{display:block;color:#fff;font-size:clamp(1.35rem,3vw,1.85rem);line-height:1.3;font-weight:900}
@@ -71,7 +72,7 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 <div class="preview-social" aria-hidden="true"><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/facebook/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/instagram/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/x/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/telegram/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/whatsapp/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/gmail/ffffff" alt=""></span></div>
 </div></div></section>
 <section id="home-stats"><div class="wrap"><div class="profile-stats" aria-label="إحصائيات الحساب">
-  <div class="profile-stat"><div class="profile-stat-top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/><path d="M7 8h10M7 12h10M7 16h6"/></svg><strong id="profile-post-count">23</strong></div><span>المنشورات</span></div>
+  <button class="profile-stat posts-stat" id="posts-shortcut" type="button" aria-label="الانتقال مباشرة إلى المنشورات"><div class="profile-stat-top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/><path d="M7 8h10M7 12h10M7 16h6"/></svg><strong id="profile-post-count">23</strong></div><span>المنشورات · اضغط للعرض</span></button>
   <button class="profile-stat privacy-stat" type="button" data-privacy="followers" aria-haspopup="dialog" aria-label="عرض توضيح خصوصية المتابعين"><div class="profile-stat-top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><strong>23K</strong></div><span>المتابعون</span></button>
   <button class="profile-stat privacy-stat" type="button" data-privacy="following" aria-haspopup="dialog" aria-label="عرض توضيح خصوصية الحسابات التي أتابعها"><div class="profile-stat-top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M16 11h6"/></svg><strong>57</strong></div><span>أتابعهم</span></button>
   <button class="profile-stat share-stat" id="share-site" type="button" aria-label="مشاركة الموقع"><div class="profile-stat-top"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.7 10.7 6.6-4.4M8.7 13.3l6.6 4.4"/></svg></div><span>مشاركة الموقع</span></button>
@@ -492,6 +493,8 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
    follow.textContent=active?'✓ تتابع الموقع':'＋ متابعة الموقع';
  };
  update();
+ const postsShortcut=document.getElementById('posts-shortcut');
+ if(postsShortcut) postsShortcut.addEventListener('click',()=>document.getElementById('posts')?.scrollIntoView({behavior:'smooth',block:'start'}));
  const shareButton=document.getElementById('share-site');
  if(shareButton) shareButton.addEventListener('click',shareWebsite);
  follow.addEventListener('click',()=>{
