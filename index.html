@@ -539,8 +539,6 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
    follow.textContent=active?'✓ تتابع الموقع':'＋ متابعة الموقع';
  };
  update();
- const postsShortcut=document.getElementById('posts-shortcut');
- if(postsShortcut) postsShortcut.addEventListener('click',()=>document.getElementById('posts')?.scrollIntoView({behavior:'smooth',block:'start'}));
  const shareButton=document.getElementById('share-site');
  if(shareButton) shareButton.addEventListener('click',shareWebsite);
  follow.addEventListener('click',()=>{
