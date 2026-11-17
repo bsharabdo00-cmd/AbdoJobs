@@ -176,6 +176,15 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
  .hero-box > .follow-card .follow-site svg,.hero-box > .follow-card .message-site svg{width:17px;height:17px;flex-basis:17px}
 }
 
+
+/* Labels beneath the two hero action buttons */
+.hero-box > .follow-card .follow-action-item{display:flex;flex-direction:column;align-items:center;gap:4px}
+.hero-box > .follow-card .follow-card-note,
+.hero-box > .follow-card .message-status{display:block;margin:0;padding:0;background:transparent;border:0;border-radius:0;color:#f0c978;font-size:.66rem;font-weight:600;line-height:1.35;text-align:center}
+@media(max-width:560px){
+ .hero-box > .follow-card .follow-card-note,
+ .hero-box > .follow-card .message-status{font-size:.61rem}
+}
 </style>
 </head>
 <body>
@@ -192,8 +201,8 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 <div class="preview-social" aria-hidden="true"><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/facebook/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/instagram/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/x/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/telegram/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/whatsapp/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/gmail/ffffff" alt=""></span></div>
 
 <div class="follow-card"><div class="follow-actions">
-<div class="follow-action-item"><button class="follow-site" id="follow-site" type="button" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M16 11h6"/></svg><span id="follow-label">ابقَ على اطلاع بكل جديد</span></button></div>
-<div class="follow-action-item"><button class="message-site" id="message-site" type="button" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 9 9 0 0 1-4-.9L3 21l1.9-5.5a9 9 0 0 1-.9-4A8.5 8.5 0 0 1 12.5 3h.5a8.5 8.5 0 0 1 8 8z"/></svg><span>استقبال الرسائل متوقف</span></button></div>
+<div class="follow-action-item"><button class="follow-site" id="follow-site" type="button" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M16 11h6"/></svg><span id="follow-label">متابعة الموقع</span></button><small class="follow-card-note">ابقَ على اطلاع بكل جديد</small></div>
+<div class="follow-action-item"><button class="message-site" id="message-site" type="button" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 9 9 0 0 1-4-.9L3 21l1.9-5.5a9 9 0 0 1-.9-4A8.5 8.5 0 0 1 12.5 3h.5a8.5 8.5 0 0 1 8 8z"/></svg><span>مراسلة</span></button><small class="message-status">استقبال الرسائل متوقف</small></div>
 </div></div>
 </div></div></section>
 <section id="home-stats" data-view-panel="home-stats"><div class="wrap"><div class="profile-stats" aria-label="إحصائيات الحساب">
