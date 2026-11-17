@@ -291,6 +291,38 @@ footer .footer-copy{padding-top:12px;border-top:1px solid #ffffff20}
  footer .bottom-nav a{min-width:0;flex:1;padding:7px 8px;font-size:.76rem}
 }
 
+
+/* Refined homepage layout: compact stats and full-width shortcuts */
+.hero-topline{display:flex;align-items:center;justify-content:space-between;gap:16px;position:relative;z-index:1}
+.hero-mini-stats{display:flex;align-items:center;gap:9px}
+.hero-mini-stat{display:flex;align-items:center;gap:5px;padding:4px 9px;border:1px solid #ffffff30;border-radius:10px;background:#ffffff10;white-space:nowrap}
+.hero-mini-stat strong{font-size:.88rem;line-height:1.2;color:#fff}
+.hero-mini-stat span{font-size:.67rem;color:#d7e0eb;line-height:1.2}
+.home-shortcuts{width:100%;max-width:900px;margin:20px auto 0;display:grid;gap:10px}
+.home-posts-button{width:100%;min-height:0;display:grid;grid-template-columns:1fr auto;align-items:center;gap:2px 12px;padding:8px 15px;border-radius:13px;text-align:right;background:linear-gradient(135deg,#203852,#172a40);border:1px solid #d7b779;color:#fff;box-shadow:0 5px 15px #101f3520}
+.home-posts-button .home-posts-label{font-size:.91rem;font-weight:800;color:#fff}
+.home-posts-button strong{grid-column:2;grid-row:1/3;font-size:1.35rem;color:#f0d39e;line-height:1.1}
+.home-posts-button .posts-shortcut-hint{grid-column:1;grid-row:2;font-size:.67rem;color:#cbd5e1!important}
+.home-link-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.home-link-button{min-width:0;min-height:43px;display:flex;align-items:center;justify-content:center;padding:7px 12px;border:1px solid #d7b77988;border-radius:11px;background:linear-gradient(145deg,#203852,#172a40);color:#f3d69f;font:inherit;font-size:.88rem;font-weight:800;text-align:center;cursor:pointer;box-shadow:0 4px 12px #101f3518;transition:transform .18s ease,background .18s ease,border-color .18s ease}
+.home-link-button:hover{transform:translateY(-2px);background:linear-gradient(145deg,#2c4c69,#203852);border-color:#f0d39e}
+.home-link-button:focus-visible{outline:2px solid #f0d39e;outline-offset:3px}
+@media(max-width:560px){
+ .hero-topline{gap:8px;align-items:flex-start}
+ .hero-topline .eyebrow{font-size:.72rem;padding:4px 9px;white-space:nowrap}
+ .hero-mini-stats{gap:5px}
+ .hero-mini-stat{gap:3px;padding:4px 6px;border-radius:8px}
+ .hero-mini-stat strong{font-size:.76rem}
+ .hero-mini-stat span{font-size:.59rem}
+ .home-shortcuts{gap:8px;margin-top:15px}
+ .home-posts-button{padding:7px 11px}
+ .home-posts-button .home-posts-label{font-size:.84rem}
+ .home-posts-button strong{font-size:1.2rem}
+ .home-posts-button .posts-shortcut-hint{font-size:.62rem}
+ .home-link-row{gap:8px}
+ .home-link-button{min-height:40px;padding:6px 7px;font-size:.81rem}
+}
+
 </style>
 </head>
 <body>
@@ -300,7 +332,7 @@ footer .footer-copy{padding-top:12px;border-top:1px solid #ffffff20}
 </div></header>
 <main>
 <section class="hero" id="home" data-view-panel="home"><div class="wrap"><div class="hero-box">
-<span class="eyebrow">الموقع الشخصي الرسمي</span>
+<div class="hero-topline"><span class="eyebrow">الموقع الشخصي الرسمي</span><div class="hero-mini-stats" aria-label="إحصائيات الحساب"><div class="hero-mini-stat"><strong>23K</strong><span>المتابعون</span></div><div class="hero-mini-stat"><strong>57</strong><span>أتابعهم</span></div></div></div>
 <div class="hero-title-row"><img class="hero-profile-photo" src="bashar-profile.jpg" alt="الصورة الشخصية لبشار عبدو" tabindex="0" role="button" aria-label="تكبير الصورة الشخصية" aria-haspopup="dialog"><div class="hero-identity"><h1>بشار عبدو _ Bashar Abdo</h1><p class="hero-profession">صانع محتوى • مصوّر • إعلامي</p></div></div>
 <p>🔴 خذ أسوأ فكرة عني واذهب 🔴<br>⚪ اللهم صلِّ على محمد وآل محمد ⚪<br>⚫ حساباتي الرسمية والوحيدة ⚫</p>
 
@@ -311,13 +343,22 @@ footer .footer-copy{padding-top:12px;border-top:1px solid #ffffff20}
 <div class="follow-action-item"><button class="message-site" id="message-site" type="button" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 9 9 0 0 1-4-.9L3 21l1.9-5.5a9 9 0 0 1-.9-4A8.5 8.5 0 0 1 12.5 3h.5a8.5 8.5 0 0 1 8 8z"/></svg><span class="button-copy"><span>مراسلة</span><small>استقبال الرسائل متوقف</small></span></button></div>
 </div></div>
 </div></div></section>
-<section id="home-stats" data-view-panel="home-stats"><div class="wrap"><div class="profile-stats" aria-label="إحصائيات الحساب">
-  <button class="profile-stat posts-stat" id="posts-shortcut" type="button" aria-label="عرض المنشورات"><div class="profile-stat-top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/><path d="M7 8h10M7 12h10M7 16h6"/></svg><strong id="profile-post-count">23</strong></div><span>عرض المنشورات</span><small class="posts-shortcut-hint">اضغط لمشاهدة المنشورات</small></button>
-  <button class="profile-stat privacy-stat" type="button" data-privacy="followers" aria-haspopup="dialog" aria-label="عرض توضيح خصوصية المتابعين"><div class="profile-stat-top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><strong>23K</strong></div><span>المتابعون</span><small class="posts-shortcut-hint">مجتمع المتابعين</small></button>
-  <button class="profile-stat privacy-stat" type="button" data-privacy="following" aria-haspopup="dialog" aria-label="عرض توضيح خصوصية الحسابات التي أتابعها"><div class="profile-stat-top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M16 11h6"/></svg><strong>57</strong></div><span>أتابعهم</span><small class="posts-shortcut-hint">المواقع التي أتابعها</small></button>
-  <button class="profile-stat share-stat" id="share-site" type="button" aria-label="مشاركة الموقع"><div class="profile-stat-top"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.7 10.7 6.6-4.4M8.7 13.3l6.6 4.4"/></svg></div><span>مشاركة الموقع</span><small class="posts-shortcut-hint">اضغط للمشاركة</small></button>
-</div>
-<p class="stats-note">عداد المنشورات يُحسب تلقائياً من المنشورات الظاهرة في الموقع.</p></div></section>
+<section id="home-stats" data-view-panel="home-stats"><div class="wrap"><div class="home-shortcuts">
+  <button class="profile-stat posts-stat home-posts-button" id="posts-shortcut" type="button" aria-label="عرض المنشورات">
+   <span class="home-posts-label">عرض المنشورات</span>
+   <strong id="profile-post-count">23</strong>
+   <small class="posts-shortcut-hint">اضغط لمشاهدة جميع المنشورات</small>
+  </button>
+  <div class="home-link-row">
+   <a class="home-link-button" href="#social" data-view-link="social">حساباتي</a>
+   <a class="home-link-button" href="#about" data-view-link="about">من أنا</a>
+  </div>
+  <div class="home-link-row">
+   <a class="home-link-button" href="#contact" data-view-link="contact">تواصل معي</a>
+   <button class="home-link-button home-share-button" id="share-site" type="button">مشاركة الموقع</button>
+  </div>
+ </div>
+</div></section>
 
 
 
