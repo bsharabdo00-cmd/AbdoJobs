@@ -106,6 +106,21 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 .contact h2{margin:0 0 6px}.contact p{color:#d4deea;margin:0 0 18px}.contact .btn{margin:4px}
 @media(max-width:650px){.social-grid{grid-template-columns:1fr}}
 
+
+/* Hero quick links open elegant pop-up panels */
+.profile-popup{position:fixed;inset:0;z-index:11000;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(5,13,25,.78);backdrop-filter:blur(9px)}
+.profile-popup.open{display:flex}
+.profile-popup-dialog{position:relative;width:min(760px,100%);max-height:88vh;overflow:auto;padding:28px 22px 24px;border:1px solid #d7b77988;border-radius:24px;background:linear-gradient(145deg,#fff,#f4f7fa);box-shadow:0 25px 90px #0008;animation:privacy-in .2s ease-out}
+.profile-popup-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 18px;padding-bottom:12px;border-bottom:1px solid #e2e8f0;color:#142338}
+.profile-popup-heading h2{margin:0;font-size:1.35rem}
+.profile-popup-close{width:38px;height:38px;flex:0 0 38px;border:1px solid #d9e0e8;border-radius:50%;background:#edf2f7;color:#263447;font-size:25px;line-height:1;cursor:pointer}
+.profile-popup-content section{padding:0!important}
+.profile-popup-content .wrap{width:100%!important}
+.profile-popup-content .section-head{margin-bottom:16px}
+.profile-popup-content .section-head h2{display:none}
+.profile-popup-content .about-card{box-shadow:none}
+@media(max-width:560px){.profile-popup{padding:10px}.profile-popup-dialog{padding:22px 13px 17px;border-radius:18px;max-height:92vh}}
+
 </style>
 </head>
 <body>
@@ -493,6 +508,14 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 <a class="btn" href="mailto:bsharabdo00@gmail.com">راسلني الآن</a>
 </div></div></section>
 </main>
+
+<div class="profile-popup" id="profile-popup" aria-hidden="true">
+ <section class="profile-popup-dialog" role="dialog" aria-modal="true" aria-labelledby="profile-popup-title">
+  <div class="profile-popup-heading"><h2 id="profile-popup-title">التفاصيل</h2><button class="profile-popup-close" type="button" aria-label="إغلاق">×</button></div>
+  <div class="profile-popup-content" id="profile-popup-content"></div>
+ </section>
+</div>
+
 <footer>جميع الحقوق محفوظة © <strong>بشار عبدو _ Bashar Abdo</strong></footer>
 
 <div class="privacy-modal" id="privacy-modal" role="presentation" aria-hidden="true">
@@ -636,6 +659,32 @@ function bumpPostStat(button){
  window.addEventListener('popstate',()=>showView(location.hash.slice(1)||'home',false));
  const initial=location.hash.slice(1);
  showView(initial==='posts'||initial==='about'||initial==='social'||initial==='contact'?initial:'home',false);
+})();
+</script>
+
+
+<script>
+// Open the three hero shortcuts in focused pop-up windows without leaving the homepage.
+(function(){
+ const popup=document.getElementById('profile-popup');
+ if(!popup)return;
+ const title=popup.querySelector('#profile-popup-title');
+ const content=popup.querySelector('#profile-popup-content');
+ const closeButton=popup.querySelector('.profile-popup-close');
+ let previousFocus=null;
+ const names={about:'من أنا',social:'حساباتي الرسمية',contact:'تواصل معي'};
+ function close(){popup.classList.remove('open');popup.setAttribute('aria-hidden','true');content.replaceChildren();document.body.style.overflow='';if(previousFocus)previousFocus.focus();}
+ document.querySelectorAll('.hero-actions [data-view-link]').forEach(link=>link.addEventListener('click',event=>{
+  const view=link.dataset.viewLink;
+  const source=document.querySelector('[data-view-panel="'+view+'"]');
+  if(!source)return;
+  event.preventDefault();previousFocus=link;title.textContent=names[view]||'التفاصيل';
+  const clone=source.cloneNode(true);clone.hidden=false;clone.removeAttribute('data-view-panel');clone.removeAttribute('id');
+  content.replaceChildren(clone);popup.classList.add('open');popup.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';closeButton.focus();
+ }));
+ closeButton.addEventListener('click',close);
+ popup.addEventListener('click',event=>{if(event.target===popup)close();});
+ document.addEventListener('keydown',event=>{if(event.key==='Escape'&&popup.classList.contains('open'))close();});
 })();
 </script>
 
