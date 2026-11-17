@@ -214,6 +214,18 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
  .hero-box > .follow-card .message-site{min-height:60px}
 }
 
+
+/* Profile actions: spread to opposite edges and sit lower at the end of the intro */
+.hero-box > .follow-card{width:100%;max-width:none;margin:34px 0 0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;}
+.hero-box > .follow-card .follow-actions{display:grid;width:100%;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;direction:rtl;}
+.hero-box > .follow-card .follow-action-item{position:relative;width:100%;min-width:0;}
+.hero-box > .follow-card .follow-site,.hero-box > .follow-card .message-site{width:100%;min-height:62px;}
+.follow-menu{position:absolute;z-index:50;top:calc(100% + 10px);right:0;width:min(330px,calc(100vw - 48px));padding:12px;background:#fff;color:#172333;border:1px solid #d9e0e8;border-radius:14px;box-shadow:0 14px 38px #07142635;text-align:right;}
+.follow-menu[hidden]{display:none!important}.follow-menu-heading{padding:3px 8px 10px;font-weight:900;font-size:.9rem;color:#24364b;border-bottom:1px solid #e8edf2;margin-bottom:5px;}
+.follow-menu-option{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:9px 8px;border:0;border-radius:9px;background:transparent;color:#172333;text-align:right;cursor:pointer;font:inherit;}
+.follow-menu-option:hover,.follow-menu-option.selected{background:#edf4fb}.follow-menu-option strong,.follow-menu-option small{display:block}.follow-menu-option strong{font-size:.88rem}.follow-menu-option small{margin-top:2px;color:#6d7886;font-size:.72rem}.follow-check{width:20px;height:20px;flex:0 0 20px;border-radius:50%;display:grid;place-items:center;color:transparent;background:#e4eaf0;font-size:.8rem}.follow-menu-option.selected .follow-check{background:#1877f2;color:#fff}
+.follow-menu-divider{height:1px;background:#e8edf2;margin:7px 0}.follow-unfollow{width:100%;padding:10px 8px;border:0;border-radius:9px;background:#f1f3f5;color:#c62828;font:inherit;font-weight:900;text-align:right;cursor:pointer}.follow-unfollow:hover{background:#fdecec}.follow-menu-note{margin:6px 8px 2px;color:#77818d;font-size:.68rem;line-height:1.5;}
+@media(max-width:560px){.hero-box > .follow-card{margin-top:30px}.hero-box > .follow-card .follow-actions{gap:10px}.hero-box > .follow-card .follow-site,.hero-box > .follow-card .message-site{min-height:60px}.follow-menu{width:min(310px,calc(100vw - 36px));}}
 </style>
 </head>
 <body>
@@ -230,7 +242,7 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 <div class="preview-social" aria-hidden="true"><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/facebook/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/instagram/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/x/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/telegram/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/whatsapp/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/gmail/ffffff" alt=""></span></div>
 
 <div class="follow-card"><div class="follow-actions">
-<div class="follow-action-item"><button class="follow-site" id="follow-site" type="button" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M16 11h6"/></svg><span class="button-copy"><span id="follow-label">متابعة الموقع</span><small>ابقَ على اطلاع بكل جديد</small></span></button></div>
+<div class="follow-action-item"><button class="follow-site" id="follow-site" type="button" aria-pressed="false" aria-haspopup="true" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M16 11h6"/></svg><span class="button-copy"><span id="follow-label">متابعة الموقع</span><small>ابقَ على اطلاع بكل جديد</small></span></button><div class="follow-menu" id="follow-menu" hidden><div class="follow-menu-heading">تفضيلات المتابعة</div><button type="button" class="follow-menu-option" data-follow-mode="digest"><span><strong>الموجز</strong><small>ملخص سريع لأحدث التحديثات</small></span><span class="follow-check">✓</span></button><button type="button" class="follow-menu-option" data-follow-mode="default"><span><strong>افتراضي</strong><small>عرض التحديثات بالطريقة المعتادة</small></span><span class="follow-check">✓</span></button><button type="button" class="follow-menu-option" data-follow-mode="content"><span><strong>المحتوى</strong><small>متابعة المنشورات والمحتوى الجديد</small></span><span class="follow-check">✓</span></button><button type="button" class="follow-menu-option" data-follow-mode="highlights"><span><strong>أبرز العناصر</strong><small>التركيز على أهم التحديثات</small></span><span class="follow-check">✓</span></button><div class="follow-menu-divider"></div><button type="button" class="follow-unfollow" id="unfollow-site">إلغاء المتابعة</button><p class="follow-menu-note">لن يتم إرسال إشعار إليه بأنك ألغيت المتابعة.</p></div></div>
 <div class="follow-action-item"><button class="message-site" id="message-site" type="button" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 9 9 0 0 1-4-.9L3 21l1.9-5.5a9 9 0 0 1-.9-4A8.5 8.5 0 0 1 12.5 3h.5a8.5 8.5 0 0 1 8 8z"/></svg><span class="button-copy"><span>مراسلة</span><small>استقبال الرسائل متوقف</small></span></button></div>
 </div></div>
 </div></div></section>
@@ -665,20 +677,55 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
  const follow=document.getElementById('follow-site');
  if(!follow)return;
  const key='bashar-site-followed';
+ const modeKey='bashar-site-follow-mode';
+ const menu=document.getElementById('follow-menu');
+ const unfollow=document.getElementById('unfollow-site');
  const update=()=>{
    const active=localStorage.getItem(key)==='yes';
    follow.classList.toggle('following',active);
    follow.setAttribute('aria-pressed',String(active));
+   follow.setAttribute('aria-expanded',String(active && menu && !menu.hidden));
    const label=follow.querySelector('#follow-label');
    if(label) label.textContent=active?'تتابع الموقع':'متابعة الموقع';
+   if(menu){
+     const mode=localStorage.getItem(modeKey)||'default';
+     menu.querySelectorAll('[data-follow-mode]').forEach(option=>{
+       const selected=option.dataset.followMode===mode;
+       option.classList.toggle('selected',selected);
+       option.setAttribute('aria-pressed',String(selected));
+     });
+   }
+ };
+ const closeMenu=()=>{
+   if(menu) menu.hidden=true;
+   update();
  };
  update();
  const shareButton=document.getElementById('share-site');
  if(shareButton) shareButton.addEventListener('click',shareWebsite);
  follow.addEventListener('click',()=>{
-   if(localStorage.getItem(key)==='yes') localStorage.removeItem(key);
-   else localStorage.setItem(key,'yes');
-   update();
+   if(localStorage.getItem(key)!=='yes'){
+     localStorage.setItem(key,'yes');
+     closeMenu();
+   }else if(menu){
+     menu.hidden=!menu.hidden;
+     update();
+   }
+ });
+ if(menu){
+   menu.querySelectorAll('[data-follow-mode]').forEach(option=>option.addEventListener('click',()=>{
+     localStorage.setItem(modeKey,option.dataset.followMode);
+     update();
+   }));
+   menu.addEventListener('click',event=>event.stopPropagation());
+   document.addEventListener('click',event=>{
+     if(!menu.hidden && !menu.parentElement.contains(event.target)) closeMenu();
+   });
+   document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!menu.hidden){closeMenu();follow.focus();}});
+ }
+ if(unfollow) unfollow.addEventListener('click',()=>{
+   localStorage.removeItem(key);
+   closeMenu();
  });
 })();
 
