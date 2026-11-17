@@ -350,6 +350,7 @@ footer .footer-copy{padding-top:12px;border-top:1px solid #ffffff20}
 .home-posts-button .posts-shortcut-hint{font-size:.65rem;line-height:1.35;display:block}
 .hero-mini-stats .hero-mini-stat{appearance:none;-webkit-appearance:none;font-family:inherit;cursor:pointer;color:#fff}
 .hero-mini-stats .privacy-stat{width:auto;border:0!important;background:transparent!important;border-radius:0; padding:4px 6px;text-align:center;box-shadow:none!important;transform:none}
+.hero-mini-stats .hero-posts-stat{border:0!important;background:transparent!important;border-radius:0;padding:4px 6px;text-align:center;box-shadow:none!important}
 .hero-mini-stats .privacy-stat:hover,.hero-mini-stats .privacy-stat:focus-visible{transform:translateY(-1px);border-color:#d8ad65;box-shadow:0 5px 12px #0b172833;outline:none}
 .hero-mini-stats .privacy-stat strong{display:block}
 .hero-mini-stats .privacy-stat span{display:block}
@@ -391,7 +392,7 @@ footer .footer-copy{padding-top:12px;border-top:1px solid #ffffff20}
 </div></header>
 <main>
 <section class="hero" id="home" data-view-panel="home"><div class="wrap"><div class="hero-box">
-<div class="hero-topline"><span class="eyebrow">الموقع الشخصي الرسمي</span><div class="hero-mini-stats" aria-label="إحصائيات الحساب"><button class="hero-mini-stat privacy-stat" type="button" data-privacy="followers" aria-haspopup="dialog" aria-label="عرض توضيح خصوصية المتابعين"><strong>23K</strong><span>المتابعون</span></button><button class="hero-mini-stat privacy-stat" type="button" data-privacy="following" aria-haspopup="dialog" aria-label="عرض توضيح خصوصية الحسابات التي أتابعها"><strong>57</strong><span>أتابعهم</span></button></div></div>
+<div class="hero-topline"><span class="eyebrow">الموقع الشخصي الرسمي</span><div class="hero-mini-stats" aria-label="إحصائيات الحساب"><button class="hero-mini-stat privacy-stat" type="button" data-privacy="followers" aria-haspopup="dialog" aria-label="عرض توضيح خصوصية المتابعين"><strong>23K</strong><span>المتابعون</span></button><button class="hero-mini-stat privacy-stat" type="button" data-privacy="following" aria-haspopup="dialog" aria-label="عرض توضيح خصوصية الحسابات التي أتابعها"><strong>57</strong><span>أتابعهم</span></button><div class="hero-mini-stat hero-posts-stat" aria-label="عدد المنشورات"><strong id="hero-post-count">23</strong><span>المنشورات</span></div></div></div>
 <div class="hero-title-row"><img class="hero-profile-photo" src="bashar-profile.jpg" alt="الصورة الشخصية لبشار عبدو" tabindex="0" role="button" aria-label="تكبير الصورة الشخصية" aria-haspopup="dialog"><div class="hero-identity"><h1>بشار عبدو _ Bashar Abdo</h1><p class="hero-profession">صانع محتوى • مصوّر • إعلامي</p></div></div>
 <p>🔴 خذ أسوأ فكرة عني واذهب 🔴<br>⚪ اللهم صلِّ على محمد وآل محمد ⚪<br>⚫ حساباتي الرسمية والوحيدة ⚫</p>
 
@@ -846,6 +847,8 @@ footer .footer-copy{padding-top:12px;border-top:1px solid #ffffff20}
  const count=document.querySelectorAll('#posts article.post-card').length;
  const output=document.getElementById('profile-post-count');
  if(output) output.textContent=count.toLocaleString('en-US');
+ const heroOutput=document.getElementById('hero-post-count');
+ if(heroOutput) heroOutput.textContent=count.toLocaleString('en-US');
  const follow=document.getElementById('follow-site');
  if(!follow)return;
  const key='bashar-site-followed';
