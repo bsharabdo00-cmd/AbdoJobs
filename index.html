@@ -200,6 +200,20 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
  .hero-box > .follow-card .button-copy small{font-size:.58rem}
 }
 
+
+/* Spread the two profile actions across the full bottom edge of the intro */
+.hero-box > .follow-card{width:100%;max-width:none;margin:26px 0 0;padding:0}
+.hero-box > .follow-card .follow-actions{width:100%;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;justify-content:space-between}
+.hero-box > .follow-card .follow-action-item{width:100%;min-width:0}
+.hero-box > .follow-card .follow-site,
+.hero-box > .follow-card .message-site{width:100%;min-height:62px}
+@media(max-width:560px){
+ .hero-box > .follow-card{width:100%;margin-top:22px}
+ .hero-box > .follow-card .follow-actions{gap:10px}
+ .hero-box > .follow-card .follow-site,
+ .hero-box > .follow-card .message-site{min-height:60px}
+}
+
 </style>
 </head>
 <body>
