@@ -307,6 +307,24 @@ footer .footer-copy{padding-top:12px;border-top:1px solid #ffffff20}
 .home-link-button{min-width:0;min-height:43px;display:flex;align-items:center;justify-content:center;padding:7px 12px;border:1px solid #d7b77988;border-radius:11px;background:linear-gradient(145deg,#203852,#172a40);color:#f3d69f;font:inherit;font-size:.88rem;font-weight:800;text-align:center;cursor:pointer;box-shadow:0 4px 12px #101f3518;transition:transform .18s ease,background .18s ease,border-color .18s ease}
 .home-link-button:hover{transform:translateY(-2px);background:linear-gradient(145deg,#2c4c69,#203852);border-color:#f0d39e}
 .home-link-button:focus-visible{outline:2px solid #f0d39e;outline-offset:3px}
+.home-link-button{min-height:54px;flex-direction:column;gap:1px;line-height:1.3}
+.home-link-button small{display:block;color:#cbd5e1;font-size:.64rem;font-weight:400;line-height:1.35}
+#home-stats{padding-top:3px}
+#home-stats .home-shortcuts{margin-top:0}
+#home-follow .follow-actions{max-width:350px;margin:0 auto;gap:8px}
+#home-follow .follow-site,#home-follow .message-site{width:100%;min-height:36px;padding:5px 7px;border-radius:9px;font-size:.79rem;gap:5px}
+#home-follow .follow-site svg,#home-follow .message-site svg{width:16px;height:16px;flex-basis:16px}
+#home-follow .follow-action-item{gap:4px}
+#home-follow .button-copy{display:flex;flex-direction:column;align-items:center;gap:1px;line-height:1.25}
+#home-follow .button-copy small{font-size:.59rem;line-height:1.2;font-weight:400}
+@media(max-width:560px){
+ .home-link-button{min-height:51px;padding:5px 5px}
+ .home-link-button small{font-size:.58rem}
+ #home-stats{padding-top:0}
+ #home-follow .follow-actions{max-width:320px;gap:7px}
+ #home-follow .follow-site,#home-follow .message-site{min-height:34px;padding:4px 5px;font-size:.75rem}
+ #home-follow .button-copy small{font-size:.55rem}
+}
 @media(max-width:560px){
  .hero-topline{gap:8px;align-items:flex-start}
  .hero-topline .eyebrow{font-size:.72rem;padding:4px 9px;white-space:nowrap}
@@ -352,7 +370,6 @@ footer .footer-copy{padding-top:12px;border-top:1px solid #ffffff20}
  .home-posts-button .posts-shortcut-hint{font-size:.61rem}
  .hero-mini-stats .hero-mini-stat{padding:4px 6px;gap:3px}
 .hero-mini-stats .hero-mini-stat{flex-direction:column;align-items:center;gap:1px}
-.hero-mini-stats .hero-mini-stat small{display:block;color:#aebdce;font-size:.46rem;line-height:1.1;font-weight:400}
  #posts .post-card{padding:14px 12px;margin-bottom:12px;border-radius:15px}
  #posts .post-text{font-size:.92rem;line-height:1.8;margin:6px 0 12px}
  #posts .post-top{gap:8px;margin-bottom:12px}
@@ -374,7 +391,7 @@ footer .footer-copy{padding-top:12px;border-top:1px solid #ffffff20}
 </div></header>
 <main>
 <section class="hero" id="home" data-view-panel="home"><div class="wrap"><div class="hero-box">
-<div class="hero-topline"><span class="eyebrow">الموقع الشخصي الرسمي</span><div class="hero-mini-stats" aria-label="إحصائيات الحساب"><button class="hero-mini-stat privacy-stat" type="button" data-privacy="followers" aria-haspopup="dialog" aria-label="عرض توضيح خصوصية المتابعين"><strong>23K</strong><span>المتابعون</span><small>مجتمع المتابعين</small></button><button class="hero-mini-stat privacy-stat" type="button" data-privacy="following" aria-haspopup="dialog" aria-label="عرض توضيح خصوصية الحسابات التي أتابعها"><strong>57</strong><span>أتابعهم</span><small>الحسابات التي أتابعها</small></button></div></div>
+<div class="hero-topline"><span class="eyebrow">الموقع الشخصي الرسمي</span><div class="hero-mini-stats" aria-label="إحصائيات الحساب"><button class="hero-mini-stat privacy-stat" type="button" data-privacy="followers" aria-haspopup="dialog" aria-label="عرض توضيح خصوصية المتابعين"><strong>23K</strong><span>المتابعون</span></button><button class="hero-mini-stat privacy-stat" type="button" data-privacy="following" aria-haspopup="dialog" aria-label="عرض توضيح خصوصية الحسابات التي أتابعها"><strong>57</strong><span>أتابعهم</span></button></div></div>
 <div class="hero-title-row"><img class="hero-profile-photo" src="bashar-profile.jpg" alt="الصورة الشخصية لبشار عبدو" tabindex="0" role="button" aria-label="تكبير الصورة الشخصية" aria-haspopup="dialog"><div class="hero-identity"><h1>بشار عبدو _ Bashar Abdo</h1><p class="hero-profession">صانع محتوى • مصوّر • إعلامي</p></div></div>
 <p>🔴 خذ أسوأ فكرة عني واذهب 🔴<br>⚪ اللهم صلِّ على محمد وآل محمد ⚪<br>⚫ حساباتي الرسمية والوحيدة ⚫</p>
 
@@ -392,12 +409,12 @@ footer .footer-copy{padding-top:12px;border-top:1px solid #ffffff20}
    <small class="posts-shortcut-hint">اضغط لمشاهدة المنشورات</small>
   </button>
   <div class="home-link-row">
-   <a class="home-link-button" href="#social" data-view-link="social">حساباتي</a>
-   <a class="home-link-button" href="#about" data-view-link="about">من أنا</a>
+   <a class="home-link-button" href="#social" data-view-link="social"><span>حساباتي</span><small>تابعني عبر حساباتي الرسمية</small></a>
+   <a class="home-link-button" href="#about" data-view-link="about"><span>من أنا</span><small>تعرّف عليّ أكثر</small></a>
   </div>
   <div class="home-link-row">
-   <a class="home-link-button" href="#contact" data-view-link="contact">تواصل معي</a>
-   <button class="home-link-button home-share-button" id="share-site" type="button">مشاركة الموقع</button>
+   <a class="home-link-button" href="#contact" data-view-link="contact"><span>تواصل معي</span><small>يسعدني تواصلك</small></a>
+   <button class="home-link-button home-share-button" id="share-site" type="button"><span>مشاركة الموقع</span><small>شارك موقعي مع أصدقائك</small></button>
   </div>
  </div>
 </div></section>
