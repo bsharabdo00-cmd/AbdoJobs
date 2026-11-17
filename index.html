@@ -11,7 +11,7 @@
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Tahoma,Arial,sans-serif;line-height:1.9}a{color:inherit;text-decoration:none}.wrap{width:min(1080px,92%);margin:auto}
 header{position:sticky;top:0;z-index:5;background:#ffffffed;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font-weight:900;font-size:1.15rem;color:var(--navy)}.brand span{color:#1976d2}nav{display:flex;gap:8px;flex-wrap:wrap}nav a{padding:7px 12px;border-radius:10px;color:#475569;font-size:.92rem}nav a:hover{background:#eaf2fb;color:#155fae}
 .hero{padding:48px 0 28px}.hero-box{position:relative;overflow:hidden;border-radius:30px;padding:clamp(30px,7vw,76px);color:white;background:radial-gradient(circle at 12% 10%,#e5a33b30,transparent 28%),linear-gradient(135deg,#0d192b,#1b3b5d);box-shadow:0 22px 55px #101f3520}.hero-box:after{content:"";position:absolute;width:260px;height:260px;border:1px solid #e5a33b55;border-radius:50%;left:-85px;bottom:-145px;box-shadow:0 0 0 24px #e5a33b10,0 0 0 50px #e5a33b08}.eyebrow{color:#9ecbff;border:1px solid #e5a33b77;border-radius:99px;padding:5px 14px;font-size:.88rem}.hero-title-row{display:flex;align-items:center;gap:22px;margin:22px 0 10px;position:relative;z-index:1}.hero-profile-photo{width:112px;height:112px;flex:0 0 112px;border-radius:50%;border:4px solid #fff;object-fit:cover;object-position:center;box-shadow:0 5px 22px #0005}.hero h1{font-size:clamp(2.2rem,6vw,4.2rem);line-height:1.3;margin:0}.hero p{max-width:700px;color:#e1e8f0;font-size:1.08rem;margin:0}.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}.preview-social{display:flex;align-items:center;gap:12px;margin-top:27px}.preview-social-icon{width:38px;height:38px;display:grid;place-items:center;border:1px solid #ffffff35;background:#ffffff12;border-radius:12px}.preview-social-icon img{width:19px;height:19px;display:block;filter:brightness(0) invert(1)}.btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 18px;border-radius:12px;background:var(--blue);color:#ffffff;font-weight:bold}.btn.outline{border:1px solid #ffffff65;background:#ffffff10;color:white}
-.hero-actions{position:relative;z-index:1}
+.hero-actions{position:relative;z-index:1}.hero-identity{min-width:0}.hero-identity h1{margin:0}.hero-profession{margin:2px 0 0!important;color:#f0d39e!important;font-size:1rem!important;font-weight:700;letter-spacing:.2px}.posts-shortcut-hint{display:block;color:#d7e0eb!important;font-size:.72rem!important;line-height:1.5}
 .hero-actions .btn{min-width:118px;border:1px solid #e5a33b;background:linear-gradient(135deg,#e5a33b,#f2c66d);color:#142338;box-shadow:0 7px 18px #0002;transition:transform .18s ease,filter .18s ease}
 .hero-actions .btn.outline{border-color:#ffffff65;background:#ffffff12;color:#fff;box-shadow:none}
 .hero-actions .btn:hover{transform:translateY(-2px);filter:brightness(1.06)}
@@ -131,7 +131,7 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 <main>
 <section class="hero" id="home" data-view-panel="home"><div class="wrap"><div class="hero-box">
 <span class="eyebrow">الموقع الشخصي الرسمي</span>
-<div class="hero-title-row"><img class="hero-profile-photo" src="bashar-profile.jpg" alt="الصورة الشخصية لبشار عبدو"><h1>بشار عبدو _ Bashar Abdo</h1></div>
+<div class="hero-title-row"><img class="hero-profile-photo" src="bashar-profile.jpg" alt="الصورة الشخصية لبشار عبدو"><div class="hero-identity"><h1>بشار عبدو _ Bashar Abdo</h1><p class="hero-profession">صانع محتوى • مصوّر • إعلامي</p></div></div>
 <p>🔴 خذ أسوأ فكرة عني واذهب 🔴<br>⚪ اللهم صلِّ على محمد وآل محمد ⚪<br>⚫ حساباتي الرسمية والوحيدة ⚫</p>
 <div class="hero-actions" aria-label="روابط سريعة">
 <a class="btn" href="#about" data-view-link="about">من أنا</a>
@@ -141,7 +141,7 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 <div class="preview-social" aria-hidden="true"><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/facebook/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/instagram/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/x/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/telegram/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/whatsapp/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/gmail/ffffff" alt=""></span></div>
 </div></div></section>
 <section id="home-stats" data-view-panel="home-stats"><div class="wrap"><div class="profile-stats" aria-label="إحصائيات الحساب">
-  <button class="profile-stat posts-stat" id="posts-shortcut" type="button" aria-label="الانتقال مباشرة إلى المنشورات"><div class="profile-stat-top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/><path d="M7 8h10M7 12h10M7 16h6"/></svg><strong id="profile-post-count">23</strong></div><span>المنشورات · اضغط للعرض</span></button>
+  <button class="profile-stat posts-stat" id="posts-shortcut" type="button" aria-label="عرض المنشورات"><div class="profile-stat-top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/><path d="M7 8h10M7 12h10M7 16h6"/></svg><strong id="profile-post-count">23</strong></div><span>عرض المنشورات</span><small class="posts-shortcut-hint">اضغط لمشاهدة المنشورات</small></button>
   <button class="profile-stat privacy-stat" type="button" data-privacy="followers" aria-haspopup="dialog" aria-label="عرض توضيح خصوصية المتابعين"><div class="profile-stat-top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><strong>23K</strong></div><span>المتابعون</span></button>
   <button class="profile-stat privacy-stat" type="button" data-privacy="following" aria-haspopup="dialog" aria-label="عرض توضيح خصوصية الحسابات التي أتابعها"><div class="profile-stat-top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M16 11h6"/></svg><strong>57</strong></div><span>أتابعهم</span></button>
   <button class="profile-stat share-stat" id="share-site" type="button" aria-label="مشاركة الموقع"><div class="profile-stat-top"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.7 10.7 6.6-4.4M8.7 13.3l6.6 4.4"/></svg></div><span>مشاركة الموقع</span></button>
@@ -674,11 +674,11 @@ function bumpPostStat(button){
  let previousFocus=null;
  const names={about:'من أنا',social:'حساباتي الرسمية',contact:'تواصل معي'};
  function close(){popup.classList.remove('open');popup.setAttribute('aria-hidden','true');content.replaceChildren();document.body.style.overflow='';if(previousFocus)previousFocus.focus();}
- document.querySelectorAll('.hero-actions [data-view-link]').forEach(link=>link.addEventListener('click',event=>{
+ document.querySelectorAll('[data-view-link="about"],[data-view-link="social"],[data-view-link="contact"]').forEach(link=>link.addEventListener('click',event=>{
   const view=link.dataset.viewLink;
   const source=document.querySelector('[data-view-panel="'+view+'"]');
   if(!source)return;
-  event.preventDefault();previousFocus=link;title.textContent=names[view]||'التفاصيل';
+  event.preventDefault();event.stopPropagation();previousFocus=link;title.textContent=names[view]||'التفاصيل';
   const clone=source.cloneNode(true);clone.hidden=false;clone.removeAttribute('data-view-panel');clone.removeAttribute('id');
   content.replaceChildren(clone);popup.classList.add('open');popup.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';closeButton.focus();
  }));
