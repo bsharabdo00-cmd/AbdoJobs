@@ -262,12 +262,41 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
  border-color:#c4e6ca;
 }
 
+
+/* Bottom navigation: compact matching buttons */
+header .nav{min-height:64px}
+.bottom-nav{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin:0 auto 16px}
+footer .bottom-nav a{
+ display:inline-flex;align-items:center;justify-content:center;
+ min-width:104px;padding:7px 16px;border:1px solid #d7b77988;
+ border-radius:10px;background:linear-gradient(145deg,#203852,#172a40);
+ color:#f3d69f;font-size:.82rem;font-weight:700;line-height:1.5;
+ box-shadow:0 3px 10px #0003;transition:background .18s ease,border-color .18s ease,transform .18s ease;
+}
+footer .bottom-nav a:hover{background:linear-gradient(145deg,#2c4c69,#203852);border-color:#f0d39e;transform:translateY(-2px)}
+footer .bottom-nav a:focus-visible{outline:2px solid #f0d39e;outline-offset:3px}
+footer .footer-copy{padding-top:12px;border-top:1px solid #ffffff20}
+.hero-box > .follow-card .follow-action-item:first-child:after{display:none!important;content:none!important}
+.hero-box > .follow-card .follow-site{
+ background:#1976d2!important;border:1px solid #1976d2!important;color:#fff!important;
+ box-shadow:0 5px 14px #07142655,inset 0 1px 0 #ffffff20;
+}
+.hero-box > .follow-card .follow-site:hover{background:#2386e6!important;border-color:#2386e6!important}
+.hero-box > .follow-card .follow-site.following{
+ background:linear-gradient(135deg,#397565 0%,#234e49 100%)!important;
+ border:1px solid #a8d2b7!important;color:#fff!important;
+}
+@media(max-width:560px){
+ .bottom-nav{gap:7px;margin-bottom:13px}
+ footer .bottom-nav a{min-width:0;flex:1;padding:7px 8px;font-size:.76rem}
+}
+
 </style>
 </head>
 <body>
 <header><div class="wrap nav">
 <a class="brand" href="#home">بشار عبدو <span>_ Bashar Abdo</span></a>
-<nav aria-label="القائمة الرئيسية"><a href="#home" data-view-link="home">الرئيسية</a><a href="#about" data-view-link="about">من أنا</a><a href="#social" data-view-link="social">حساباتي</a><a href="#contact" data-view-link="contact">تواصل معي</a></nav>
+
 </div></header>
 <main>
 <section class="hero" id="home" data-view-panel="home"><div class="wrap"><div class="hero-box">
@@ -657,7 +686,14 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
  </section>
 </div>
 
-<footer>جميع الحقوق محفوظة © <strong>بشار عبدو _ Bashar Abdo</strong></footer>
+<footer>
+ <nav class="bottom-nav" aria-label="روابط الموقع السفلية">
+  <a href="#about" data-view-link="about">من أنا</a>
+  <a href="#social" data-view-link="social">حساباتي</a>
+  <a href="#contact" data-view-link="contact">تواصل معي</a>
+ </nav>
+ <div class="footer-copy">جميع الحقوق محفوظة © <strong>بشار عبدو _ Bashar Abdo</strong></div>
+</footer>
 
 <div class="privacy-modal" id="privacy-modal" role="presentation" aria-hidden="true">
  <section class="privacy-dialog" role="dialog" aria-modal="true" aria-labelledby="privacy-title" aria-describedby="privacy-message">
