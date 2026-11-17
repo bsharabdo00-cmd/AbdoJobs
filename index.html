@@ -37,6 +37,25 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 .stats-note{margin:9px 0 0;text-align:center;color:#8a94a3;font-size:.73rem}
 @media(max-width:560px){.profile-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.profile-stat{padding:12px 8px}}
 
+
+/* Elegant privacy notice for follower statistics */
+.privacy-stat{width:100%;border:1px solid #40536a;text-align:right;font:inherit;cursor:pointer;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.privacy-stat:hover,.privacy-stat:focus-visible{transform:translateY(-3px);border-color:#d8ad65;box-shadow:0 12px 28px #0b172833;outline:none}
+.privacy-stat:focus-visible{outline:2px solid #e7c58d;outline-offset:3px}
+.privacy-modal{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(7,15,27,.76);backdrop-filter:blur(8px)}
+.privacy-modal.open{display:flex}
+.privacy-dialog{position:relative;width:min(440px,100%);padding:34px 25px 28px;text-align:center;color:#f8fafc;border:1px solid #d7b77966;border-radius:25px;background:radial-gradient(circle at 50% 0%,#34516d 0%,transparent 54%),linear-gradient(145deg,#142338,#0c1728);box-shadow:0 24px 80px #0008;animation:privacy-in .22s ease-out}
+.privacy-dialog:before{content:"";position:absolute;inset:8px;border:1px solid #d7b77935;border-radius:19px;pointer-events:none}
+.privacy-close{position:absolute;top:15px;left:15px;width:36px;height:36px;border:1px solid #ffffff26;border-radius:50%;background:#ffffff12;color:#fff;font-size:23px;line-height:1;cursor:pointer}
+.privacy-icon{width:64px;height:64px;display:grid;place-items:center;margin:0 auto 17px;border:1px solid #d7b77988;border-radius:20px;background:#d7b77918;color:#e7c58d}
+.privacy-icon svg{width:31px;height:31px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.privacy-dialog h3{margin:0 0 12px;color:#f5d9a7;font-size:1.3rem}
+.privacy-dialog p{margin:0;color:#e2e8f0;font-size:1rem;line-height:2}
+.privacy-signature{display:block;margin-top:17px;padding-top:13px;border-top:1px solid #ffffff20;color:#e7c58d;font-weight:800;font-size:.94rem}
+.privacy-ok{margin-top:22px;padding:9px 28px;border:1px solid #e3c58f;border-radius:12px;background:linear-gradient(135deg,#d8b574,#f0d9a9);color:#172337;font:inherit;font-weight:800;cursor:pointer}
+@keyframes privacy-in{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(prefers-reduced-motion:reduce){.privacy-dialog{animation:none}.privacy-stat{transition:none}}
+
 </style>
 </head>
 <body>
@@ -53,8 +72,8 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 </div></div></section>
 <section id="home-stats"><div class="wrap"><div class="profile-stats" aria-label="إحصائيات الحساب">
   <div class="profile-stat"><div class="profile-stat-top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/><path d="M7 8h10M7 12h10M7 16h6"/></svg><strong id="profile-post-count">23</strong></div><span>المنشورات</span></div>
-  <div class="profile-stat"><div class="profile-stat-top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><strong>23K</strong></div><span>المتابعون</span></div>
-  <div class="profile-stat"><div class="profile-stat-top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M16 11h6"/></svg><strong>57</strong></div><span>أتابعهم</span></div>
+  <button class="profile-stat privacy-stat" type="button" data-privacy="followers" aria-haspopup="dialog" aria-label="عرض توضيح خصوصية المتابعين"><div class="profile-stat-top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><strong>23K</strong></div><span>المتابعون</span></button>
+  <button class="profile-stat privacy-stat" type="button" data-privacy="following" aria-haspopup="dialog" aria-label="عرض توضيح خصوصية الحسابات التي أتابعها"><div class="profile-stat-top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M16 11h6"/></svg><strong>57</strong></div><span>أتابعهم</span></button>
   <button class="profile-stat share-stat" id="share-site" type="button" aria-label="مشاركة الموقع"><div class="profile-stat-top"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.7 10.7 6.6-4.4M8.7 13.3l6.6 4.4"/></svg></div><span>مشاركة الموقع</span></button>
 </div>
 <button class="follow-site" id="follow-site" type="button" aria-pressed="false">＋ متابعة الموقع</button>
@@ -418,7 +437,46 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 </div></div></section>
 </main>
 <footer>جميع الحقوق محفوظة © <strong>بشار عبدو _ Bashar Abdo</strong></footer>
+
+<div class="privacy-modal" id="privacy-modal" role="presentation" aria-hidden="true">
+ <section class="privacy-dialog" role="dialog" aria-modal="true" aria-labelledby="privacy-title" aria-describedby="privacy-message">
+  <button class="privacy-close" type="button" aria-label="إغلاق">×</button>
+  <div class="privacy-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></svg></div>
+  <h3 id="privacy-title">تنويه حول الخصوصية</h3>
+  <p id="privacy-message"></p>
+  <span class="privacy-signature">بشار عبدو _ Bashar Abdo</span>
+  <button class="privacy-ok" type="button">حسناً</button>
+ </section>
+</div>
+
 <script>
+
+// Show a polished privacy notice when either profile list is selected.
+(function(){
+ const modal=document.getElementById('privacy-modal');
+ if(!modal)return;
+ const message=modal.querySelector('#privacy-message');
+ const title=modal.querySelector('#privacy-title');
+ const closeButton=modal.querySelector('.privacy-close');
+ const okButton=modal.querySelector('.privacy-ok');
+ let previousFocus=null;
+ function close(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';if(previousFocus)previousFocus.focus();}
+ document.querySelectorAll('.privacy-stat').forEach(button=>button.addEventListener('click',()=>{
+  previousFocus=button;
+  if(button.dataset.privacy==='followers'){
+   title.textContent='خصوصية المتابعين';
+   message.textContent='قام بشار عبدو _ Bashar Abdo بإغلاق قائمة المتابعين وعدم إظهارهم للزوار.';
+  }else{
+   title.textContent='خصوصية الحسابات التي أتابعها';
+   message.textContent='قام بشار عبدو _ Bashar Abdo بإغلاق قائمة الحسابات التي يتابعها وعدم إظهارها للزوار.';
+  }
+  modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';closeButton.focus();
+ }));
+ closeButton.addEventListener('click',close);okButton.addEventListener('click',close);
+ modal.addEventListener('click',event=>{if(event.target===modal)close();});
+ document.addEventListener('keydown',event=>{if(event.key==='Escape'&&modal.classList.contains('open'))close();});
+})();
+
 // Update homepage statistics from the actual post cards.
 (function(){
  const count=document.querySelectorAll('#posts article.post-card').length;
