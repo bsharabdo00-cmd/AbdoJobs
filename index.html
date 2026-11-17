@@ -86,21 +86,36 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 @keyframes privacy-in{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
 @media(prefers-reduced-motion:reduce){.privacy-dialog{animation:none}.privacy-stat{transition:none}}
 
+
+/* Single-page section navigation */
+[data-view-panel][hidden]{display:none!important}
+.about-card{background:white;border:1px solid var(--line);border-radius:24px;padding:clamp(22px,5vw,42px);box-shadow:0 12px 35px #182b4010}
+.about-card h3{color:var(--navy);margin:0 0 8px}.about-card p{color:#536174;margin:0 0 18px}
+.quote{padding:18px 20px;border-right:3px solid var(--blue);background:#f4f8fc;border-radius:12px;color:#374151;margin-top:20px}
+.social-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.social-card{display:flex;align-items:center;gap:14px;background:white;border:1px solid var(--line);border-radius:17px;padding:17px;min-height:82px;transition:.2s}
+.social-card:hover{transform:translateY(-3px);border-color:var(--blue);box-shadow:0 10px 25px #182b4010}
+.social-icon img{width:25px;height:25px;display:block}.social-icon{width:42px;height:42px;display:grid;place-items:center;border-radius:13px;background:#eaf2fb;color:#1976d2;font-weight:900;font-size:1.05rem;flex:0 0 42px}
+.social-card strong,.social-card small{display:block}.social-card strong{color:var(--navy)}.social-card small{color:var(--muted);font-size:.84rem;direction:ltr;text-align:right;overflow-wrap:anywhere}
+.contact{text-align:center;background:var(--navy);color:white;border-radius:24px;padding:30px}
+.contact h2{margin:0 0 6px}.contact p{color:#d4deea;margin:0 0 18px}.contact .btn{margin:4px}
+@media(max-width:650px){.social-grid{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
 <header><div class="wrap nav">
 <a class="brand" href="#home">بشار عبدو <span>_ Bashar Abdo</span></a>
-<nav aria-label="القائمة الرئيسية"><a href="#home">الرئيسية</a><a href="about.html">من أنا</a><a href="social.html">حساباتي</a><a href="contact.html">تواصل معي</a></nav>
+<nav aria-label="القائمة الرئيسية"><a href="#home" data-view-link="home">الرئيسية</a><a href="#about" data-view-link="about">من أنا</a><a href="#social" data-view-link="social">حساباتي</a><a href="#contact" data-view-link="contact">تواصل معي</a></nav>
 </div></header>
 <main>
-<section class="hero" id="home"><div class="wrap"><div class="hero-box">
+<section class="hero" id="home" data-view-panel="home"><div class="wrap"><div class="hero-box">
 <span class="eyebrow">الموقع الشخصي الرسمي</span>
 <div class="hero-title-row"><img class="hero-profile-photo" src="bashar-profile.jpg" alt="الصورة الشخصية لبشار عبدو"><h1>بشار عبدو _ Bashar Abdo</h1></div>
 <p>🔴 خذ أسوأ فكرة عني واذهب 🔴<br>⚪ اللهم صلِّ على محمد وآل محمد ⚪<br>⚫ حساباتي الرسمية والوحيدة ⚫</p>
 <div class="preview-social" aria-hidden="true"><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/facebook/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/instagram/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/x/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/telegram/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/whatsapp/ffffff" alt=""></span><span class="preview-social-icon"><img src="https://cdn.simpleicons.org/gmail/ffffff" alt=""></span></div>
 </div></div></section>
-<section id="home-stats"><div class="wrap"><div class="profile-stats" aria-label="إحصائيات الحساب">
+<section id="home-stats" data-view-panel="home-stats"><div class="wrap"><div class="profile-stats" aria-label="إحصائيات الحساب">
   <button class="profile-stat posts-stat" id="posts-shortcut" type="button" aria-label="الانتقال مباشرة إلى المنشورات"><div class="profile-stat-top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/><path d="M7 8h10M7 12h10M7 16h6"/></svg><strong id="profile-post-count">23</strong></div><span>المنشورات · اضغط للعرض</span></button>
   <button class="profile-stat privacy-stat" type="button" data-privacy="followers" aria-haspopup="dialog" aria-label="عرض توضيح خصوصية المتابعين"><div class="profile-stat-top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><strong>23K</strong></div><span>المتابعون</span></button>
   <button class="profile-stat privacy-stat" type="button" data-privacy="following" aria-haspopup="dialog" aria-label="عرض توضيح خصوصية الحسابات التي أتابعها"><div class="profile-stat-top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M16 11h6"/></svg><strong>57</strong></div><span>أتابعهم</span></button>
@@ -111,7 +126,7 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 <p class="stats-note">عداد المنشورات يُحسب تلقائياً من المنشورات الظاهرة في الموقع.</p></div></section>
 
 
-<section id="posts"><div class="wrap">
+<section id="posts" data-view-panel="posts" hidden><div class="wrap">
 <div class="section-head"><h2>منشوراتي</h2><p>مساحة أشارككم فيها كلماتي وأفكاري</p></div>
 
 <article class="post-card" id="post-intro" data-pinned="true">
@@ -442,6 +457,31 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 </div></section>
 
 
+<section data-view-panel="about" id="about"><div class="wrap">
+<div class="section-head"><h2>من أنا؟</h2><p>نبذة شخصية ومساحة للتعارف والتواصل</p></div>
+<div class="about-card">
+<h3>أهلاً وسهلاً بكم 🌹</h3>
+<p>أنا بشار عبدو _ Bashar Abdo، وهذه مساحتي الشخصية أشارك فيها اهتماماتي وأعمالي وتجربتي، وأرحب بالجميع للتعارف والتواصل وتبادل الأفكار.</p>
+<h3>رؤيتي</h3><p>مشاركة ما أقدمه وتوثيق تجاربي بكل بساطة ووضوح.</p>
+<h3>رسالتي</h3><p>نشر الإيجابية، وبناء تواصل قائم على الاحترام والثقة.</p>
+<div class="quote">اللهم صلِّ على محمد وآل محمد، والحمد لله دائماً وأبداً.</div>
+</div>
+</div></section>
+<section data-view-panel="social" id="social"><div class="wrap">
+<div class="section-head"><h2>حساباتي الرسمية</h2><p>يسعدني تواصلكم ومتابعتكم عبر حساباتي</p></div>
+<div class="social-grid">
+<a class="social-card" href="https://www.facebook.com/share/1FGcn1jRkZ/" target="_blank" rel="noopener"><span class="social-icon"><img src="https://cdn.simpleicons.org/facebook/0866FF" alt="Facebook"></span><span><strong>فيسبوك</strong><small>Facebook</small></span></a>
+<a class="social-card" href="https://www.instagram.com/ls97_1?dlrf=NzJwMnk5YmJzcXBn" target="_blank" rel="noopener"><span class="social-icon"><img src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram"></span><span><strong>إنستغرام</strong><small>@ls97_1</small></span></a>
+<a class="social-card" href="https://x.com/BasharAbdo00" target="_blank" rel="noopener"><span class="social-icon"><img src="https://cdn.simpleicons.org/x/000000" alt="X"></span><span><strong>منصة X</strong><small>@BasharAbdo00</small></span></a>
+<a class="social-card" href="https://t.me/ls97_1" target="_blank" rel="noopener"><span class="social-icon"><img src="https://cdn.simpleicons.org/telegram/26A5E4" alt="Telegram"></span><span><strong>تيليجرام</strong><small>@ls97_1</small></span></a>
+<a class="social-card" href="https://wa.me/963995192174" target="_blank" rel="noopener"><span class="social-icon"><img src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp"></span><span><strong>واتساب</strong><small>+963995192174</small></span></a>
+<a class="social-card" href="mailto:bsharabdo00@gmail.com"><span class="social-icon"><img src="https://cdn.simpleicons.org/gmail/EA4335" alt="Gmail"></span><span><strong>البريد الإلكتروني</strong><small>bsharabdo00@gmail.com</small></span></a>
+</div>
+</div></section>
+<section data-view-panel="contact" id="contact"><div class="wrap"><div class="contact">
+<h2>يسعدني تواصلكم</h2><p>للاستفسارات والرسائل، يمكنكم التواصل معي عبر البريد الإلكتروني أو حساباتي الرسمية.</p>
+<a class="btn" href="mailto:bsharabdo00@gmail.com">راسلني الآن</a>
+</div></div></section>
 </main>
 <footer>جميع الحقوق محفوظة © <strong>بشار عبدو _ Bashar Abdo</strong></footer>
 
@@ -557,4 +597,38 @@ function bumpPostStat(button){
  box.addEventListener('click',close);document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
 })();
 </script>
+
+<script>
+(function(){
+ const panels=[...document.querySelectorAll('[data-view-panel]')];
+ const links=[...document.querySelectorAll('[data-view-link]')];
+ function showView(view,updateHash){
+  const valid=['home','posts','about','social','contact'];
+  if(!valid.includes(view)) view='home';
+  panels.forEach(panel=>{
+   const key=panel.getAttribute('data-view-panel');
+   panel.hidden = view==='home' ? !['home','home-stats'].includes(key) : key!==view;
+  });
+  links.forEach(link=>{
+   if(link.dataset.viewLink===view) link.setAttribute('aria-current','page');
+   else link.removeAttribute('aria-current');
+  });
+  if(updateHash){
+   const next=view==='home'?'#home':'#'+view;
+   if(location.hash!==next) history.pushState({view},'',next);
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+ }
+ document.addEventListener('click',function(event){
+  const link=event.target.closest('[data-view-link]');
+  if(link){event.preventDefault();showView(link.dataset.viewLink,true);return;}
+  const postsButton=event.target.closest('#posts-shortcut');
+  if(postsButton){event.preventDefault();showView('posts',true);}
+ });
+ window.addEventListener('popstate',()=>showView(location.hash.slice(1)||'home',false));
+ const initial=location.hash.slice(1);
+ showView(initial==='posts'||initial==='about'||initial==='social'||initial==='contact'?initial:'home',false);
+})();
+</script>
+
 </body></html>
