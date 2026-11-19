@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101f35">
+<title>منشوراتي المحفوظة | بشار عبدو _ Bashar Abdo</title>
+<style>
+:root{--navy:#111c2b;--blue:#1976d2;--amber:#e5a33b;--paper:#f4f6f8;--ink:#202b38;--muted:#687586;--line:#e1e7ee}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Tahoma,Arial,sans-serif;line-height:1.9}
+.wrap{width:min(760px,94%);margin:auto}
+header{background:#fff;border-bottom:1px solid var(--line);padding:14px 0}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-weight:900;color:var(--navy);text-decoration:none}
+.back{display:inline-flex;align-items:center;justify-content:center;padding:8px 14px;border-radius:11px;background:#203852;color:#f3d69f;text-decoration:none;font-weight:800}
+main{padding:30px 0 50px}
+h1{margin:0;color:var(--navy);font-size:1.7rem}
+.subtitle{margin:4px 0 22px;color:var(--muted)}
+.saved-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 20px;margin:0 0 14px;box-shadow:0 5px 18px #182b400d}
+.saved-card .post-top{display:flex;align-items:center;gap:11px;margin-bottom:13px}
+.saved-card .post-avatar{width:45px;height:45px;border-radius:50%;object-fit:cover}
+.saved-card .post-meta strong{display:block;color:#17283d}
+.saved-card .post-meta small{display:block;color:var(--muted);font-size:.78rem}
+.saved-card .post-text{font-size:1rem;line-height:1.9;overflow-wrap:anywhere}
+.saved-card .post-image{margin:12px 0;border-radius:13px;overflow:hidden}
+.saved-card .post-image img{display:block;width:100%;height:auto;max-height:480px;object-fit:contain}
+.saved-controls{display:flex;gap:9px;flex-wrap:wrap;border-top:1px solid #edf0f3;padding-top:12px;margin-top:14px}
+.saved-controls a,.saved-controls button{border:0;border-radius:10px;padding:9px 13px;font:inherit;font-size:.85rem;font-weight:800;cursor:pointer;text-decoration:none}
+.open-original{background:#eaf2fb;color:#155fae}
+.remove-saved{background:#fff0f2;color:#b42345}
+.empty{background:#fff;border:1px dashed #cbd5e1;border-radius:20px;padding:34px 20px;text-align:center;box-shadow:0 8px 24px #182b4008}
+.empty-icon{font-size:2.4rem;margin-bottom:8px}
+.empty h2{margin:0 0 6px;color:var(--navy);font-size:1.25rem}
+.empty p{margin:0;color:var(--muted)}
+.status{color:var(--muted);text-align:center;padding:24px}
+footer{text-align:center;color:#8792a1;padding:20px;font-size:.82rem}
+@media(max-width:560px){.saved-card{padding:15px 13px;border-radius:14px}.top{align-items:flex-start}.back{font-size:.83rem}}
+</style>
+</head>
+<body>
+<header><div class="wrap top">
+<a class="brand" href="index.html">بشار عبدو _ Bashar Abdo</a>
+<a class="back" href="index.html">العودة إلى الموقع</a>
+</div></header>
+<main class="wrap">
+<h1>🔖 منشوراتي المحفوظة</h1>
+<p class="subtitle">المنشورات التي حفظتها للرجوع إليها لاحقاً</p>
+<div id="saved-list"><div class="status">جارٍ تحميل المحفوظات...</div></div>
+</main>
+<footer>تُحفظ المنشورات على هذا الجهاز وهذا المتصفح فقط.</footer>
+<script>
+(async function(){
+ const list=document.getElementById('saved-list');
+ const empty='<section class="empty"><div class="empty-icon">🔖</div><h2>ما عندك منشورات محفوظة حالياً</h2><p>لما تحفظ أي منشور من زر «حفظ»، رح تلاقيه هون وترجعله بأي وقت.</p></section>';
+ try{
+  const response=await fetch('index.html',{cache:'no-store'});
+  if(!response.ok)throw new Error('تعذر تحميل المنشورات');
+  const html=await response.text();
+  const doc=new DOMParser().parseFromString(html,'text/html');
+  const cards=[...doc.querySelectorAll('#posts article.post-card')];
+  const saved=cards.filter((card,index)=>{
+   const id=card.id||'post-'+index;
+   return localStorage.getItem('bashar-save-'+id)==='yes';
+  });
+  list.replaceChildren();
+  if(!saved.length){list.innerHTML=empty;return;}
+  saved.forEach((original,index)=>{
+   const id=original.id||'post-'+index;
+   const card=original.cloneNode(true);
+   card.className='saved-card';
+   card.removeAttribute('data-pinned');
+   card.querySelectorAll('[onclick]').forEach(el=>el.removeAttribute('onclick'));
+   card.querySelectorAll('.post-actions,.post-note,.post-local-repost-note').forEach(el=>el.remove());
+   const controls=document.createElement('div');
+   controls.className='saved-controls';
+   const open=document.createElement('a');
+   open.className='open-original';open.href='index.html#posts';open.textContent='عرض المنشور في الموقع';
+   const remove=document.createElement('button');
+   remove.className='remove-saved';remove.type='button';remove.textContent='إلغاء الحفظ';
+   remove.addEventListener('click',()=>{
+    localStorage.removeItem('bashar-save-'+id);
+    card.remove();
+    if(!list.querySelector('.saved-card'))list.innerHTML=empty;
+   });
+   controls.append(open,remove);card.append(controls);list.append(card);
+  });
+ }catch(error){
+  list.innerHTML='<section class="empty"><h2>تعذر تحميل المحفوظات</h2><p>تأكد من اتصالك بالإنترنت ثم حدّث الصفحة.</p></section>';
+ }
+})();
+</script>
+</body>
+</html>
