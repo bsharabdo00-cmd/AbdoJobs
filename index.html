@@ -2683,7 +2683,7 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape')closeEngagem
  const placeholder=document.createComment('field video position');player.parentNode.insertBefore(placeholder,player);
  // Prevent Android's native copy/select popup from appearing over the video.
  ['contextmenu','selectstart','dragstart'].forEach(type=>player.addEventListener(type,event=>{event.preventDefault();event.stopPropagation();},true));
- player.addEventListener('click',event=>{event.stopPropagation();},true);
+ player.addEventListener('click',event=>{event.stopPropagation();});
  const lightbox=document.createElement('div');lightbox.className='field-video-lightbox';lightbox.innerHTML='<button type="button" class="field-video-lightbox-close" aria-label="إغلاق الفيديو">×</button><div class="field-video-lightbox-inner"></div>';document.body.appendChild(lightbox);
  const lightboxInner=lightbox.querySelector('.field-video-lightbox-inner'),closeButton=lightbox.querySelector('.field-video-lightbox-close');
  function openLightbox(){if(!lightbox.classList.contains('open')){lightbox.classList.add('open');lightboxInner.appendChild(player);document.body.style.overflow='hidden';closeButton.focus();}}
