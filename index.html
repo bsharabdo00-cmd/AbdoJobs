@@ -1847,7 +1847,8 @@ document.addEventListener('selectstart',event=>{
 
 function postCardFor(button){return button.closest('article.post-card');}
 function postKey(button){const card=postCardFor(button);return card?(card.id||'post-'+[...document.querySelectorAll('#posts article.post-card')].indexOf(card)):'post-unknown';}
-function setActionCount(button,count,label){button.dataset.count=count;const output=button.querySelector('strong');if(output)output.textContent=Number(count).toLocaleString('en-US');button.setAttribute('aria-label',label+' '+count);}
+function compactPostCount(value){const n=Number(String(value).replace(/,/g,''));if(!Number.isFinite(n))return String(value);if(n>=1000000)return (Math.round(n/100000)/10).toFixed(1).replace(/\.0$/,'')+'M';if(n>=1000)return (Math.round(n/100)/10).toFixed(1).replace(/\.0$/,'')+'K';return Math.round(n).toLocaleString('en-US');}
+function setActionCount(button,count,label){button.dataset.count=count;const output=button.querySelector('strong');if(output)output.textContent=compactPostCount(count);button.setAttribute('aria-label',label+' '+count);}
 function ensurePostDialog(){
  let modal=document.getElementById('post-action-modal');
  if(modal)return modal;
@@ -2203,4 +2204,34 @@ function openPostViews(){
 document.addEventListener('keydown',event=>{if(event.key==='Escape')closePostViews();});
 </script>
 
+
+<script id="compact-post-action-counts">
+(function(){
+ function compact(value){
+  const raw=String(value).trim().replace(/,/g,'');
+  const suffix=raw.match(/^([0-9]+(?:\\.[0-9]+)?)([KM])$/i);
+  let n=suffix?Number(suffix[1])*(suffix[2].toUpperCase()==='M'?1000000:1000):Number(raw);
+  if(!Number.isFinite(n))return String(value);
+  if(n>=1000000)return (Math.round(n/100000)/10).toFixed(1).replace(/\\.0$/,'')+'M';
+  if(n>=1000)return (Math.round(n/100)/10).toFixed(1).replace(/\\.0$/,'')+'K';
+  return Math.round(n).toLocaleString('en-US');
+ }
+ function refresh(root){
+  (root||document).querySelectorAll('#posts .post-action strong').forEach(node=>{
+   const next=compact(node.textContent);
+   if(node.textContent!==next)node.textContent=next;
+  });
+ }
+ refresh(document);
+ const posts=document.querySelector('#posts');
+ if(posts){new MutationObserver(records=>records.forEach(record=>{
+   if(record.type==='characterData'){
+    const parent=record.target.parentElement;
+    if(parent&&parent.matches('.post-action strong'))refresh(parent.parentElement);
+   }else record.addedNodes.forEach(node=>{
+    if(node.nodeType===1){if(node.matches('.post-action strong')){const next=compact(node.textContent);if(node.textContent!==next)node.textContent=next;}else refresh(node);}
+   });
+  })).observe(posts,{subtree:true,childList:true,characterData:true});}
+})();
+</script>
 </body></html>
