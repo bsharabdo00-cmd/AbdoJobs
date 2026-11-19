@@ -1156,43 +1156,59 @@ header .nav>.site-live-clock{margin-inline-start:auto;margin-right:0;margin-left
 }
 </style>
 <style id="social-feed-refresh-styles">
-/* Social feed refresh: more visual discovery, less repetitive scrolling */
-#posts .feed-welcome{max-width:720px;margin:0 auto 15px;padding:15px 17px;display:flex;align-items:center;gap:12px;border:1px solid #e2e8f0;border-radius:18px;background:linear-gradient(120deg,#fff,#f5f9ff);box-shadow:0 7px 22px #182b4009}
-#posts .feed-welcome-avatar{width:48px;height:48px;flex:0 0 48px;border-radius:50%;object-fit:cover;border:2px solid #e4edf7}
-#posts .feed-welcome-copy{min-width:0;flex:1}
-#posts .feed-welcome-copy strong{display:block;color:#17283d;font-size:.96rem;line-height:1.5}
-#posts .feed-welcome-copy span{display:block;color:#748195;font-size:.77rem;line-height:1.6}
-#posts .feed-post-count{flex:0 0 auto;padding:7px 10px;border-radius:12px;background:#eaf2fb;color:#155fae;font-size:.78rem;font-weight:800;white-space:nowrap}
-#posts .feed-discover{max-width:720px;margin:0 auto 18px;padding:0 0 5px}
-#posts .feed-discover-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 2px 9px}
-#posts .feed-discover-head strong{color:#26384d;font-size:.9rem}
-#posts .feed-discover-head span{color:#8793a2;font-size:.72rem}
-#posts .feed-discover-track{display:flex;gap:10px;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x mandatory;padding:2px 1px 9px;scrollbar-width:thin;scrollbar-color:#cbd5e1 transparent}
-#posts .feed-discover-item{position:relative;display:block;flex:0 0 116px;height:142px;padding:0;overflow:hidden;border:1px solid #dce4ed;border-radius:15px;background:#e8edf3;cursor:pointer;scroll-snap-align:start;text-align:right;box-shadow:0 4px 12px #182b4010}
-#posts .feed-discover-item img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .25s ease}
-#posts .feed-discover-item:hover img{transform:scale(1.06)}
-#posts .feed-discover-item:after{content:"";position:absolute;inset:35% 0 0;background:linear-gradient(transparent,#081526d9)}
-#posts .feed-discover-item span{position:absolute;z-index:1;right:8px;left:8px;bottom:8px;color:#fff;font-size:.72rem;font-weight:800;line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-#posts .feed-discover-item:focus-visible{outline:3px solid #1976d2;outline-offset:3px}
-#posts .post-card{transition:box-shadow .2s ease,border-color .2s ease,transform .2s ease}
-#posts .post-card:target{border-color:#8db9e8;box-shadow:0 0 0 3px #1976d21c,0 12px 28px #182b4012}
-#posts .post-card .post-text.feed-collapsed{max-height:11.2em;overflow:hidden;mask-image:linear-gradient(#000 72%,transparent);-webkit-mask-image:linear-gradient(#000 72%,transparent)}
-#posts .feed-read-toggle{display:inline-flex;align-items:center;gap:5px;margin:-4px 0 9px;padding:4px 0;border:0;background:transparent;color:#1976d2;font:inherit;font-size:.82rem;font-weight:800;cursor:pointer}
-#posts .feed-read-toggle:hover{text-decoration:underline}
-#posts .feed-read-toggle:focus-visible{outline:2px solid #1976d2;outline-offset:3px;border-radius:4px}
-#posts .feed-top-button{position:fixed;z-index:20;left:17px;bottom:18px;display:none;align-items:center;gap:7px;padding:10px 14px;border:1px solid #d8e2ed;border-radius:999px;background:#fff;color:#18324f;font:inherit;font-size:.8rem;font-weight:800;box-shadow:0 8px 24px #101f3525;cursor:pointer}
-#posts .feed-top-button.visible{display:flex}
-#posts .feed-top-button span{font-size:1rem;line-height:1}
-@media(max-width:560px){
- #posts .feed-welcome{margin:0 12px 13px;padding:12px;border-radius:14px}
- #posts .feed-welcome-avatar{width:43px;height:43px;flex-basis:43px}
- #posts .feed-post-count{font-size:.7rem;padding:6px 8px}
- #posts .feed-discover{padding:0 12px;margin-bottom:14px}
- #posts .feed-discover-item{flex-basis:102px;height:128px}
- #posts .feed-discover-head strong{font-size:.84rem}
- #posts .feed-top-button{left:12px;bottom:13px;padding:9px 12px}
+/* Posts section refresh: clean editorial feed inspired by the approved mockup */
+#posts{padding:28px 0 48px;background:#f5f7fb}
+#posts>.wrap{width:min(980px,94%)}
+#posts .section-head{position:relative;isolation:isolate;overflow:hidden;text-align:right;margin:0 auto 18px;padding:30px 28px;border:1px solid #dce5f1;border-radius:24px;background:linear-gradient(105deg,#ffffffed 0%,#f3f7fded 58%,#e8f1fcf2 100%);box-shadow:0 10px 28px #18324f0c}
+#posts .section-head:before{content:"";position:absolute;z-index:-1;inset:0 auto 0 0;width:42%;opacity:.16;background:radial-gradient(ellipse at 25% 50%,#1976d2 0 2px,transparent 3px),linear-gradient(125deg,transparent 35%,#1976d2 36% 37%,transparent 38%);background-size:18px 18px,100% 100%}
+#posts .section-head:after{content:"▤";position:absolute;left:26px;top:50%;transform:translateY(-50%);font-size:3.2rem;color:#1976d2;opacity:.8}
+#posts .section-head h2{font-size:clamp(1.65rem,4vw,2.25rem);color:#172d49;margin:0 0 3px}
+#posts .section-head p{margin:0;color:#65758a;font-size:.98rem}
+#posts .feed-welcome{display:none!important}
+#posts .feed-discover{display:none!important}
+#posts .feed-categories{display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;margin:0 auto 22px}
+#posts .feed-category{border:1px solid #dce4ef;background:#fff;color:#46566b;border-radius:999px;padding:8px 19px;font:inherit;font-size:.9rem;font-weight:700;cursor:pointer;transition:.18s}
+#posts .feed-category:hover{border-color:#9dbfe7;color:#155fae}
+#posts .feed-category[aria-pressed="true"]{background:#1976d2;border-color:#1976d2;color:#fff;box-shadow:0 5px 14px #1976d22b}
+#posts .post-card{width:100%;max-width:880px;margin:0 auto 20px!important;padding:20px 22px;border:1px solid #e0e6ee;border-radius:23px;background:#fff;box-shadow:0 8px 24px #18324f0d;transition:box-shadow .2s,border-color .2s,transform .2s}
+#posts .post-card:hover{border-color:#cbd9e9;box-shadow:0 13px 30px #18324f14;transform:translateY(-1px)}
+#posts .post-top{align-items:center;gap:12px;margin-bottom:14px}
+#posts .post-avatar{width:48px;height:48px;flex:0 0 48px;border:2px solid #e3edf8}
+#posts .post-meta strong{font-size:1rem;color:#172d49}
+#posts .post-meta small{font-size:.78rem;color:#718096}
+#posts .post-text{font-size:1.04rem;line-height:1.95;color:#26384d;margin:10px 0 15px}
+#posts .post-image{margin:13px 0 16px!important;border-radius:17px;overflow:hidden;background:#edf2f7}
+#posts .post-image .zoomable-post-image{max-height:560px;object-fit:contain}
+#posts .post-actions{display:flex;justify-content:space-around;gap:7px;padding-top:12px;border-top:1px solid #edf1f5}
+#posts .post-action{flex:1;min-width:0;border-radius:12px;padding:9px 5px;font-size:.85rem;color:#53647a}
+#posts .post-action:hover{background:#f1f6fc}
+#posts .post-note{margin-top:8px}
+#posts .feed-read-toggle{display:inline-flex;margin:-5px 0 10px;padding:4px 0;border:0;background:none;color:#1976d2;font:inherit;font-size:.86rem;font-weight:800;cursor:pointer}
+#posts .post-text.feed-collapsed{max-height:11em;overflow:hidden;mask-image:linear-gradient(#000 75%,transparent);-webkit-mask-image:linear-gradient(#000 75%,transparent)}
+#posts .feed-pagination{display:flex;align-items:center;justify-content:center;gap:8px;margin:24px auto 28px;direction:ltr}
+#posts .feed-page{min-width:40px;height:40px;padding:0 12px;border:1px solid #dce4ef;border-radius:50%;background:#fff;color:#34445a;font:inherit;font-weight:800;cursor:pointer}
+#posts .feed-page[aria-current="page"]{background:#1976d2;border-color:#1976d2;color:#fff;box-shadow:0 5px 14px #1976d22b}
+#posts .feed-page:disabled{opacity:.35;cursor:default}
+#posts .feed-top-button{position:fixed;z-index:20;left:16px;bottom:16px;display:none;padding:10px 14px;border:1px solid #d8e2ed;border-radius:999px;background:#fff;color:#18324f;font:inherit;font-size:.8rem;font-weight:800;box-shadow:0 8px 24px #101f3525;cursor:pointer}
+#posts .feed-top-button.visible{display:block}
+#posts .post-card[hidden]{display:none!important}
+@media(max-width:600px){
+ #posts>.wrap{width:100%}
+ #posts .section-head{margin:0 12px 15px;padding:22px 18px;border-radius:19px}
+ #posts .section-head:after{left:15px;font-size:2.5rem}
+ #posts .section-head p{font-size:.85rem}
+ #posts .feed-categories{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;padding:0 13px 7px;scrollbar-width:none}
+ #posts .feed-category{flex:0 0 auto;padding:7px 15px;font-size:.83rem}
+ #posts .post-card{width:calc(100% - 22px);padding:16px 14px;border-radius:18px;margin:0 auto 14px!important}
+ #posts .post-avatar{width:44px;height:44px;flex-basis:44px}
+ #posts .post-text{font-size:.96rem;line-height:1.88}
+ #posts .post-actions{gap:2px}
+ #posts .post-action{font-size:.76rem;padding:8px 2px;gap:4px}
+ #posts .post-action svg{width:17px;height:17px;flex-basis:17px}
+ #posts .post-action strong{min-width:22px;padding:0 5px;font-size:.7rem}
+ #posts .feed-top-button{left:11px;bottom:12px}
 }
-@media(prefers-reduced-motion:reduce){#posts .feed-discover-item img,#posts .post-card{transition:none}}
+@media(prefers-reduced-motion:reduce){#posts .post-card,#posts .feed-category{transition:none}}
 </style>
 </head>
 <body>
@@ -2393,78 +2409,81 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape')closeEngagem
 <script id="social-feed-refresh">
 (function(){
  const section=document.getElementById('posts');
- if(!section||section.dataset.feedEnhanced==='true')return;
+ if(!section||section.dataset.feedEnhanced==='v2')return;
  const wrap=section.querySelector('.wrap');
  const heading=section.querySelector('.section-head');
  if(!wrap||!heading)return;
- section.dataset.feedEnhanced='true';
- const cards=[...section.querySelectorAll(':scope .post-card')];
- const firstCard=cards[0];
- const avatar=firstCard?.querySelector('.post-avatar');
- const author=firstCard?.querySelector('.post-meta strong')?.textContent?.trim()||'بشار عبدو';
- const welcome=document.createElement('div');
- welcome.className='feed-welcome';
- welcome.innerHTML='<div class="feed-welcome-copy"><strong></strong><span>تابع آخر المنشورات والتغطيات في موجز واحد</span></div><span class="feed-post-count"></span>';
- if(avatar){const photo=avatar.cloneNode();photo.className='feed-welcome-avatar';photo.alt='';welcome.insertBefore(photo,welcome.firstChild);}
- welcome.querySelector('.feed-welcome-copy strong').textContent=author;
- welcome.querySelector('.feed-post-count').textContent=cards.length.toLocaleString('ar')+' منشور';
- heading.insertAdjacentElement('afterend',welcome);
-
- const discover=document.createElement('div');
- discover.className='feed-discover';
- discover.innerHTML='<div class="feed-discover-head"><strong>لقطات من المنشورات</strong><span>اضغط للانتقال مباشرة</span></div><div class="feed-discover-track" aria-label="استكشف المنشورات"></div>';
- const track=discover.querySelector('.feed-discover-track');
- const picks=cards.filter(card=>card.querySelector('.post-image img,.post-image video,img.zoomable-post-image')).slice(0,9);
- picks.forEach((card,index)=>{
-  const media=card.querySelector('.post-image img,.post-image video,img.zoomable-post-image');
-  if(!media||!media.getAttribute('src'))return;
-  const item=document.createElement('button');
-  item.type='button';item.className='feed-discover-item';
-  item.setAttribute('aria-label','انتقل إلى المنشور '+(index+1));
-  const image=document.createElement('img');image.src=media.getAttribute('src');image.alt='';
-  const caption=document.createElement('span');
-  const raw=card.querySelector('.post-text')?.textContent?.replace(/\s+/g,' ').trim()||'منشور من بشار عبدو';
-  caption.textContent=raw.length>58?raw.slice(0,58).trim()+'…':raw;
-  item.append(image,caption);
-  item.addEventListener('click',()=>{
-   card.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
-   card.setAttribute('tabindex','-1');
-   window.setTimeout(()=>card.focus({preventScroll:true}),250);
-  });
-  track.appendChild(item);
+ section.dataset.feedEnhanced='v2';
+ const cards=[...section.querySelectorAll(':scope > .wrap > .post-card')];
+ const filters=[
+  {label:'الكل',key:'all'},
+  {label:'أخبار',key:'news'},
+  {label:'تقارير',key:'reports'},
+  {label:'ميدانيات',key:'field'},
+  {label:'منوعات',key:'misc'}
+ ];
+ const categoryBar=document.createElement('div');
+ categoryBar.className='feed-categories';
+ categoryBar.setAttribute('aria-label','تصنيف المنشورات');
+ filters.forEach((filter,index)=>{
+  const button=document.createElement('button');
+  button.type='button';button.className='feed-category';button.textContent=filter.label;
+  button.setAttribute('aria-pressed',String(index===0));button.dataset.filter=filter.key;
+  categoryBar.appendChild(button);
  });
- if(track.children.length)welcome.insertAdjacentElement('afterend',discover);
-
+ heading.insertAdjacentElement('afterend',categoryBar);
+ const pagination=document.createElement('nav');
+ pagination.className='feed-pagination';pagination.setAttribute('aria-label','صفحات المنشورات');
+ const pageSize=6;let currentPage=1;let currentFilter='all';let visibleCards=cards;
+ function categoryFor(card){
+  const content=((card.querySelector('.post-meta small')?.textContent||'')+' '+(card.querySelector('.post-text')?.textContent||'')).toLowerCase();
+  if(/ميداني|تغطية|مراسل|تصوير|كاميرا|حدث ميداني/.test(content))return 'field';
+  if(/تقرير|تقارير|تحقيق|ملف صحفي/.test(content))return 'reports';
+  if(/خبر|أخبار|عاجل|بيان|تصريح/.test(content))return 'news';
+  return 'misc';
+ }
  cards.forEach(card=>{
   const paragraph=card.querySelector('.post-text');
-  if(!paragraph||paragraph.textContent.trim().length<230)return;
-  const toggle=document.createElement('button');
-  toggle.type='button';toggle.className='feed-read-toggle';
-  toggle.textContent='قراءة المزيد';
-  toggle.setAttribute('aria-expanded','false');
-  paragraph.classList.add('feed-collapsed');
-  paragraph.insertAdjacentElement('afterend',toggle);
-  toggle.addEventListener('click',()=>{
-   const expanded=toggle.getAttribute('aria-expanded')==='true';
-   toggle.setAttribute('aria-expanded',String(!expanded));
-   paragraph.classList.toggle('feed-collapsed',expanded);
-   toggle.textContent=expanded?'قراءة المزيد':'عرض أقل';
-  });
+  if(paragraph&&paragraph.textContent.trim().length>230&&!paragraph.dataset.readToggle){
+   paragraph.dataset.readToggle='true';
+   const toggle=document.createElement('button');toggle.type='button';toggle.className='feed-read-toggle';toggle.textContent='قراءة المزيد';toggle.setAttribute('aria-expanded','false');
+   paragraph.classList.add('feed-collapsed');paragraph.insertAdjacentElement('afterend',toggle);
+   toggle.addEventListener('click',()=>{
+    const expanded=toggle.getAttribute('aria-expanded')==='true';
+    toggle.setAttribute('aria-expanded',String(!expanded));paragraph.classList.toggle('feed-collapsed',expanded);toggle.textContent=expanded?'قراءة المزيد':'عرض أقل';
+   });
+  }
  });
-
- const top=document.createElement('button');
- top.type='button';top.className='feed-top-button';top.innerHTML='<span aria-hidden="true">↑</span> العودة للأعلى';
- top.addEventListener('click',()=>section.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}));
- section.appendChild(top);
- let ticking=false;
- function updateTop(){
-  const visible=!section.hidden&&section.getBoundingClientRect().bottom>120&&window.scrollY>500;
-  top.classList.toggle('visible',visible);ticking=false;
+ function render(){
+  visibleCards=cards.filter(card=>currentFilter==='all'||categoryFor(card)===currentFilter);
+  const pages=Math.max(1,Math.ceil(visibleCards.length/pageSize));
+  currentPage=Math.min(currentPage,pages);
+  cards.forEach(card=>card.hidden=true);
+  visibleCards.forEach((card,index)=>{card.hidden=index<((currentPage-1)*pageSize)||index>=(currentPage*pageSize);});
+  pagination.replaceChildren();
+  const prev=document.createElement('button');prev.type='button';prev.className='feed-page';prev.textContent='‹';prev.setAttribute('aria-label','الصفحة السابقة');prev.disabled=currentPage===1;prev.addEventListener('click',()=>{currentPage--;render();});pagination.appendChild(prev);
+  for(let p=1;p<=pages;p++){
+   const button=document.createElement('button');button.type='button';button.className='feed-page';button.textContent=String(p);if(p===currentPage)button.setAttribute('aria-current','page');
+   button.addEventListener('click',()=>{currentPage=p;render();});pagination.appendChild(button);
+  }
+  const next=document.createElement('button');next.type='button';next.className='feed-page';next.textContent='›';next.setAttribute('aria-label','الصفحة التالية');next.disabled=currentPage===pages;next.addEventListener('click',()=>{currentPage++;render();});pagination.appendChild(next);
  }
+ categoryBar.addEventListener('click',event=>{
+  const button=event.target.closest('.feed-category');if(!button)return;
+  currentFilter=button.dataset.filter;currentPage=1;
+  categoryBar.querySelectorAll('.feed-category').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+  render();
+ });
+ const last=cards[cards.length-1];
+ if(last)last.insertAdjacentElement('afterend',pagination);else categoryBar.insertAdjacentElement('afterend',pagination);
+ const top=document.createElement('button');top.type='button';top.className='feed-top-button';top.textContent='↑ العودة للأعلى';
+ top.addEventListener('click',()=>section.scrollIntoView({behavior:'smooth',block:'start'}));section.appendChild(top);
+ let ticking=false;
+ function updateTop(){top.classList.toggle('visible',!section.hidden&&section.getBoundingClientRect().bottom>120&&window.scrollY>500);ticking=false;}
  window.addEventListener('scroll',()=>{if(!ticking){window.requestAnimationFrame(updateTop);ticking=true;}},{passive:true});
  window.addEventListener('resize',updateTop);
- document.addEventListener('click',event=>{if(event.target.closest('[data-view-link="posts"],#posts-shortcut'))window.setTimeout(updateTop,80);});
- updateTop();
+ document.addEventListener('click',event=>{if(event.target.closest('[data-view-link="posts"],#posts-shortcut'))window.setTimeout(updateTop,100);});
+ render();updateTop();
 })();
 </script>
 
