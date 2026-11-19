@@ -1083,6 +1083,21 @@ footer .footer-copy{padding-top:12px;border-top:1px solid #ffffff20}
 
 </style>
 
+
+<style id="post-engagement-info-style">
+.post-engagement-info-backdrop{position:fixed;inset:0;z-index:10080;display:grid;place-items:center;padding:20px;background:rgba(12,25,43,.48);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);animation:engagementFadeIn .18s ease-out}
+.post-engagement-info-panel{position:relative;width:min(100%,390px);overflow:hidden;padding:30px 24px 22px;border:1px solid #e6edf5;border-radius:24px;background:linear-gradient(155deg,#fff 0%,#f8fbff 100%);box-shadow:0 24px 70px rgba(8,25,48,.25);text-align:center;color:#172b45;animation:engagementPanelIn .22s cubic-bezier(.2,.8,.2,1)}
+.post-engagement-info-panel:before{content:"";position:absolute;inset:0 0 auto;height:4px;background:linear-gradient(90deg,#d9a441,#2878bd,#d9a441)}
+.post-engagement-info-icon{width:66px;height:66px;display:grid;place-items:center;margin:0 auto 17px;border-radius:21px;background:linear-gradient(145deg,#eaf3fc,#f8edda);color:#285d8b;box-shadow:inset 0 0 0 1px #dce8f3}
+.post-engagement-info-icon svg{width:31px;height:31px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.post-engagement-info-panel h3{margin:0 0 12px;font-size:1.22rem;font-weight:850;color:#183653}
+.post-engagement-info-panel p{margin:0;color:#5e6d7e;font-size:.96rem;line-height:1.95}
+.post-engagement-info-panel button{width:100%;margin-top:23px;padding:12px 16px;border:0;border-radius:13px;background:linear-gradient(100deg,#183b5c,#276b9e);color:#fff;font:inherit;font-weight:800;box-shadow:0 7px 17px #183b5c2b;cursor:pointer}
+.post-engagement-info-panel button:focus-visible{outline:3px solid #d8a342;outline-offset:3px}
+@keyframes engagementFadeIn{from{opacity:0}to{opacity:1}}
+@keyframes engagementPanelIn{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(prefers-reduced-motion:reduce){.post-engagement-info-backdrop,.post-engagement-info-panel{animation:none}}
+</style>
 </head>
 <body>
 <header><div class="wrap nav">
@@ -1681,7 +1696,7 @@ function setupPostOptions(){
  document.querySelectorAll('#posts article.post-card').forEach(card=>{
   if(card.querySelector('.post-options-wrap'))return;
   const wrap=document.createElement('div');wrap.className='post-options-wrap';
-  wrap.innerHTML='<button class="post-options-trigger" type="button" aria-label="فتح خيارات المنشور" aria-expanded="false" aria-haspopup="true">خيارات</button><div class="post-options-menu" role="menu" aria-label="خيارات المنشور"><button type="button" role="menuitem" data-post-option="interested"><span class="post-option-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.7c0 5.1-8.8 11-8.8 11s-8.8-5.9-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg></span><span class="post-option-copy"><span>مهتم</span><small>أظهر لي المزيد من هذا النوع</small></span></button><button type="button" role="menuitem" data-post-option="not-interested"><span class="post-option-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 8l8 8M16 8l-8 8"/></svg></span><span class="post-option-copy"><span>غير مهتم</span><small>إخفاء هذا المنشور من موجزك</small></span></button><div class="post-option-sub-wrap"><button type="button" role="menuitem" data-post-option="feed" aria-expanded="false"><span class="post-option-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg></span><span class="post-option-copy"><span>الموجز</span><small>تحكّم بالمنشورات التي تظهر لك</small></span><span class="post-option-chevron">‹</span></button><div class="post-feed-submenu" role="menu" aria-label="إعدادات الموجز"><button type="button" role="menuitem" data-feed-action="all">عرض كل المنشورات</button><button type="button" role="menuitem" data-feed-action="saved">عرض المنشورات المحفوظة فقط</button><button type="button" role="menuitem" data-feed-action="restore">إظهار المنشورات المخفية</button></div></div><div class="post-options-separator"></div><button type="button" role="menuitem" data-post-option="save"><span class="post-option-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4.8A1.8 1.8 0 0 1 7.8 3h8.4A1.8 1.8 0 0 1 18 4.8V21l-6-4-6 4Z"/></svg></span><span class="post-option-copy"><span>حفظ المنشور</span><small>أضِفه إلى قائمة منشوراتك المحفوظة</small></span></button><button type="button" role="menuitem" data-post-option="share"><span class="post-option-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5l7 7-7 7"/><path d="M21 12H9a6 6 0 0 0-6 6"/></svg></span><span class="post-option-copy"><span>مشاركة المنشور</span><small>أرسله إلى أصدقائك أو تطبيقاتك</small></span></button><button type="button" role="menuitem" data-post-option="copy"><span class="post-option-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg></span><span class="post-option-copy"><span>نسخ رابط المنشور</span><small>انسخ رابطاً مباشراً لهذا المنشور</small></span></button></div>';
+  wrap.innerHTML='<button class="post-options-trigger" type="button" aria-label="فتح خيارات المنشور" aria-expanded="false" aria-haspopup="true">خيارات</button><div class="post-options-menu" role="menu" aria-label="خيارات المنشور"><button type="button" role="menuitem" data-post-option="engagement-info"><span class="post-option-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5m0 14h16M8 15l3-4 3 2 5-7"/></svg></span><span class="post-option-copy"><span>عرض التفاعل مع المنشور</span><small>معلومات حول ظهور أعداد التفاعل</small></span></button><div class="post-options-separator"></div><button type="button" role="menuitem" data-post-option="interested"><span class="post-option-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.7c0 5.1-8.8 11-8.8 11s-8.8-5.9-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg></span><span class="post-option-copy"><span>مهتم</span><small>أظهر لي المزيد من هذا النوع</small></span></button><button type="button" role="menuitem" data-post-option="not-interested"><span class="post-option-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 8l8 8M16 8l-8 8"/></svg></span><span class="post-option-copy"><span>غير مهتم</span><small>إخفاء هذا المنشور من موجزك</small></span></button><div class="post-option-sub-wrap"><button type="button" role="menuitem" data-post-option="feed" aria-expanded="false"><span class="post-option-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg></span><span class="post-option-copy"><span>الموجز</span><small>تحكّم بالمنشورات التي تظهر لك</small></span><span class="post-option-chevron">‹</span></button><div class="post-feed-submenu" role="menu" aria-label="إعدادات الموجز"><button type="button" role="menuitem" data-feed-action="all">عرض كل المنشورات</button><button type="button" role="menuitem" data-feed-action="saved">عرض المنشورات المحفوظة فقط</button><button type="button" role="menuitem" data-feed-action="restore">إظهار المنشورات المخفية</button></div></div><div class="post-options-separator"></div><button type="button" role="menuitem" data-post-option="save"><span class="post-option-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4.8A1.8 1.8 0 0 1 7.8 3h8.4A1.8 1.8 0 0 1 18 4.8V21l-6-4-6 4Z"/></svg></span><span class="post-option-copy"><span>حفظ المنشور</span><small>أضِفه إلى قائمة منشوراتك المحفوظة</small></span></button><button type="button" role="menuitem" data-post-option="share"><span class="post-option-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5l7 7-7 7"/><path d="M21 12H9a6 6 0 0 0-6 6"/></svg></span><span class="post-option-copy"><span>مشاركة المنشور</span><small>أرسله إلى أصدقائك أو تطبيقاتك</small></span></button><button type="button" role="menuitem" data-post-option="copy"><span class="post-option-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg></span><span class="post-option-copy"><span>نسخ رابط المنشور</span><small>انسخ رابطاً مباشراً لهذا المنشور</small></span></button></div>';
   card.appendChild(wrap);
   /* Stop Android's native long-press selection menu inside this custom menu. */
   wrap.addEventListener('contextmenu',event=>{event.preventDefault();event.stopPropagation();});
@@ -1703,6 +1718,7 @@ function setupPostOptions(){
     const isOpen=sub.classList.toggle('open');option.setAttribute('aria-expanded',String(isOpen));return;
    }
    wrap.classList.remove('open');trigger.setAttribute('aria-expanded','false');
+   if(action==='engagement-info'){openEngagementInfo();return;}
    if(action==='interested'){
     savePostPreference(card,'interested');
     showPostDialog('تم تسجيل اهتمامك','سنستخدم اختيارك لتحسين تفضيلات موجزك على هذا الجهاز.','حسناً');
@@ -2233,5 +2249,23 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape')closePostVie
    });
   })).observe(posts,{subtree:true,childList:true,characterData:true});}
 })();
+</script>
+
+<script id="post-engagement-info-script">
+function closeEngagementInfo(){
+ const layer=document.querySelector('.post-engagement-info-backdrop');
+ if(layer){layer.remove();document.body.style.overflow='';}
+}
+function openEngagementInfo(){
+ closeEngagementInfo();
+ const layer=document.createElement('div');
+ layer.className='post-engagement-info-backdrop';
+ layer.innerHTML='<section class="post-engagement-info-panel" role="dialog" aria-modal="true" aria-labelledby="post-engagement-info-title"><div class="post-engagement-info-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h16M7 15l3-4 3 2 4-6"/><path d="M16 7h2v2"/></svg></div><h3 id="post-engagement-info-title">إخفاء عدد التفاعل</h3><p>قام بشار عبدو بإخفاء عدد الإعجابات على هذا المنشور. يمكنك التفاعل مع المنشور كالمعتاد، لكن عدد الإعجابات غير متاح للعرض من خلال هذه الخاصية.</p><button type="button" onclick="closeEngagementInfo()">حسناً</button></section>';
+ layer.addEventListener('click',event=>{if(event.target===layer)closeEngagementInfo();});
+ document.body.appendChild(layer);
+ document.body.style.overflow='hidden';
+ layer.querySelector('button').focus();
+}
+document.addEventListener('keydown',event=>{if(event.key==='Escape')closeEngagementInfo();});
 </script>
 </body></html>
