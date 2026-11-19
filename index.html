@@ -774,6 +774,28 @@ footer .footer-copy{padding-top:12px;border-top:1px solid #ffffff20}
 @media(max-width:500px){.post-action-dialog{padding:30px 19px 20px;border-radius:20px}.post-action-dialog p{font-size:.88rem}.post-dialog-buttons button{min-width:95px}}
 .saved-posts-shortcut{grid-column:1/-1;min-height:64px;background:linear-gradient(145deg,#263f59,#172a40);border-color:#e5a33b;color:#f5d99f}
 .saved-posts-shortcut small{color:#d6e0eb}
+
+/* Official site identity trigger and elegant welcome panel */
+.official-site-trigger{display:inline-flex;align-items:center;gap:9px;font:inherit;cursor:pointer;background:linear-gradient(135deg,#ffffff12,#ffffff08);color:#f1d39b;border:1px solid #d7b779aa;border-radius:999px;padding:8px 16px;box-shadow:0 5px 18px #0002;transition:transform .2s ease,background .2s ease,box-shadow .2s ease}
+.official-site-trigger:hover{transform:translateY(-2px);background:#d7b77920;box-shadow:0 8px 24px #0003}
+.official-site-trigger:focus-visible{outline:3px solid #f5d99f;outline-offset:4px}
+.official-trigger-mark{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#d7b77922;font-size:1rem}
+.official-panel{direction:rtl}
+.official-panel-hero{display:flex;align-items:center;gap:16px;padding:18px;border-radius:18px;background:linear-gradient(130deg,#11243b,#244766);color:#fff;border:1px solid #d7b77980;margin-bottom:17px}
+.official-panel-hero img{width:76px;height:76px;flex:0 0 76px;object-fit:cover;border-radius:50%;border:3px solid #e8c783;box-shadow:0 5px 18px #0004}
+.official-panel-hero strong{display:block;font-size:1.08rem;color:#f6dca8}
+.official-panel-hero p{margin:5px 0 0;color:#e2eaf2;font-size:.88rem;line-height:1.7}
+.official-panel-kicker{color:#aab9c9;font-size:.76rem;letter-spacing:.04em;margin-bottom:3px}
+.official-panel-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.official-panel-link{display:flex;align-items:center;gap:12px;min-height:76px;padding:13px 14px;border:1px solid #dce4ed;border-radius:15px;background:linear-gradient(145deg,#fff,#f6f8fb);color:#172b43;text-align:right;text-decoration:none;cursor:pointer;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;font:inherit}
+.official-panel-link:hover{transform:translateY(-2px);border-color:#d7b779;box-shadow:0 8px 20px #172b4312}
+.official-panel-link .official-link-icon{display:grid;place-items:center;width:40px;height:40px;flex:0 0 40px;border-radius:12px;background:#eaf1f8;color:#1b4d78;font-size:1.2rem}
+.official-panel-link strong,.official-panel-link small{display:block}
+.official-panel-link strong{font-size:.94rem}
+.official-panel-link small{margin-top:3px;color:#64748b;font-size:.76rem}
+.official-panel-footer{margin-top:16px;padding:12px 14px;border-radius:13px;background:#f4f7fa;color:#5d6b7b;text-align:center;font-size:.82rem;line-height:1.7}
+@media(max-width:480px){.official-panel-hero{padding:14px;gap:12px}.official-panel-hero img{width:64px;height:64px;flex-basis:64px}.official-panel-grid{gap:8px}.official-panel-link{min-height:72px;padding:10px 9px;gap:8px}.official-panel-link .official-link-icon{width:34px;height:34px;flex-basis:34px}.official-panel-link strong{font-size:.85rem}.official-panel-link small{font-size:.7rem}}
+
 </style>
 </head>
 <body>
@@ -783,7 +805,7 @@ footer .footer-copy{padding-top:12px;border-top:1px solid #ffffff20}
 </div></header>
 <main>
 <section class="hero" id="home" data-view-panel="home"><div class="wrap"><div class="hero-box">
-<div class="hero-topline"><span class="eyebrow">الموقع الشخصي الرسمي</span><div class="hero-mini-stats" aria-label="إحصائيات الحساب"><div class="hero-mini-stat hero-posts-stat" aria-label="عدد المنشورات"><strong id="hero-post-count">23</strong><span>المنشورات</span></div><button class="hero-mini-stat privacy-stat" type="button" data-privacy="followers" aria-haspopup="dialog" aria-label="عرض توضيح خصوصية المتابعين"><strong>23K</strong><span>المتابعون</span></button><button class="hero-mini-stat privacy-stat" type="button" data-privacy="following" aria-haspopup="dialog" aria-label="عرض توضيح خصوصية الحسابات التي أتابعها"><strong>57</strong><span>أتابعهم</span></button></div></div>
+<div class="hero-topline"><button class="eyebrow official-site-trigger" id="official-site-trigger" type="button" aria-haspopup="dialog" aria-controls="profile-popup">الموقع الشخصي الرسمي <span class="official-trigger-mark" aria-hidden="true">↗</span></button><div class="hero-mini-stats" aria-label="إحصائيات الحساب"><div class="hero-mini-stat hero-posts-stat" aria-label="عدد المنشورات"><strong id="hero-post-count">23</strong><span>المنشورات</span></div><button class="hero-mini-stat privacy-stat" type="button" data-privacy="followers" aria-haspopup="dialog" aria-label="عرض توضيح خصوصية المتابعين"><strong>23K</strong><span>المتابعون</span></button><button class="hero-mini-stat privacy-stat" type="button" data-privacy="following" aria-haspopup="dialog" aria-label="عرض توضيح خصوصية الحسابات التي أتابعها"><strong>57</strong><span>أتابعهم</span></button></div></div>
 <div class="hero-title-row"><img class="hero-profile-photo" src="bashar-profile.jpg" alt="الصورة الشخصية لبشار عبدو" tabindex="0" role="button" aria-label="تكبير الصورة الشخصية" aria-haspopup="dialog"><div class="hero-identity"><h1>بشار عبدو _ Bashar Abdo</h1><p class="hero-profession">صانع محتوى • مصوّر • إعلامي</p></div></div>
 <p>🔴 خذ أسوأ فكرة عني واذهب 🔴<br>⚪ اللهم صلِّ على محمد وآل محمد ⚪<br>⚫ حساباتي الرسمية والوحيدة ⚫</p>
 
@@ -1607,6 +1629,44 @@ function bumpPostStat(button){
   close();
   history.pushState({view:'social'},'','#social');
   window.dispatchEvent(new PopStateEvent('popstate'));
+ });
+})();
+</script>
+
+
+<script>
+(function(){
+ const trigger=document.getElementById('official-site-trigger');
+ const popup=document.getElementById('profile-popup');
+ if(!trigger||!popup)return;
+ const title=popup.querySelector('#profile-popup-title');
+ const content=popup.querySelector('#profile-popup-content');
+ const closeButton=popup.querySelector('.profile-popup-close');
+ function openPanel(){
+  title.textContent='الموقع الشخصي الرسمي';
+  content.innerHTML='<div class="official-panel">'+
+   '<div class="official-panel-hero"><img src="bashar-profile.jpg" alt="الصورة الشخصية لبشار عبدو"><div><div class="official-panel-kicker">أهلاً وسهلاً بكم في</div><strong>بشار عبدو _ Bashar Abdo</strong><p>مساحتي الشخصية الرسمية للتعريف بي، ومتابعة منشوراتي وأعمالي والتواصل معي.</p></div></div>'+
+   '<div class="official-panel-grid">'+
+   '<button class="official-panel-link" type="button" data-official-open="about"><span class="official-link-icon">✦</span><span><strong>من أنا؟</strong><small>تعرّف على نبذتي ورسالتي</small></span></button>'+
+   '<button class="official-panel-link" type="button" data-official-open="posts"><span class="official-link-icon">▤</span><span><strong>منشوراتي</strong><small>تصفّح آخر ما أنشره</small></span></button>'+
+   '<button class="official-panel-link" type="button" data-official-open="social"><span class="official-link-icon">◎</span><span><strong>حساباتي الرسمية</strong><small>تابعني على منصات التواصل</small></span></button>'+
+   '<button class="official-panel-link" type="button" data-official-open="contact"><span class="official-link-icon">✉</span><span><strong>تواصل معي</strong><small>للاستفسارات والرسائل</small></span></button>'+
+   '</div><div class="official-panel-footer">محتوى شخصي وإعلامي • حضور رسمي على المنصات الرقمية</div></div>';
+  popup.classList.add('open');popup.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';closeButton.focus();
+ }
+ trigger.addEventListener('click',openPanel);
+ content.addEventListener('click',function(event){
+  const button=event.target.closest('[data-official-open]');
+  if(!button)return;
+  const view=button.dataset.officialOpen;
+  if(view==='posts'){
+   popup.classList.remove('open');popup.setAttribute('aria-hidden','true');content.replaceChildren();document.body.style.overflow='';
+   const postsLink=document.querySelector('#posts-shortcut');
+   if(postsLink)postsLink.click();
+   return;
+  }
+  const original=document.querySelector('[data-view-link="'+view+'"]');
+  if(original){popup.classList.remove('open');popup.setAttribute('aria-hidden','true');content.replaceChildren();document.body.style.overflow='';original.click();}
  });
 })();
 </script>
