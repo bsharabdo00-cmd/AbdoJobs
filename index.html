@@ -1568,7 +1568,7 @@ document.addEventListener('selectstart',event=>{
  document.addEventListener('pointerup',clearPress,{passive:true});
  document.addEventListener('pointercancel',clearPress,{passive:true});
  /* Capture native Android/Chrome long-press menus before they reach the page. */
- document.addEventListener('contextmenu',event=>{
+ window.addEventListener('contextmenu',event=>{
   const button=event.target.closest&&event.target.closest('#posts button.action-like');
   if(!button)return;
   /* Always suppress the browser/Android menu on Like, even if pointerup
