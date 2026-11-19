@@ -862,7 +862,7 @@ footer .footer-copy{padding-top:12px;border-top:1px solid #ffffff20}
 #posts .post-top{padding-left:44px}
 @keyframes postMenuIn{from{opacity:0;transform:translateY(-5px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
 @media(max-width:500px){#posts .post-options-wrap{left:8px;top:8px}#posts .post-options-trigger{width:35px;height:35px}#posts .post-top{padding-left:40px}#posts .post-options-menu{top:39px}}
-</style>
+\n/* Android: prevent text selection/callout on the Like control and its contents. */\n#posts button.action-like,#posts button.action-like *{\n -webkit-user-select:none!important;user-select:none!important;\n -webkit-touch-callout:none!important;-webkit-tap-highlight-color:transparent!important;\n}\n#posts button.action-like{touch-action:pan-x pan-y; -webkit-user-drag:none!important}\n</style>
 </head>
 <body>
 <header><div class="wrap nav">
@@ -1535,14 +1535,32 @@ document.addEventListener('selectstart',event=>{
   if(timer){clearTimeout(timer);timer=null;}
   pressed=null;
  }
+ /* Mouse/pen path. Touch is handled separately because Android may cancel
+    pointer events while opening its native long-press selection UI. */
  document.addEventListener('pointerdown',event=>{
   const button=event.target.closest&&event.target.closest('#posts button.action-like');
-  if(!button)return;
-  if(event.pointerType==='mouse'&&event.button!==0)return;
+  if(!button||event.pointerType==='touch')return;
+  if(event.button!==0)return;
   if(timer)clearTimeout(timer);
   pressed=button;longPressed=false;startX=event.clientX;startY=event.clientY;
   timer=setTimeout(()=>{timer=null;fireLongPress();},delay);
  },{passive:true});
+ document.addEventListener('touchstart',event=>{
+  const button=event.target.closest&&event.target.closest('#posts button.action-like');
+  if(!button)return;
+  if(timer)clearTimeout(timer);
+  pressed=button;longPressed=false;
+  const touch=event.touches&&event.touches[0];
+  startX=touch?touch.clientX:0;startY=touch?touch.clientY:0;
+  timer=setTimeout(()=>{timer=null;fireLongPress();},delay);
+ },{passive:true});
+ document.addEventListener('touchmove',event=>{
+  if(!pressed||longPressed)return;
+  const touch=event.touches&&event.touches[0];
+  if(touch&&(Math.abs(touch.clientX-startX)>18||Math.abs(touch.clientY-startY)>18))clearPress();
+ },{passive:true});
+ document.addEventListener('touchend',clearPress,{passive:true});
+ document.addEventListener('touchcancel',clearPress,{passive:true});
  document.addEventListener('pointermove',event=>{
   if(!pressed||longPressed)return;
   if(Math.abs(event.clientX-startX)>18||Math.abs(event.clientY-startY)>18)clearPress();
