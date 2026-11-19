@@ -1109,16 +1109,28 @@ footer .footer-copy{padding-top:12px;border-top:1px solid #ffffff20}
 header .nav{align-items:center}
 header .nav>.brand{font-size:1.28rem;line-height:1.25;transform:translateY(4px);white-space:nowrap}
 header .nav>.site-live-clock{transform:translateY(-4px)}
-@media(max-width:560px){
- header .nav{gap:7px;min-height:58px;flex-wrap:nowrap}
- header .nav>.brand{font-size:1rem;line-height:1.2;transform:translateY(3px);letter-spacing:-.02em}
- header .nav>.site-live-clock{gap:5px;padding:5px 7px;border-radius:10px;transform:translateY(-3px)}
+@media(max-width:650px){
+ header .nav{
+  display:flex;flex-direction:row!important;align-items:center!important;
+  justify-content:space-between;flex-wrap:nowrap!important;
+  gap:7px;min-height:58px;padding:7px 0;
+ }
+ header .nav>.brand{
+  display:block;flex:0 1 auto;min-width:0;margin:0;
+  font-size:1rem;line-height:1.2;transform:translateY(3px);
+  letter-spacing:-.02em;white-space:nowrap;
+ }
+ header .nav>.site-live-clock{
+  display:flex;flex:0 0 auto;margin:0 0 0 auto;
+  gap:5px;padding:5px 7px;border-radius:10px;
+  transform:translateY(-3px);
+ }
  .site-live-date{font-size:.61rem}.site-live-time{font-size:.73rem}
 }
 @media(max-width:370px){
- header .nav>.brand{font-size:.9rem}
+ header .nav>.brand{font-size:.88rem}
  header .nav>.site-live-clock{gap:4px;padding:4px 6px}
- .site-live-date{font-size:.57rem}.site-live-time{font-size:.68rem}
+ .site-live-date{font-size:.55rem}.site-live-time{font-size:.66rem}
 }
 </style>
 </head>
