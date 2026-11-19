@@ -24,7 +24,14 @@ footer{background:#0b1728;color:#cbd5e1;text-align:center;padding:22px 10px;font
 @media(max-width:650px){.nav{padding:10px 0;align-items:flex-start;flex-direction:column;gap:4px}.nav nav{width:100%;display:flex;gap:4px}.nav nav a{font-size:.84rem;padding:6px 9px}.hero{padding:22px 0 10px}.hero-box{border-radius:20px;padding:28px 22px}.hero-title-row{gap:14px}.hero-profile-photo{width:88px;height:88px;flex-basis:88px;border-width:3px}.hero h1{font-size:2.1rem}.hero p{font-size:.96rem}.social-grid{grid-template-columns:1fr}.section-head h2{font-size:1.55rem}}
 
 /* Facebook-style image lightbox */
-.post-image{width:100%;max-width:100%;overflow:hidden;border-radius:16px;background:#f1f3f5;display:flex;justify-content:center;align-items:center}.post-image .zoomable-post-image{display:block;width:100%;max-width:100%;height:auto;max-height:560px;object-fit:contain;object-position:center;margin:0 auto;cursor:zoom-in;transition:filter .2s ease}.post-image .zoomable-post-image:hover{filter:brightness(.97)}
+.post-image{width:100%;max-width:100%;overflow:hidden;border-radius:16px;background:#f1f3f5;display:flex;justify-content:center;align-items:center}
+/* Visual-only field coverage badge; intentionally has no video player */
+#posts .field-video-preview{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:2}
+#posts .field-video-preview .field-play-icon{width:76px;height:76px;border:3px solid #fff;border-radius:50%;background:rgba(8,18,32,.68);display:grid;place-items:center;box-shadow:0 4px 18px #0005}
+#posts .field-video-preview .field-play-icon svg{width:34px;height:34px;fill:#fff;margin-right:4px}
+#posts .field-video-preview .field-video-label{position:absolute;bottom:14px;left:14px;background:rgba(8,18,32,.78);color:#fff;border-radius:999px;padding:8px 14px;font-size:.88rem;font-weight:800;display:flex;align-items:center;gap:7px}
+#posts .field-video-preview .field-video-tag{position:absolute;top:14px;right:14px;background:#1976d2;color:#fff;border-radius:999px;padding:7px 13px;font-size:.85rem;font-weight:800}
+@media(max-width:600px){#posts .field-video-preview .field-play-icon{width:60px;height:60px}#posts .field-video-preview .field-video-label{font-size:.76rem;padding:6px 10px;bottom:9px;left:9px}#posts .field-video-preview .field-video-tag{top:9px;right:9px;font-size:.75rem;padding:5px 9px}}.post-image .zoomable-post-image{display:block;width:100%;max-width:100%;height:auto;max-height:560px;object-fit:contain;object-position:center;margin:0 auto;cursor:zoom-in;transition:filter .2s ease}.post-image .zoomable-post-image:hover{filter:brightness(.97)}
 .image-lightbox{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.94);display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
 .image-lightbox.open{display:flex}.image-lightbox img{max-width:96vw;max-height:92vh;width:auto;height:auto;object-fit:contain;border-radius:4px;box-shadow:0 12px 50px #0008}
 .image-lightbox button{position:absolute;top:14px;left:16px;width:44px;height:44px;border:0;border-radius:50%;background:#ffffff24;color:white;font-size:30px;cursor:pointer;line-height:1}
@@ -2533,6 +2540,15 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape')closeEngagem
     toggle.setAttribute('aria-expanded',String(!expanded));paragraph.classList.toggle('feed-collapsed',expanded);toggle.textContent=expanded?'قراءة المزيد':'عرض أقل';
    });
   }
+ });
+ cards.forEach(card=>{
+  if(categoryFor(card)!=='field'||card.dataset.fieldVideoPreview==='true')return;
+  const media=card.querySelector('.post-image');
+  if(!media||!media.querySelector('img'))return;
+  media.style.position='relative';
+  const preview=document.createElement('div');preview.className='field-video-preview';preview.setAttribute('aria-hidden','true');
+  preview.innerHTML='<span class="field-video-tag">ميدانيات · فيديو</span><span class="field-play-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="field-video-label">▶ مشاهدة التغطية</span>';
+  media.appendChild(preview);card.dataset.fieldVideoPreview='true';
  });
  function render(){
   visibleCards=cards.filter(card=>currentFilter==='all'||categoryFor(card)===currentFilter);
