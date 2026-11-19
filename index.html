@@ -825,6 +825,18 @@ footer .footer-copy{padding-top:12px;border-top:1px solid #ffffff20}
 #posts .post-options-menu [data-post-option="save"] .post-option-icon{background:#e7f3ff;color:#1877f2}
 #posts .post-options-menu [data-post-option="share"] .post-option-icon{background:#e7f8ef;color:#16834a}
 #posts .post-options-menu [data-post-option="copy"] .post-option-icon{background:#f0f2f5;color:#4b5563}
+#posts .post-options-menu [data-post-option="interested"] .post-option-icon{background:#e7f8ef;color:#16834a}
+#posts .post-options-menu [data-post-option="not-interested"] .post-option-icon{background:#fff0f0;color:#c0392b}
+#posts .post-options-menu [data-post-option="feed"] .post-option-icon{background:#f0edff;color:#6650b8}
+#posts .post-options-menu .post-option-sub-wrap{position:relative}
+#posts .post-options-menu .post-option-chevron{margin-right:auto;font-size:1.35rem;color:#65676b;line-height:1}
+#posts .post-feed-submenu{display:none;margin:2px 0 6px;padding:6px;background:#f7f8fa;border-radius:9px}
+#posts .post-feed-submenu.open{display:block;animation:postMenuIn .12s ease-out}
+#posts .post-options-menu .post-feed-submenu button{min-height:42px;padding:8px 12px;font-size:.82rem;font-weight:600}
+#posts .post-options-separator{height:1px;background:#e4e6eb;margin:6px 4px}
+#posts .post-card.post-hidden-by-preference{display:none!important}
+#posts .post-card.post-feed-filtered{display:none!important}
+
 #posts .post-top{padding-left:44px}
 @keyframes postMenuIn{from{opacity:0;transform:translateY(-5px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
 @media(max-width:500px){#posts .post-options-wrap{left:8px;top:8px}#posts .post-options-trigger{width:35px;height:35px}#posts .post-top{padding-left:40px}#posts .post-options-menu{top:39px}}
@@ -1402,7 +1414,7 @@ function setupPostOptions(){
  document.querySelectorAll('#posts article.post-card').forEach(card=>{
   if(card.querySelector('.post-options-wrap'))return;
   const wrap=document.createElement('div');wrap.className='post-options-wrap';
-  wrap.innerHTML='<button class="post-options-trigger" type="button" aria-label="فتح خيارات المنشور" aria-expanded="false" aria-haspopup="true">خيارات</button><div class="post-options-menu" role="menu" aria-label="خيارات المنشور"><button type="button" role="menuitem" data-post-option="save"><span class="post-option-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4.8A1.8 1.8 0 0 1 7.8 3h8.4A1.8 1.8 0 0 1 18 4.8V21l-6-4-6 4Z"/></svg></span><span class="post-option-copy"><span>حفظ المنشور</span><small>أضِفه إلى قائمة منشوراتك المحفوظة</small></span></button><button type="button" role="menuitem" data-post-option="share"><span class="post-option-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5l7 7-7 7"/><path d="M21 12H9a6 6 0 0 0-6 6"/></svg></span><span class="post-option-copy"><span>مشاركة المنشور</span><small>أرسله إلى أصدقائك أو تطبيقاتك</small></span></button><button type="button" role="menuitem" data-post-option="copy"><span class="post-option-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg></span><span class="post-option-copy"><span>نسخ رابط المنشور</span><small>انسخ رابطاً مباشراً لهذا المنشور</small></span></button></div>';
+  wrap.innerHTML='<button class="post-options-trigger" type="button" aria-label="فتح خيارات المنشور" aria-expanded="false" aria-haspopup="true">خيارات</button><div class="post-options-menu" role="menu" aria-label="خيارات المنشور"><button type="button" role="menuitem" data-post-option="interested"><span class="post-option-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.7c0 5.1-8.8 11-8.8 11s-8.8-5.9-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg></span><span class="post-option-copy"><span>مهتم</span><small>أظهر لي المزيد من هذا النوع</small></span></button><button type="button" role="menuitem" data-post-option="not-interested"><span class="post-option-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 8l8 8M16 8l-8 8"/></svg></span><span class="post-option-copy"><span>غير مهتم</span><small>إخفاء هذا المنشور من موجزك</small></span></button><div class="post-option-sub-wrap"><button type="button" role="menuitem" data-post-option="feed" aria-expanded="false"><span class="post-option-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg></span><span class="post-option-copy"><span>الموجز</span><small>تحكّم بالمنشورات التي تظهر لك</small></span><span class="post-option-chevron">‹</span></button><div class="post-feed-submenu" role="menu" aria-label="إعدادات الموجز"><button type="button" role="menuitem" data-feed-action="all">عرض كل المنشورات</button><button type="button" role="menuitem" data-feed-action="saved">عرض المنشورات المحفوظة فقط</button><button type="button" role="menuitem" data-feed-action="restore">إظهار المنشورات المخفية</button></div></div><div class="post-options-separator"></div><button type="button" role="menuitem" data-post-option="save"><span class="post-option-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4.8A1.8 1.8 0 0 1 7.8 3h8.4A1.8 1.8 0 0 1 18 4.8V21l-6-4-6 4Z"/></svg></span><span class="post-option-copy"><span>حفظ المنشور</span><small>أضِفه إلى قائمة منشوراتك المحفوظة</small></span></button><button type="button" role="menuitem" data-post-option="share"><span class="post-option-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5l7 7-7 7"/><path d="M21 12H9a6 6 0 0 0-6 6"/></svg></span><span class="post-option-copy"><span>مشاركة المنشور</span><small>أرسله إلى أصدقائك أو تطبيقاتك</small></span></button><button type="button" role="menuitem" data-post-option="copy"><span class="post-option-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg></span><span class="post-option-copy"><span>نسخ رابط المنشور</span><small>انسخ رابطاً مباشراً لهذا المنشور</small></span></button></div>';
   card.appendChild(wrap);
   const trigger=wrap.querySelector('.post-options-trigger');
   trigger.addEventListener('click',event=>{
@@ -1411,15 +1423,60 @@ function setupPostOptions(){
    const open=wrap.classList.toggle('open');trigger.setAttribute('aria-expanded',String(open));
   });
   wrap.querySelector('.post-options-menu').addEventListener('click',event=>{
+   event.stopPropagation();
+   const feedAction=event.target.closest('[data-feed-action]');
+   if(feedAction){applyPostFeedFilter(feedAction.dataset.feedAction);return;}
    const option=event.target.closest('[data-post-option]');if(!option)return;
-   event.stopPropagation();wrap.classList.remove('open');trigger.setAttribute('aria-expanded','false');
    const action=option.dataset.postOption;
+   if(action==='feed'){
+    const sub=wrap.querySelector('.post-feed-submenu');
+    const isOpen=sub.classList.toggle('open');option.setAttribute('aria-expanded',String(isOpen));return;
+   }
+   wrap.classList.remove('open');trigger.setAttribute('aria-expanded','false');
+   if(action==='interested'){
+    savePostPreference(card,'interested');
+    showPostDialog('تم تسجيل اهتمامك','سنستخدم اختيارك لتحسين تفضيلات موجزك على هذا الجهاز.','حسناً');
+   }
+   if(action==='not-interested'){
+    savePostPreference(card,'not-interested');card.classList.add('post-hidden-by-preference');
+    showPostDialog('تم إخفاء المنشور','لن يظهر هذا المنشور في موجزك على هذا الجهاز. يمكنك إظهار المنشورات المخفية من قائمة «الموجز».','حسناً');
+   }
    if(action==='save'){const save=card.querySelector('.action-save');if(save)toggleSave(save);else showPostDialog('حفظ المنشور','ميزة الحفظ غير متاحة لهذا المنشور حالياً.','حسناً');}
    if(action==='share'){const share=card.querySelector('.action-share');if(share)sharePost(share);else showPostDialog('مشاركة المنشور','يمكنك مشاركة رابط هذا المنشور من خلال نسخ رابطه.','حسناً',()=>copyPostLink(card));}
    if(action==='copy')copyPostLink(card);
   });
  });
 }
+function postPreferenceKey(card){return 'bashar-post-preference-'+(card.id||'unknown');}
+function savePostPreference(card,value){try{localStorage.setItem(postPreferenceKey(card),value);}catch(e){}}
+function loadPostPreferences(){
+ document.querySelectorAll('#posts article.post-card').forEach(card=>{
+  let value=null;try{value=localStorage.getItem(postPreferenceKey(card));}catch(e){}
+  if(value==='not-interested')card.classList.add('post-hidden-by-preference');
+ });
+}
+function applyPostFeedFilter(mode){
+ const cards=[...document.querySelectorAll('#posts article.post-card')];
+ cards.forEach(card=>{
+  card.classList.remove('post-feed-filtered');
+  if(mode==='saved'){
+   const save=card.querySelector('.action-save');
+   const isSaved=save&&(save.getAttribute('aria-pressed')==='true'||save.classList.contains('active')||save.classList.contains('saved'));
+   if(!isSaved)card.classList.add('post-feed-filtered');
+  }
+  if(mode==='all'||mode==='restore'){
+   if(mode==='restore'){
+    try{localStorage.removeItem(postPreferenceKey(card));}catch(e){}
+    card.classList.remove('post-hidden-by-preference');
+   }
+  }
+ });
+ if(mode==='saved')showPostDialog('موجز المنشورات المحفوظة','يعرض الموقع الآن المنشورات التي تظهر كمنشورات محفوظة على هذا الجهاز.','حسناً');
+ else if(mode==='restore')showPostDialog('تمت استعادة المنشورات','أصبحت المنشورات التي أخفيتها ظاهرة من جديد.','حسناً');
+ else showPostDialog('الموجز الكامل','تظهر الآن جميع المنشورات غير المخفية.','حسناً');
+ document.querySelectorAll('.post-options-wrap.open').forEach(w=>{w.classList.remove('open');w.querySelector('.post-options-trigger').setAttribute('aria-expanded','false');});
+}
+document.addEventListener('DOMContentLoaded',loadPostPreferences);
 function copyPostLink(card){
  const url=location.origin+location.pathname+(card.id?'#'+card.id:'#posts');
  const done=()=>showPostDialog('تم نسخ رابط المنشور','أصبح رابط هذا المنشور جاهزاً للمشاركة.','حسناً');
