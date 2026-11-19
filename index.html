@@ -806,6 +806,18 @@ footer .footer-copy{padding-top:12px;border-top:1px solid #ffffff20}
  cursor:pointer;
 }
 #posts .post-hashtag:hover{text-decoration:underline}
+
+/* Per-post options menu */
+#posts .post-card{position:relative}
+#posts .post-options-wrap{position:absolute;left:14px;top:13px;z-index:20;direction:rtl}
+#posts .post-options-trigger{width:36px;height:36px;border:1px solid #e5eaf0;border-radius:50%;background:#fff;color:#637187;display:grid;place-items:center;font-size:22px;line-height:1;cursor:pointer;box-shadow:0 2px 8px #14263b0d}
+#posts .post-options-trigger:hover,#posts .post-options-trigger[aria-expanded="true"]{background:#f1f5f9;color:#17324f}
+#posts .post-options-menu{position:absolute;left:0;top:42px;width:205px;padding:6px;background:#fff;border:1px solid #e4e9ef;border-radius:13px;box-shadow:0 12px 30px #14263b24;display:none}
+#posts .post-options-wrap.open .post-options-menu{display:block}
+#posts .post-options-menu button{width:100%;display:flex;align-items:center;gap:9px;padding:11px 10px;border:0;border-radius:8px;background:transparent;color:#26364a;text-align:right;font:inherit;font-size:.86rem;cursor:pointer}
+#posts .post-options-menu button:hover{background:#f1f5f9}
+#posts .post-top{padding-left:42px}
+@media(max-width:500px){#posts .post-options-wrap{left:9px;top:9px}#posts .post-options-trigger{width:33px;height:33px}#posts .post-top{padding-left:38px}}
 </style>
 </head>
 <body>
@@ -1374,6 +1386,66 @@ async function shareWebsite(){
 }
 
 
+
+/* Add a compact three-dot menu to every post card. */
+function setupPostOptions(){
+ document.querySelectorAll('#posts article.post-card').forEach(card=>{
+  if(card.querySelector('.post-options-wrap'))return;
+  const wrap=document.createElement('div');wrap.className='post-options-wrap';
+  wrap.innerHTML='<button class="post-options-trigger" type="button" aria-label="خيارات المنشور" aria-expanded="false">⋯</button><div class="post-options-menu" role="menu"><button type="button" data-post-option="copy">🔗 <span>نسخ رابط المنشور</span></button><button type="button" data-post-option="save">🔖 <span>حفظ المنشور</span></button><button type="button" data-post-option="share">↗ <span>مشاركة المنشور</span></button></div>';
+  card.appendChild(wrap);
+  const trigger=wrap.querySelector('.post-options-trigger');
+  trigger.addEventListener('click',event=>{
+   event.stopPropagation();
+   document.querySelectorAll('.post-options-wrap.open').forEach(other=>{if(other!==wrap){other.classList.remove('open');other.querySelector('.post-options-trigger').setAttribute('aria-expanded','false');}});
+   const open=wrap.classList.toggle('open');trigger.setAttribute('aria-expanded',String(open));
+  });
+  wrap.querySelector('.post-options-menu').addEventListener('click',event=>{
+   const option=event.target.closest('[data-post-option]');if(!option)return;
+   event.stopPropagation();wrap.classList.remove('open');trigger.setAttribute('aria-expanded','false');
+   const action=option.dataset.postOption;
+   if(action==='save'){const save=card.querySelector('.action-save');if(save)toggleSave(save);else showPostDialog('حفظ المنشور','ميزة الحفظ غير متاحة لهذا المنشور حالياً.','حسناً');}
+   if(action==='share'){const share=card.querySelector('.action-share');if(share)sharePost(share);else showPostDialog('مشاركة المنشور','يمكنك مشاركة رابط هذا المنشور من خلال نسخ رابطه.','حسناً',()=>copyPostLink(card));}
+   if(action==='copy')copyPostLink(card);
+  });
+ });
+}
+function copyPostLink(card){
+ const url=location.origin+location.pathname+(card.id?'#'+card.id:'#posts');
+ const done=()=>showPostDialog('تم نسخ رابط المنشور','أصبح رابط هذا المنشور جاهزاً للمشاركة.','حسناً');
+ if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(url).then(done).catch(()=>showPostDialog('انسخ الرابط','تعذر النسخ التلقائي. يمكنك نسخ رابط الصفحة من شريط العنوان.','حسناً'));return;}
+ const field=document.createElement('textarea');field.value=url;field.style.position='fixed';field.style.opacity='0';document.body.appendChild(field);field.select();const ok=document.execCommand('copy');field.remove();
+ showPostDialog(ok?'تم نسخ رابط المنشور':'تعذر نسخ الرابط',ok?'أصبح رابط هذا المنشور جاهزاً للمشاركة.':'يمكنك نسخ رابط الصفحة من شريط العنوان.','حسناً');
+}
+document.addEventListener('click',()=>document.querySelectorAll('.post-options-wrap.open').forEach(w=>{w.classList.remove('open');w.querySelector('.post-options-trigger').setAttribute('aria-expanded','false');}));
+
+/* A long press on Like opens the author's notice without triggering a Like. */
+(function(){
+ let timer=null, pressed=null, longPressed=false, suppressClickUntil=0;
+ const delay=600;
+ document.addEventListener('pointerdown',event=>{
+  const button=event.target.closest('#posts button.action-like');
+  if(!button||event.button!==0)return;
+  clearTimeout(timer);pressed=button;longPressed=false;
+  timer=setTimeout(()=>{
+   longPressed=true;suppressClickUntil=Date.now()+900;
+   showPostDialog('إخفاء عدد الإعجابات','قام بشار عبدو بإخفاء عدد الإعجابات على هذا المنشور. يمكنك التفاعل مع المنشور كالمعتاد، لكن عدد الإعجابات غير متاح للعرض من خلال هذه الخاصية.','حسناً');
+  },delay);
+ });
+ const cancel=()=>{clearTimeout(timer);timer=null;pressed=null;};
+ document.addEventListener('pointerup',cancel);
+ document.addEventListener('pointercancel',cancel);
+ document.addEventListener('pointermove',event=>{if(pressed&&Math.abs(event.movementX)+Math.abs(event.movementY)>12)cancel();});
+ document.addEventListener('click',event=>{
+  if(Date.now()<suppressClickUntil&&event.target.closest('#posts button.action-like')){
+   event.preventDefault();event.stopPropagation();event.stopImmediatePropagation();suppressClickUntil=0;longPressed=false;
+  }
+ },true);
+ document.addEventListener('contextmenu',event=>{
+  if(event.target.closest('#posts button.action-like')){event.preventDefault();clearTimeout(timer);}
+ });
+})();
+
 function postCardFor(button){return button.closest('article.post-card');}
 function postKey(button){const card=postCardFor(button);return card?(card.id||'post-'+[...document.querySelectorAll('#posts article.post-card')].indexOf(card)):'post-unknown';}
 function setActionCount(button,count,label){button.dataset.count=count;const output=button.querySelector('strong');if(output)output.textContent=Number(count).toLocaleString('ar-EG');button.setAttribute('aria-label',label+' '+count);}
@@ -1472,6 +1544,7 @@ function bumpPostStat(button){
  const output=button.querySelector('strong');if(output)output.textContent=next.toLocaleString('ar-EG');
  button.classList.add('active');
 }
+setupPostOptions();
 (function(){
  document.querySelectorAll('#posts article.post-card').forEach((card,index)=>{
   const id=card.id||'post-'+index;
