@@ -1352,6 +1352,7 @@ function togglePostAction(button){
  const nextActive=!active;
  const count=Math.max(0,Number(button.dataset.count||button.querySelector('strong')?.textContent?.replace(/[^0-9]/g,'')||0)+(nextActive?1:-1));
  if(nextActive)localStorage.setItem(key,'yes');else localStorage.removeItem(key);
+ localStorage.setItem('bashar-like-count-'+(card?(card.id||'post-'+[...document.querySelectorAll('#posts article.post-card')].indexOf(card)):'post-unknown'),String(count));
  button.classList.toggle('active',nextActive);
  setActionCount(button,count,nextActive?'تم الإعجاب':'إعجاب');
  button.setAttribute('aria-pressed',String(nextActive));
@@ -1422,7 +1423,10 @@ function bumpPostStat(button){
   if(like){
    const output=like.querySelector('strong');
    const displayed=output?Number(output.textContent.replace(/[^0-9]/g,''))||0:0;
-   if(!like.dataset.count)like.dataset.count=String(displayed);
+   const savedCount=localStorage.getItem('bashar-like-count-'+id);
+   const currentCount=savedCount===null?displayed:Number(savedCount);
+   like.dataset.count=String(currentCount);
+   if(output)output.textContent=currentCount.toLocaleString('ar-EG');
    const liked=localStorage.getItem('bashar-like-'+id)==='yes';
    like.classList.toggle('active',liked);
    like.setAttribute('aria-pressed',String(liked));
