@@ -757,6 +757,21 @@ footer .footer-copy{padding-top:12px;border-top:1px solid #ffffff20}
   #posts .post-action strong{font-size:.64rem}
 }
 
+
+/* Polished dialogs for post sharing, saving and reposting */
+.post-action-modal{position:fixed;inset:0;z-index:10050;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(7,16,29,.72);backdrop-filter:blur(7px)}
+.post-action-modal.open{display:flex}
+.post-action-dialog{position:relative;width:min(430px,100%);padding:32px 25px 23px;text-align:center;border:1px solid #d7b77988;border-radius:24px;background:radial-gradient(circle at 50% 0%,#365575 0%,transparent 52%),linear-gradient(145deg,#172b43,#0d1a2c);color:#fff;box-shadow:0 24px 75px #0008;animation:privacy-in .2s ease-out}
+.post-dialog-close{position:absolute;top:12px;left:13px;width:35px;height:35px;border:1px solid #ffffff30;border-radius:50%;background:#ffffff12;color:#fff;font-size:23px;cursor:pointer}
+.post-dialog-icon{width:58px;height:58px;display:grid;place-items:center;margin:0 auto 14px;border:1px solid #d7b77999;border-radius:18px;background:#d7b7791c;color:#f1d39b;font-size:28px}
+.post-action-dialog h3{margin:0 0 10px;color:#f4d9a8;font-size:1.25rem}
+.post-action-dialog p{margin:0;color:#e4ebf3;font-size:.94rem;line-height:1.95}
+.post-dialog-buttons{display:flex;justify-content:center;gap:10px;margin-top:22px}
+.post-dialog-buttons button{min-width:105px;padding:9px 17px;border-radius:11px;font:inherit;font-weight:800;cursor:pointer}
+.post-dialog-primary{border:1px solid #f0d39b;background:linear-gradient(135deg,#d8b574,#f0d9a9);color:#172337}
+.post-dialog-secondary{border:1px solid #ffffff45;background:#ffffff12;color:#fff}
+.post-local-repost-note{margin:0 0 13px;padding:8px 12px;border:1px solid #b9e4ca;border-radius:10px;background:#effaf3;color:#187747;font-size:.82rem;font-weight:800}
+@media(max-width:500px){.post-action-dialog{padding:30px 19px 20px;border-radius:20px}.post-action-dialog p{font-size:.88rem}.post-dialog-buttons button{min-width:95px}}
 </style>
 </head>
 <body>
@@ -1297,21 +1312,113 @@ async function shareWebsite(){
  }catch(error){if(error&&error.name!=="AbortError")alert("تعذرت المشاركة حالياً. يمكنك نسخ رابط الموقع من شريط العنوان.");}
 }
 
-function setActionCount(button,count,label){button.dataset.count=count;button.querySelector("strong").textContent=count;button.setAttribute("aria-label",label+" "+count);}
-function togglePostAction(button){const active=button.classList.toggle("active");let count=Number(button.dataset.count||1252)+(active?1:-1);setActionCount(button,count,active?"تم الإعجاب":"إعجاب");button.setAttribute("aria-pressed",String(active));button.querySelector(".action-label").textContent=active?"أعجبني":"إعجاب";}
-function incrementAction(button){const count=Number(button.dataset.count||0)+1;setActionCount(button,count,"إعادة نشر");button.classList.add("active");}
-function shareAndCount(button){incrementAction(button);sharePost();}
-function toggleSave(button){const saved=button.classList.toggle("active");let count=Number(button.dataset.count||38)+(saved?1:-1);setActionCount(button,count,saved?"تم الحفظ":"حفظ");button.setAttribute("aria-pressed",String(saved));button.querySelector(".action-label").textContent=saved?"تم الحفظ":"حفظ";}
-async function sharePost(){const text="أهلاً وسهلاً بكم 🌹 أنا بشار عبدو _ Bashar Abdo، وهذه مساحتي الشخصية أشارك فيها اهتماماتي وأعمالي وتجربتي.";const data={title:"منشوراتي",text:text,url:location.href+"#posts"};try{if(navigator.share){await navigator.share(data);}else if(navigator.clipboard){await navigator.clipboard.writeText(text+"\n"+data.url);alert("تم نسخ المنشور ورابطه لمشاركته.");}else{alert("يمكنك نسخ نص المنشور ومشاركته.");}}catch(e){if(e.name!=="AbortError")alert("تعذرت المشاركة من هذا المتصفح.");}}
 
+function postCardFor(button){return button.closest('article.post-card');}
+function postKey(button){const card=postCardFor(button);return card?(card.id||'post-'+[...document.querySelectorAll('#posts article.post-card')].indexOf(card)):'post-unknown';}
+function setActionCount(button,count,label){button.dataset.count=count;const output=button.querySelector('strong');if(output)output.textContent=Number(count).toLocaleString('ar-EG');button.setAttribute('aria-label',label+' '+count);}
+function ensurePostDialog(){
+ let modal=document.getElementById('post-action-modal');
+ if(modal)return modal;
+ modal=document.createElement('div');modal.id='post-action-modal';modal.className='post-action-modal';modal.setAttribute('aria-hidden','true');
+ modal.innerHTML='<section class="post-action-dialog" role="dialog" aria-modal="true" aria-labelledby="post-action-title"><button class="post-dialog-close" type="button" aria-label="إغلاق">×</button><div class="post-dialog-icon" aria-hidden="true">✦</div><h3 id="post-action-title"></h3><p id="post-action-message"></p><div class="post-dialog-buttons"><button class="post-dialog-secondary" type="button" data-dialog-cancel>إلغاء</button><button class="post-dialog-primary" type="button" data-dialog-confirm>حسناً</button></div></section>';
+ document.body.appendChild(modal);
+ const close=()=>{modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';};
+ modal.querySelector('.post-dialog-close').addEventListener('click',close);
+ modal.querySelector('[data-dialog-cancel]').addEventListener('click',close);
+ modal.addEventListener('click',e=>{if(e.target===modal)close();});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))close();});
+ modal._close=close;
+ return modal;
+}
+function showPostDialog(title,message,confirmLabel,onConfirm){
+ const modal=ensurePostDialog();
+ modal.querySelector('#post-action-title').textContent=title;
+ modal.querySelector('#post-action-message').textContent=message;
+ const confirm=modal.querySelector('[data-dialog-confirm]');
+ confirm.textContent=confirmLabel||'حسناً';
+ const fresh=confirm.cloneNode(true);confirm.replaceWith(fresh);
+ fresh.addEventListener('click',()=>{modal._close();if(onConfirm)onConfirm();},{once:true});
+ modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
+}
+function togglePostAction(button){
+ const active=button.classList.toggle('active');
+ const count=Number(button.dataset.count||1252)+(active?1:-1);
+ setActionCount(button,count,active?'تم الإعجاب':'إعجاب');
+ button.setAttribute('aria-pressed',String(active));
+ const label=button.querySelector('.action-label');if(label)label.textContent=active?'أعجبني':'إعجاب';
+}
+function incrementAction(button){
+ const key='bashar-repost-'+postKey(button);
+ if(localStorage.getItem(key)==='yes'){
+  showPostDialog('سبق أن أعدت نشره','هذا المنشور موجود ضمن إعادة النشر المحفوظة على هذا الجهاز.','حسناً');
+  return;
+ }
+ showPostDialog('إعادة نشر المنشور','يمكنك إعادة نشر هذا المنشور دون إنشاء حساب. عند التأكيد سيظهر لك تمييز «أعدت نشر هذا المنشور» على جهازك. ملاحظة: لن يظهر للزوار الآخرين قبل ربط الموقع بقاعدة بيانات مشتركة.','تأكيد إعادة النشر',()=>{
+  localStorage.setItem(key,'yes');button.classList.add('active');button.setAttribute('aria-pressed','true');
+  const label=button.querySelector('.action-label');if(label)label.textContent='تمت إعادة النشر';
+  const count=Number(button.dataset.count||0)+1;setActionCount(button,count,'إعادة نشر');
+  const card=postCardFor(button);if(card&&!card.querySelector('.post-local-repost-note')){const note=document.createElement('div');note.className='post-local-repost-note';note.textContent='↻ أعدت نشر هذا المنشور على هذا الجهاز';const top=card.querySelector('.post-top');if(top)top.insertAdjacentElement('afterend',note);}
+  showPostDialog('تمت إعادة النشر','تم تسجيل إعادة النشر على هذا الجهاز بنجاح.','رائع');
+ });
+}
+function shareAndCount(button){sharePost(button);}
+function toggleSave(button){
+ const key='bashar-save-'+postKey(button);
+ const saved=localStorage.getItem(key)==='yes';
+ if(saved){
+  showPostDialog('المنشور محفوظ','هذا المنشور محفوظ لديك بالفعل. هل تريد إلغاء حفظه؟','إلغاء الحفظ',()=>{
+   localStorage.removeItem(key);button.classList.remove('active');button.setAttribute('aria-pressed','false');
+   const label=button.querySelector('.action-label');if(label)label.textContent='حفظ';
+   setActionCount(button,Math.max(0,Number(button.dataset.count||0)-1),'حفظ');
+   showPostDialog('تم إلغاء الحفظ','أزلنا المنشور من قائمة المحفوظات على هذا الجهاز.','حسناً');
+  });
+  return;
+ }
+ showPostDialog('حفظ المنشور','سيتم حفظ هذا المنشور في هذا المتصفح على جهازك، ويمكنك الرجوع إليه من الجهاز نفسه.','حفظ الآن',()=>{
+  localStorage.setItem(key,'yes');button.classList.add('active');button.setAttribute('aria-pressed','true');
+  const label=button.querySelector('.action-label');if(label)label.textContent='تم الحفظ';
+  setActionCount(button,Number(button.dataset.count||0)+1,'تم الحفظ');
+  showPostDialog('تم الحفظ بنجاح','أصبح هذا المنشور محفوظاً لديك على هذا الجهاز.','رائع');
+ });
+}
+async function sharePost(button){
+ const card=postCardFor(button);
+ const textNode=card&&card.querySelector('.post-text');
+ const postText=textNode?textNode.innerText.trim():'منشور من موقع بشار عبدو _ Bashar Abdo';
+ const postId=card&&card.id;
+ const url=location.origin+location.pathname+'#posts';
+ const data={title:'منشور من بشار عبدو _ Bashar Abdo',text:postText,url:url};
+ try{
+  if(navigator.share){await navigator.share(data);}
+  else if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(postText+'\n'+url);showPostDialog('الرابط جاهز للمشاركة','تم نسخ نص المنشور ورابط قسم المنشورات. افتح واتساب أو تيليغرام والصقه لإرساله.','تم');}
+  else{const field=document.createElement('textarea');field.value=postText+'\n'+url;field.style.position='fixed';field.style.opacity='0';document.body.appendChild(field);field.select();const ok=document.execCommand('copy');field.remove();showPostDialog(ok?'تم نسخ المنشور':'تعذرت عملية النسخ',ok?'انسخنا نص المنشور ورابط الموقع. يمكنك لصقه في واتساب أو أي تطبيق آخر.':'يمكنك نسخ نص المنشور ورابط الموقع يدوياً من هذه الصفحة.','حسناً');}
+ }catch(e){if(e&&e.name!=='AbortError')showPostDialog('تعذرت المشاركة','لم يتمكن المتصفح من فتح لوحة المشاركة. جرّب نسخ رابط الموقع من شريط العنوان.','حسناً');}
+}
 function bumpPostStat(button){
- const key="sultan-post-"+button.dataset.stat;
+ if(button.classList.contains('action-repost')){incrementAction(button);return;}
+ if(button.classList.contains('action-save')){toggleSave(button);return;}
+ if(button.classList.contains('action-share')){sharePost(button);return;}
+ const key='sultan-post-'+button.dataset.stat;
  const base={likes:19302,reposts:7421,saves:1099,shares:3310}[button.dataset.stat]||0;
  const next=(Number(localStorage.getItem(key))||base)+1;
  localStorage.setItem(key,String(next));
- button.querySelector("strong").textContent=next.toLocaleString("ar-EG");
- button.classList.add("active");
+ const output=button.querySelector('strong');if(output)output.textContent=next.toLocaleString('ar-EG');
+ button.classList.add('active');
 }
+(function(){
+ document.querySelectorAll('#posts article.post-card').forEach(card=>{
+  ['action-save','action-repost'].forEach(cls=>{
+   const button=card.querySelector('.'+cls);if(!button)return;
+   const prefix=cls==='action-save'?'bashar-save-':'bashar-repost-';
+   const active=localStorage.getItem(prefix+(card.id||'post-unknown'))==='yes';
+   if(active){button.classList.add('active');button.setAttribute('aria-pressed','true');const label=button.querySelector('.action-label');if(label)label.textContent=cls==='action-save'?'تم الحفظ':'تمت إعادة النشر';}
+  });
+  if(localStorage.getItem('bashar-repost-'+(card.id||'post-unknown'))==='yes'&&!card.querySelector('.post-local-repost-note')){
+   const note=document.createElement('div');note.className='post-local-repost-note';note.textContent='↻ أعدت نشر هذا المنشور على هذا الجهاز';const top=card.querySelector('.post-top');if(top)top.insertAdjacentElement('afterend',note);
+  }
+ });
+})();
+
 (function(){
  const el=document.querySelector('#post-sultan-nayef [data-stat="views"]');
  if(!el)return;
