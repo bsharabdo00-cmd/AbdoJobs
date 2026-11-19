@@ -2684,7 +2684,7 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape')closeEngagem
  }
  function playTeaser(){
   clearTimers();ended=false;playing=true;elapsed=0;black.style.display='none';failure.style.display='none';
-  poster.style.display='none';loading.style.display='none';if(controls)controls.style.display='flex';
+  poster.style.display='none';start.style.display='none';loading.style.display='none';if(controls)controls.style.display='flex';
   if(toggle){toggle.textContent='Ⅱ';toggle.setAttribute('aria-label','إيقاف مؤقت');}
   showScene(0);setTime(0);
   flash.classList.remove('blink');void flash.offsetWidth;flash.classList.add('blink');
