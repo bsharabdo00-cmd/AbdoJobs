@@ -1117,7 +1117,7 @@ header .nav>.site-live-clock{transform:translateY(-4px)}
  }
  header .nav>.brand{
   display:block;flex:0 1 auto;min-width:0;margin:0;
-  font-size:1rem;line-height:1.2;transform:translateY(3px);
+  font-size:1.14rem;line-height:1.2;transform:translateY(3px);
   letter-spacing:-.02em;white-space:nowrap;
  }
  header .nav>.site-live-clock{
@@ -1125,12 +1125,12 @@ header .nav>.site-live-clock{transform:translateY(-4px)}
   gap:5px;padding:5px 7px;border-radius:10px;
   transform:translateY(-3px);
  }
- .site-live-date{font-size:.61rem}.site-live-time{font-size:.73rem}
+ .site-live-date{font-size:.64rem}.site-live-time{font-size:.75rem}
 }
 @media(max-width:370px){
- header .nav>.brand{font-size:.88rem}
+ header .nav>.brand{font-size:1.02rem}
  header .nav>.site-live-clock{gap:4px;padding:4px 6px}
- .site-live-date{font-size:.55rem}.site-live-time{font-size:.66rem}
+ .site-live-date{font-size:.58rem}.site-live-time{font-size:.68rem}
 }
 </style>
 </head>
@@ -2309,7 +2309,7 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape')closeEngagem
  const dateNode=document.getElementById('site-live-date');
  const timeNode=document.getElementById('site-live-time');
  if(!dateNode||!timeNode)return;
- const dateFormat=new Intl.DateTimeFormat('ar',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+ const dateFormat=new Intl.DateTimeFormat('ar',{weekday:'long',day:'numeric'});
  const timeFormat=new Intl.DateTimeFormat('en-GB',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
  function updateSiteClock(){
   const now=new Date();
