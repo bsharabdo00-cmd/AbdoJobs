@@ -1386,7 +1386,7 @@ header .nav>.site-live-clock{margin-inline-start:auto;margin-right:0;margin-left
  </div>
  <span style="position:absolute;top:12px;right:12px;z-index:5;background:#0009;padding:5px 9px;border-radius:6px;font-size:12px">15:43</span>
 </div>
-<p style="text-align:center;margin:18px 0 10px;font-weight:900;font-size:1.08em"><span style="color:#e58a22">المكتب الإعلامي:</span> <span style="color:#1976d2">بشار عبدو_ Bashar Abdo</span></p>
+<p style="text-align:center;margin:24px 0 16px;padding:12px 8px;font-weight:900;font-size:1.42em;line-height:1.8;border-top:2px solid #e5a33b;border-bottom:2px solid #e5a33b"><span style="color:#e58a22">المكتب الإعلامي:</span> <span style="color:#1976d2">بشار عبدو_ Bashar Abdo</span></p>
 <div class="post-actions">
 <button class="post-action action-like" type="button" onclick="togglePostAction(this)" data-count="24960" aria-label="إعجاب" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.7c0 5.1-8.8 11-8.8 11s-8.8-5.9-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg><span class="action-label">إعجاب</span><strong>24,960</strong></button>
 <button class="post-action action-repost" type="button" onclick="incrementAction(this)" data-count="21720" aria-label="إعادة نشر" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m17 3 4 4-4 4"/><path d="M3 11V9a2 2 0 0 1 2-2h16M7 21l-4-4 4-4"/><path d="M21 13v2a2 2 0 0 1-2 2H3"/></svg><span class="action-label">إعادة نشر</span><strong>21,720</strong></button>
@@ -2638,19 +2638,25 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape')closeEngagem
 <script id="field-aid-player-script">
 (function(){
  const player=document.getElementById('field-aid-player');if(!player||player.dataset.ready)return;player.dataset.ready='1';
- const poster=player.querySelector('.field-video-poster'),black=player.querySelector('.field-video-black'),loading=player.querySelector('.field-video-loading'),start=player.querySelector('.field-video-start'),controls=player.querySelector('.field-video-controls'),seek=player.querySelector('.field-video-seek'),time=player.querySelector('.field-video-time'),toggle=player.querySelector('.field-video-toggle');
- const duration=943;let current=0,playing=false,timer=null,hasStarted=false,blackout=false;
- const fmt=n=>String(Math.floor(n/60)).padStart(2,'0')+':'+String(n%60).padStart(2,'0');
- function render(){seek.value=current;time.textContent=fmt(current)+' / 15:43';toggle.textContent=playing?'Ⅱ':'▶';}
- function begin(){if(!hasStarted){hasStarted=true;poster.style.display='none';controls.style.display='block';loading.style.display='flex';start.style.display='none';setTimeout(()=>{loading.style.display='none';playing=true;render();run();},1800);}else{playing=true;render();run();}}
- function run(){clearInterval(timer);timer=setInterval(()=>{if(!playing)return;current=Math.min(duration,current+1);render();if(current>=duration){playing=false;clearInterval(timer);}},1000);}
- function jump(v){current=Math.max(0,Math.min(duration,v));if(current>0){blackout=true;black.style.display='block';poster.style.display='none';loading.style.display='none';}render();}
- start.addEventListener('click',begin);
- toggle.addEventListener('click',()=>{if(!hasStarted){begin();return;}playing=!playing;render();if(playing)run();else clearInterval(timer);});
- seek.addEventListener('input',()=>{playing=false;clearInterval(timer);jump(Number(seek.value));});
- player.querySelector('.field-video-back').addEventListener('click',()=>{playing=false;clearInterval(timer);jump(current-10);});
- player.querySelector('.field-video-forward').addEventListener('click',()=>{playing=false;clearInterval(timer);jump(current+10);});
- render();
+ const start=player.querySelector('.field-video-start');
+ const loading=player.querySelector('.field-video-loading');
+ const controls=player.querySelector('.field-video-controls');
+ const time=player.querySelector('.field-video-time');
+ const toggle=player.querySelector('.field-video-toggle');
+ const seek=player.querySelector('.field-video-seek');
+ const note=document.createElement('div');
+ note.textContent='ملف الفيديو الأصلي غير مرفق بعد — أرسل الفيديو لإضافة المونتاج وتشغيله فعلياً';
+ note.style.cssText='position:absolute;z-index:6;inset:auto 12px 62px;background:#111e;color:#fff;text-align:center;padding:10px;border-radius:8px;font: bold 13px Tahoma,Arial;direction:rtl;display:none';
+ player.appendChild(note);
+ if(controls)controls.style.display='none';
+ if(time)time.textContent='بانتظار ملف الفيديو';
+ if(toggle){toggle.disabled=true;toggle.style.opacity='.45'}
+ if(seek){seek.disabled=true;seek.style.opacity='.45'}
+ start.addEventListener('click',()=>{
+  loading.style.display='none';
+  note.style.display='block';
+  start.setAttribute('aria-label','الفيديو غير مرفق');
+ });
 })();
 </script>
 </body></html>
