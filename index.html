@@ -904,6 +904,22 @@ footer .footer-copy{padding-top:12px;border-top:1px solid #ffffff20}
 .post-follow-dialog button{display:block;width:100%;padding:11px 14px;border:0;border-radius:11px;font:inherit;font-weight:800;cursor:pointer}
 .post-follow-dialog .unfollow{background:#fff0f0;color:#b42318}
 .post-follow-dialog .close{margin-top:8px;background:#eef2f6;color:#344054}
+.post-follow-dialog-backdrop{place-items:end center;padding:0;background:#10182866;animation:followBackdropIn .22s ease}
+.post-follow-dialog{width:min(100%,480px);padding:28px 24px calc(22px + env(safe-area-inset-bottom));border-radius:26px 26px 0 0;background:linear-gradient(180deg,#fff 0%,#f8fafc 100%);box-shadow:0 -14px 48px #10182826;animation:followSheetIn .32s cubic-bezier(.2,.8,.2,1);position:relative}
+.post-follow-dialog:before{content:"";display:block;width:42px;height:4px;border-radius:9px;background:#d0d5dd;margin:-12px auto 20px}
+.post-follow-dialog .follow-thanks-icon{width:66px;height:66px;border-radius:50%;display:grid;place-items:center;margin:0 auto 14px;background:#e8f5ed;color:#238653;font-size:2rem}
+.post-follow-dialog h3{font-size:1.35rem;font-weight:900;color:#1b3048;margin:0 0 5px}
+.post-follow-dialog .follow-welcome{color:#238653;font-weight:800;margin:0 0 10px}
+.post-follow-dialog .follow-copy{margin:0 auto 16px;max-width:330px;line-height:1.8}
+.post-follow-dialog .follow-success{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:99px;background:#e8f5ed;color:#238653;font-size:.82rem;font-weight:800;margin-bottom:17px}
+.post-follow-dialog .follow-signature{padding:11px 14px;border-radius:14px;background:#f1f4f8;margin:0 0 14px}
+.post-follow-dialog .follow-signature strong{display:block;color:#1b3048}
+.post-follow-dialog .follow-signature span{display:block;color:#667085;font-size:.78rem}
+.post-follow-dialog .close{margin:0;background:#1b3048;color:#fff}
+.post-follow-dialog .unfollow{margin-top:8px;background:#fff0f0;color:#b42318}
+@keyframes followSheetIn{from{transform:translateY(100%);opacity:.7}to{transform:translateY(0);opacity:1}}
+@keyframes followBackdropIn{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.post-follow-dialog,.post-follow-dialog-backdrop{animation:none}}
 </style>
 
 <style id="posts-mobile-redesign">
@@ -2214,10 +2230,13 @@ setupPostOptions();
    btn.classList.toggle('is-following',active);btn.setAttribute('aria-pressed',String(active));
  });
  function closeDialog(){const old=document.querySelector('.post-follow-dialog-backdrop');if(old)old.remove();}
- function openDialog(){
+ function openDialog(kind){
    closeDialog();
    const backdrop=document.createElement('div');backdrop.className='post-follow-dialog-backdrop';
-   backdrop.innerHTML='<div class="post-follow-dialog" role="dialog" aria-modal="true" aria-labelledby="post-follow-title"><h3 id="post-follow-title">تتابع الموقع</h3><p>ابقَ على اطلاع بكل جديد</p><button type="button" class="unfollow">إلغاء المتابعة</button><button type="button" class="close">إغلاق</button></div>';
+   const thanks=kind==='thanks';
+   backdrop.innerHTML=thanks
+    ? '<div class="post-follow-dialog" role="dialog" aria-modal="true" aria-labelledby="post-follow-title"><div class="follow-thanks-icon" aria-hidden="true">♡</div><h3 id="post-follow-title">شكراً لمتابعتك! 💚</h3><p class="follow-welcome">أهلاً بك في مجتمع بشار عبدو</p><p class="follow-copy">يسعدني وجودك معنا، تابعنا لتبقى على اطلاع بكل جديد.</p><div class="follow-success">✓ تمت المتابعة بنجاح</div><div class="follow-signature"><strong>بشار عبدو _ Bashar Abdo</strong><span>المكتب الإعلامي</span></div><button type="button" class="close">يسعدني وجودك</button></div>'
+    : '<div class="post-follow-dialog" role="dialog" aria-modal="true" aria-labelledby="post-follow-title"><h3 id="post-follow-title">تتابع الموقع</h3><p>ابقَ على اطلاع بكل جديد</p><button type="button" class="unfollow">إلغاء المتابعة</button><button type="button" class="close">إغلاق</button></div>';
    backdrop.addEventListener('click',e=>{
      if(e.target===backdrop||e.target.closest('.close')){closeDialog();return;}
      if(e.target.closest('.unfollow')){localStorage.removeItem(key);refresh();closeDialog();}
@@ -2227,7 +2246,7 @@ setupPostOptions();
  document.addEventListener('click',e=>{
    const btn=e.target.closest('#posts .post-follow-btn');if(!btn)return;
    e.preventDefault();
-   if(isFollowing())openDialog();else{localStorage.setItem(key,'yes');refresh();}
+   if(isFollowing())openDialog('manage');else{localStorage.setItem(key,'yes');refresh();openDialog('thanks');}
  });
  refresh();
  window.addEventListener('storage',e=>{if(e.key===key)refresh();});
