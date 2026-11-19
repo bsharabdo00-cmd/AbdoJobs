@@ -1341,11 +1341,16 @@ function showPostDialog(title,message,confirmLabel,onConfirm){
  modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
 }
 function togglePostAction(button){
- const active=button.classList.toggle('active');
- const count=Number(button.dataset.count||1252)+(active?1:-1);
- setActionCount(button,count,active?'تم الإعجاب':'إعجاب');
- button.setAttribute('aria-pressed',String(active));
- const label=button.querySelector('.action-label');if(label)label.textContent=active?'أعجبني':'إعجاب';
+ const card=postCardFor(button);
+ const key='bashar-like-'+(card?(card.id||'post-'+[...document.querySelectorAll('#posts article.post-card')].indexOf(card)):'post-unknown');
+ const active=button.classList.contains('active');
+ const nextActive=!active;
+ const count=Math.max(0,Number(button.dataset.count||button.querySelector('strong')?.textContent?.replace(/[^0-9]/g,'')||0)+(nextActive?1:-1));
+ if(nextActive)localStorage.setItem(key,'yes');else localStorage.removeItem(key);
+ button.classList.toggle('active',nextActive);
+ setActionCount(button,count,nextActive?'تم الإعجاب':'إعجاب');
+ button.setAttribute('aria-pressed',String(nextActive));
+ const label=button.querySelector('.action-label');if(label)label.textContent=nextActive?'أعجبني':'إعجاب';
 }
 function incrementAction(button){
  const key='bashar-repost-'+postKey(button);
@@ -1406,14 +1411,25 @@ function bumpPostStat(button){
  button.classList.add('active');
 }
 (function(){
- document.querySelectorAll('#posts article.post-card').forEach(card=>{
+ document.querySelectorAll('#posts article.post-card').forEach((card,index)=>{
+  const id=card.id||'post-'+index;
+  const like=card.querySelector('.action-like');
+  if(like){
+   const output=like.querySelector('strong');
+   const displayed=output?Number(output.textContent.replace(/[^0-9]/g,''))||0:0;
+   if(!like.dataset.count)like.dataset.count=String(displayed);
+   const liked=localStorage.getItem('bashar-like-'+id)==='yes';
+   like.classList.toggle('active',liked);
+   like.setAttribute('aria-pressed',String(liked));
+   const label=like.querySelector('.action-label');if(label)label.textContent=liked?'أعجبني':'إعجاب';
+  }
   ['action-save','action-repost'].forEach(cls=>{
    const button=card.querySelector('.'+cls);if(!button)return;
    const prefix=cls==='action-save'?'bashar-save-':'bashar-repost-';
-   const active=localStorage.getItem(prefix+(card.id||'post-unknown'))==='yes';
+   const active=localStorage.getItem(prefix+id)==='yes';
    if(active){button.classList.add('active');button.setAttribute('aria-pressed','true');const label=button.querySelector('.action-label');if(label)label.textContent=cls==='action-save'?'تم الحفظ':'تمت إعادة النشر';}
   });
-  if(localStorage.getItem('bashar-repost-'+(card.id||'post-unknown'))==='yes'&&!card.querySelector('.post-local-repost-note')){
+  if(localStorage.getItem('bashar-repost-'+id)==='yes'&&!card.querySelector('.post-local-repost-note')){
    const note=document.createElement('div');note.className='post-local-repost-note';note.textContent='↻ أعدت نشر هذا المنشور على هذا الجهاز';const top=card.querySelector('.post-top');if(top)top.insertAdjacentElement('afterend',note);
   }
  });
