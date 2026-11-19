@@ -1710,6 +1710,7 @@ header .nav>.site-live-clock{margin-inline-start:auto;margin-right:0;margin-left
    if(localStorage.getItem(key)!=='yes'){
      localStorage.setItem(key,'yes');
      closeMenu();
+     if(window.showSiteFollowDialog) window.showSiteFollowDialog('thanks');
    }else if(menu){
      menu.hidden=!menu.hidden;
      update();
@@ -1730,6 +1731,7 @@ header .nav>.site-live-clock{margin-inline-start:auto;margin-right:0;margin-left
  if(unfollow) unfollow.addEventListener('click',()=>{
    localStorage.removeItem(key);
    closeMenu();
+   if(window.showSiteFollowDialog) window.showSiteFollowDialog('goodbye');
  });
 })();
 
@@ -2250,6 +2252,7 @@ setupPostOptions();
    });
    document.body.appendChild(backdrop);
  }
+ window.showSiteFollowDialog=openDialog;
  document.addEventListener('click',e=>{
    const btn=e.target.closest('#posts .post-follow-btn');if(!btn)return;
    e.preventDefault();
