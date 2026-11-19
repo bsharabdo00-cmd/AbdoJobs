@@ -2682,7 +2682,21 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape')closeEngagem
   if(controls)controls.style.display='flex';if(toggle){toggle.textContent='▶';toggle.setAttribute('aria-label','إعادة المعاينة');}
   setTime(15);
  }
+ function playThunder(){
+  try{
+   const AudioCtx=window.AudioContext||window.webkitAudioContext;if(!AudioCtx)return;
+   const ctx=new AudioCtx(),duration=2.8,length=Math.floor(ctx.sampleRate*duration);
+   const buffer=ctx.createBuffer(1,length,ctx.sampleRate),data=buffer.getChannelData(0);
+   for(let i=0;i<length;i++){const fade=Math.pow(1-i/length,2.2);data[i]=(Math.random()*2-1)*fade;}
+   const source=ctx.createBufferSource(),filter=ctx.createBiquadFilter(),gain=ctx.createGain();
+   source.buffer=buffer;filter.type='lowpass';filter.frequency.setValueAtTime(190,ctx.currentTime);
+   gain.gain.setValueAtTime(.0001,ctx.currentTime);gain.gain.exponentialRampToValueAtTime(.32,ctx.currentTime+.08);gain.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+duration);
+   source.connect(filter);filter.connect(gain);gain.connect(ctx.destination);source.start();source.stop(ctx.currentTime+duration);
+   source.onended=()=>ctx.close();
+  }catch(e){}
+ }
  function playTeaser(){
+  playThunder();
   clearTimers();ended=false;playing=true;elapsed=0;black.style.display='none';failure.style.display='none';
   poster.style.display='none';start.style.display='none';loading.style.display='none';if(controls)controls.style.display='flex';
   if(toggle){toggle.textContent='Ⅱ';toggle.setAttribute('aria-label','إيقاف مؤقت');}
