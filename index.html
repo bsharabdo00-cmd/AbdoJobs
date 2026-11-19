@@ -820,16 +820,24 @@ footer .footer-copy{padding-top:12px;border-top:1px solid #ffffff20}
 /* Prevent Android text-selection / Copy popup on post action controls */
 #posts .post-options-wrap,
 #posts .post-options-wrap *,
+#posts .post-actions,
+#posts .post-actions *,
 #posts .post-actions button,
 #posts .post-actions button *,
-#posts .post-options-trigger{
+#posts .post-options-trigger,
+#posts button,
+#posts button *{
  -webkit-user-select:none!important;
  user-select:none!important;
  -webkit-touch-callout:none!important;
+ -webkit-user-drag:none!important;
 }
-#posts .post-options-menu button,
-#posts .post-actions button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
-#posts .post-options-menu button{-webkit-user-drag:none}
+#posts button,
+#posts .post-actions button,
+#posts .post-options-menu button{
+ touch-action:manipulation;
+ -webkit-tap-highlight-color:transparent;
+}
 
 #posts .post-options-menu button:hover,#posts .post-options-menu button:focus-visible{background:#f0f2f5;outline:none}
 #posts .post-options-menu .post-option-icon{width:36px;height:36px;flex:0 0 36px;display:grid;place-items:center;border-radius:50%;background:#e4e6eb;color:#303338}
@@ -1541,12 +1549,29 @@ document.addEventListener('selectstart',event=>{
  },{passive:true});
  document.addEventListener('pointerup',clearPress,{passive:true});
  document.addEventListener('pointercancel',clearPress,{passive:true});
+ /* Capture native Android/Chrome long-press menus before they reach the page. */
  document.addEventListener('contextmenu',event=>{
-  const button=event.target.closest&&event.target.closest('#posts button.action-like');
-  if(!button)return;
+  const control=event.target.closest&&event.target.closest('#posts button, #posts a, #posts [role="button"]');
+  if(!control)return;
   event.preventDefault();
-  if(pressed===button){if(timer){clearTimeout(timer);timer=null;}fireLongPress();}
- });
+  event.stopPropagation();
+  if(control.matches('#posts button.action-like')&&pressed===control){
+   if(timer){clearTimeout(timer);timer=null;}
+   fireLongPress();
+  }
+ },true);
+ document.addEventListener('selectstart',event=>{
+  if(event.target.closest&&event.target.closest('#posts button, #posts a, #posts [role="button"]')){
+   event.preventDefault();
+   event.stopPropagation();
+  }
+ },true);
+ document.addEventListener('dragstart',event=>{
+  if(event.target.closest&&event.target.closest('#posts button, #posts a, #posts [role="button"]')){
+   event.preventDefault();
+   event.stopPropagation();
+  }
+ },true);
  document.addEventListener('click',event=>{
   const button=event.target.closest&&event.target.closest('#posts button.action-like');
   if(button&&Date.now()<suppressClickUntil){
