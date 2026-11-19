@@ -1155,6 +1155,45 @@ header .nav>.site-live-clock{margin-inline-start:auto;margin-right:0;margin-left
  .site-live-date{font-size:.52rem}.site-live-time{font-size:.62rem}
 }
 </style>
+<style id="social-feed-refresh-styles">
+/* Social feed refresh: more visual discovery, less repetitive scrolling */
+#posts .feed-welcome{max-width:720px;margin:0 auto 15px;padding:15px 17px;display:flex;align-items:center;gap:12px;border:1px solid #e2e8f0;border-radius:18px;background:linear-gradient(120deg,#fff,#f5f9ff);box-shadow:0 7px 22px #182b4009}
+#posts .feed-welcome-avatar{width:48px;height:48px;flex:0 0 48px;border-radius:50%;object-fit:cover;border:2px solid #e4edf7}
+#posts .feed-welcome-copy{min-width:0;flex:1}
+#posts .feed-welcome-copy strong{display:block;color:#17283d;font-size:.96rem;line-height:1.5}
+#posts .feed-welcome-copy span{display:block;color:#748195;font-size:.77rem;line-height:1.6}
+#posts .feed-post-count{flex:0 0 auto;padding:7px 10px;border-radius:12px;background:#eaf2fb;color:#155fae;font-size:.78rem;font-weight:800;white-space:nowrap}
+#posts .feed-discover{max-width:720px;margin:0 auto 18px;padding:0 0 5px}
+#posts .feed-discover-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 2px 9px}
+#posts .feed-discover-head strong{color:#26384d;font-size:.9rem}
+#posts .feed-discover-head span{color:#8793a2;font-size:.72rem}
+#posts .feed-discover-track{display:flex;gap:10px;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x mandatory;padding:2px 1px 9px;scrollbar-width:thin;scrollbar-color:#cbd5e1 transparent}
+#posts .feed-discover-item{position:relative;display:block;flex:0 0 116px;height:142px;padding:0;overflow:hidden;border:1px solid #dce4ed;border-radius:15px;background:#e8edf3;cursor:pointer;scroll-snap-align:start;text-align:right;box-shadow:0 4px 12px #182b4010}
+#posts .feed-discover-item img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .25s ease}
+#posts .feed-discover-item:hover img{transform:scale(1.06)}
+#posts .feed-discover-item:after{content:"";position:absolute;inset:35% 0 0;background:linear-gradient(transparent,#081526d9)}
+#posts .feed-discover-item span{position:absolute;z-index:1;right:8px;left:8px;bottom:8px;color:#fff;font-size:.72rem;font-weight:800;line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+#posts .feed-discover-item:focus-visible{outline:3px solid #1976d2;outline-offset:3px}
+#posts .post-card{transition:box-shadow .2s ease,border-color .2s ease,transform .2s ease}
+#posts .post-card:target{border-color:#8db9e8;box-shadow:0 0 0 3px #1976d21c,0 12px 28px #182b4012}
+#posts .post-card .post-text.feed-collapsed{max-height:11.2em;overflow:hidden;mask-image:linear-gradient(#000 72%,transparent);-webkit-mask-image:linear-gradient(#000 72%,transparent)}
+#posts .feed-read-toggle{display:inline-flex;align-items:center;gap:5px;margin:-4px 0 9px;padding:4px 0;border:0;background:transparent;color:#1976d2;font:inherit;font-size:.82rem;font-weight:800;cursor:pointer}
+#posts .feed-read-toggle:hover{text-decoration:underline}
+#posts .feed-read-toggle:focus-visible{outline:2px solid #1976d2;outline-offset:3px;border-radius:4px}
+#posts .feed-top-button{position:fixed;z-index:20;left:17px;bottom:18px;display:none;align-items:center;gap:7px;padding:10px 14px;border:1px solid #d8e2ed;border-radius:999px;background:#fff;color:#18324f;font:inherit;font-size:.8rem;font-weight:800;box-shadow:0 8px 24px #101f3525;cursor:pointer}
+#posts .feed-top-button.visible{display:flex}
+#posts .feed-top-button span{font-size:1rem;line-height:1}
+@media(max-width:560px){
+ #posts .feed-welcome{margin:0 12px 13px;padding:12px;border-radius:14px}
+ #posts .feed-welcome-avatar{width:43px;height:43px;flex-basis:43px}
+ #posts .feed-post-count{font-size:.7rem;padding:6px 8px}
+ #posts .feed-discover{padding:0 12px;margin-bottom:14px}
+ #posts .feed-discover-item{flex-basis:102px;height:128px}
+ #posts .feed-discover-head strong{font-size:.84rem}
+ #posts .feed-top-button{left:12px;bottom:13px;padding:9px 12px}
+}
+@media(prefers-reduced-motion:reduce){#posts .feed-discover-item img,#posts .post-card{transition:none}}
+</style>
 </head>
 <body>
 <header><div class="wrap nav">
@@ -2350,4 +2389,83 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape')closeEngagem
  setInterval(updateSiteClock,1000);
 })();
 </script>
+
+<script id="social-feed-refresh">
+(function(){
+ const section=document.getElementById('posts');
+ if(!section||section.dataset.feedEnhanced==='true')return;
+ const wrap=section.querySelector('.wrap');
+ const heading=section.querySelector('.section-head');
+ if(!wrap||!heading)return;
+ section.dataset.feedEnhanced='true';
+ const cards=[...section.querySelectorAll(':scope .post-card')];
+ const firstCard=cards[0];
+ const avatar=firstCard?.querySelector('.post-avatar');
+ const author=firstCard?.querySelector('.post-meta strong')?.textContent?.trim()||'بشار عبدو';
+ const welcome=document.createElement('div');
+ welcome.className='feed-welcome';
+ welcome.innerHTML='<div class="feed-welcome-copy"><strong></strong><span>تابع آخر المنشورات والتغطيات في موجز واحد</span></div><span class="feed-post-count"></span>';
+ if(avatar){const photo=avatar.cloneNode();photo.className='feed-welcome-avatar';photo.alt='';welcome.insertBefore(photo,welcome.firstChild);}
+ welcome.querySelector('.feed-welcome-copy strong').textContent=author;
+ welcome.querySelector('.feed-post-count').textContent=cards.length.toLocaleString('ar')+' منشور';
+ heading.insertAdjacentElement('afterend',welcome);
+
+ const discover=document.createElement('div');
+ discover.className='feed-discover';
+ discover.innerHTML='<div class="feed-discover-head"><strong>لقطات من المنشورات</strong><span>اضغط للانتقال مباشرة</span></div><div class="feed-discover-track" aria-label="استكشف المنشورات"></div>';
+ const track=discover.querySelector('.feed-discover-track');
+ const picks=cards.filter(card=>card.querySelector('.post-image img,.post-image video,img.zoomable-post-image')).slice(0,9);
+ picks.forEach((card,index)=>{
+  const media=card.querySelector('.post-image img,.post-image video,img.zoomable-post-image');
+  if(!media||!media.getAttribute('src'))return;
+  const item=document.createElement('button');
+  item.type='button';item.className='feed-discover-item';
+  item.setAttribute('aria-label','انتقل إلى المنشور '+(index+1));
+  const image=document.createElement('img');image.src=media.getAttribute('src');image.alt='';
+  const caption=document.createElement('span');
+  const raw=card.querySelector('.post-text')?.textContent?.replace(/\s+/g,' ').trim()||'منشور من بشار عبدو';
+  caption.textContent=raw.length>58?raw.slice(0,58).trim()+'…':raw;
+  item.append(image,caption);
+  item.addEventListener('click',()=>{
+   card.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+   card.setAttribute('tabindex','-1');
+   window.setTimeout(()=>card.focus({preventScroll:true}),250);
+  });
+  track.appendChild(item);
+ });
+ if(track.children.length)welcome.insertAdjacentElement('afterend',discover);
+
+ cards.forEach(card=>{
+  const paragraph=card.querySelector('.post-text');
+  if(!paragraph||paragraph.textContent.trim().length<230)return;
+  const toggle=document.createElement('button');
+  toggle.type='button';toggle.className='feed-read-toggle';
+  toggle.textContent='قراءة المزيد';
+  toggle.setAttribute('aria-expanded','false');
+  paragraph.classList.add('feed-collapsed');
+  paragraph.insertAdjacentElement('afterend',toggle);
+  toggle.addEventListener('click',()=>{
+   const expanded=toggle.getAttribute('aria-expanded')==='true';
+   toggle.setAttribute('aria-expanded',String(!expanded));
+   paragraph.classList.toggle('feed-collapsed',expanded);
+   toggle.textContent=expanded?'قراءة المزيد':'عرض أقل';
+  });
+ });
+
+ const top=document.createElement('button');
+ top.type='button';top.className='feed-top-button';top.innerHTML='<span aria-hidden="true">↑</span> العودة للأعلى';
+ top.addEventListener('click',()=>section.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}));
+ section.appendChild(top);
+ let ticking=false;
+ function updateTop(){
+  const visible=!section.hidden&&section.getBoundingClientRect().bottom>120&&window.scrollY>500;
+  top.classList.toggle('visible',visible);ticking=false;
+ }
+ window.addEventListener('scroll',()=>{if(!ticking){window.requestAnimationFrame(updateTop);ticking=true;}},{passive:true});
+ window.addEventListener('resize',updateTop);
+ document.addEventListener('click',event=>{if(event.target.closest('[data-view-link="posts"],#posts-shortcut'))window.setTimeout(updateTop,80);});
+ updateTop();
+})();
+</script>
+
 </body></html>
