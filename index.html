@@ -1524,7 +1524,7 @@ document.addEventListener('selectstart',event=>{
 /* Reliable mobile/desktop long-press on Like. Handles Android context menus. */
 (function(){
  let timer=null, pressed=null, longPressed=false, suppressClickUntil=0, startX=0, startY=0;
- const delay=520;
+ const delay=400;
  function fireLongPress(){
   if(!pressed||longPressed)return;
   longPressed=true;suppressClickUntil=Date.now()+1400;
@@ -1551,14 +1551,16 @@ document.addEventListener('selectstart',event=>{
  document.addEventListener('pointercancel',clearPress,{passive:true});
  /* Capture native Android/Chrome long-press menus before they reach the page. */
  document.addEventListener('contextmenu',event=>{
-  const control=event.target.closest&&event.target.closest('#posts button, #posts a, #posts [role="button"]');
-  if(!control)return;
+  const button=event.target.closest&&event.target.closest('#posts button.action-like');
+  if(!button)return;
+  /* Always suppress the browser/Android menu on Like, even if pointerup
+     was delivered before Android emitted contextmenu. */
   event.preventDefault();
   event.stopPropagation();
-  if(control.matches('#posts button.action-like')&&pressed===control){
-   if(timer){clearTimeout(timer);timer=null;}
-   fireLongPress();
-  }
+  event.stopImmediatePropagation();
+  if(timer){clearTimeout(timer);timer=null;}
+  if(!pressed)pressed=button;
+  fireLongPress();
  },true);
  document.addEventListener('selectstart',event=>{
   if(event.target.closest&&event.target.closest('#posts button, #posts a, #posts [role="button"]')){
