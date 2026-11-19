@@ -1661,7 +1661,7 @@ document.addEventListener('selectstart',event=>{
 
 function postCardFor(button){return button.closest('article.post-card');}
 function postKey(button){const card=postCardFor(button);return card?(card.id||'post-'+[...document.querySelectorAll('#posts article.post-card')].indexOf(card)):'post-unknown';}
-function setActionCount(button,count,label){button.dataset.count=count;const output=button.querySelector('strong');if(output)output.textContent=Number(count).toLocaleString('ar-EG');button.setAttribute('aria-label',label+' '+count);}
+function setActionCount(button,count,label){button.dataset.count=count;const output=button.querySelector('strong');if(output)output.textContent=Number(count).toLocaleString('en-US');button.setAttribute('aria-label',label+' '+count);}
 function ensurePostDialog(){
  let modal=document.getElementById('post-action-modal');
  if(modal)return modal;
@@ -1754,7 +1754,7 @@ function bumpPostStat(button){
  const base={likes:19302,reposts:7421,saves:1099,shares:3310}[button.dataset.stat]||0;
  const next=(Number(localStorage.getItem(key))||base)+1;
  localStorage.setItem(key,String(next));
- const output=button.querySelector('strong');if(output)output.textContent=next.toLocaleString('ar-EG');
+ const output=button.querySelector('strong');if(output)output.textContent=next.toLocaleString('en-US');
  button.classList.add('active');
 }
 setupPostOptions();
@@ -1768,7 +1768,7 @@ setupPostOptions();
    const savedCount=localStorage.getItem('bashar-like-count-'+id);
    const currentCount=savedCount===null?displayed:Math.max(displayed,Number(savedCount)||0);
    like.dataset.count=String(currentCount);
-   if(output)output.textContent=currentCount.toLocaleString('ar-EG');
+   if(output)output.textContent=currentCount.toLocaleString('en-US');
    const liked=localStorage.getItem('bashar-like-'+id)==='yes';
    like.classList.toggle('active',liked);
    like.setAttribute('aria-pressed',String(liked));
