@@ -877,6 +877,51 @@ footer .footer-copy{padding-top:12px;border-top:1px solid #ffffff20}
 .post-follow-dialog .unfollow{background:#fff0f0;color:#b42318}
 .post-follow-dialog .close{margin-top:8px;background:#eef2f6;color:#344054}
 </style>
+
+<style id="posts-mobile-redesign">
+/* Refreshed posts feed: stronger visual hierarchy, compact phone-first cards */
+#posts{padding:24px 0 38px;background:linear-gradient(180deg,#edf2f8 0%,#f5f7fa 260px)}
+#posts .wrap{width:min(740px,94%)}
+#posts .section-head{position:relative;isolation:isolate;overflow:hidden;text-align:right;margin:0 auto 17px;padding:19px 22px;border-radius:20px;background:linear-gradient(120deg,#101e32 0%,#1d3b5a 72%,#24496b 100%);box-shadow:0 10px 25px #142b451c}
+#posts .section-head:after{content:"";position:absolute;z-index:-1;width:150px;height:150px;left:-40px;top:-82px;border:1px solid #e5a33b70;border-radius:50%;box-shadow:0 0 0 17px #e5a33b12,0 0 0 36px #e5a33b09}
+#posts .section-head h2{color:#fff;font-size:1.55rem;line-height:1.4;display:flex;align-items:center;gap:10px}
+#posts .section-head h2:before{content:"";display:block;width:5px;height:27px;border-radius:8px;background:#e5a33b}
+#posts .section-head p{color:#d5e0ec;font-size:.88rem;margin:4px 0 0}
+#posts .post-card{position:relative;overflow:hidden;background:#fff;border:1px solid #e0e7ef;border-radius:19px;padding:18px 19px;margin:0 auto 14px!important;box-shadow:0 5px 18px #142b450a;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+#posts .post-card:before{content:"";position:absolute;inset:0 0 auto;height:3px;background:linear-gradient(90deg,#e5a33b 0%,#1976d2 58%,#dce7f2 100%);opacity:.9}
+#posts .post-card:hover{transform:translateY(-2px);border-color:#cbd8e6;box-shadow:0 12px 26px #142b4512}
+#posts .post-top{align-items:center;margin-bottom:11px}
+#posts .post-avatar{box-shadow:0 0 0 3px #eef3f8;border:2px solid #fff}
+#posts .post-meta strong{font-weight:800;letter-spacing:-.1px}
+#posts .post-meta small{color:#778497}
+#posts .post-text{color:#263548;line-height:1.9;margin:8px 0 13px}
+#posts .post-image{border:1px solid #edf0f4;background:#f4f6f8}
+#posts .post-actions{margin-top:8px}
+#posts .post-note{color:#8b96a5}
+#posts .pinned-label{background:#fff7e8;border-color:#f1d9a8;color:#8b5b08}
+@media(max-width:560px){
+ #posts{padding:15px 0 28px}
+ #posts .wrap{width:calc(100% - 20px)}
+ #posts .section-head{padding:15px 16px;border-radius:16px;margin-bottom:12px}
+ #posts .section-head h2{font-size:1.28rem}
+ #posts .section-head h2:before{height:23px}
+ #posts .section-head p{font-size:.78rem;line-height:1.55}
+ #posts .post-card{padding:14px 12px 12px;border-radius:16px;margin-bottom:11px!important;box-shadow:0 4px 13px #142b450c}
+ #posts .post-top{gap:9px;margin-bottom:9px}
+ #posts .post-avatar{width:42px;height:42px;flex-basis:42px}
+ #posts .post-meta strong{font-size:.83rem;line-height:1.4}
+ #posts .post-meta small{font-size:.65rem;line-height:1.5}
+ #posts .post-text{font-size:.9rem;line-height:1.78;margin:7px 0 10px}
+ #posts .post-image{margin:9px 0 11px!important;border-radius:12px}
+ #posts .post-image .zoomable-post-image{max-height:390px}
+ #posts .post-actions{margin-top:5px;padding-top:7px}
+ #posts .post-action{min-height:38px}
+ #posts .post-note{font-size:.63rem;line-height:1.5;margin-top:6px}
+ #posts .pinned-label{font-size:.62rem;padding:2px 6px}
+}
+@media(prefers-reduced-motion:reduce){#posts .post-card{transition:none}#posts .post-card:hover{transform:none}}
+</style>
+
 </head>
 <body>
 <header><div class="wrap nav">
