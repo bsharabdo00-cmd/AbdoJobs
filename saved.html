@@ -6,35 +6,40 @@
 <meta name="theme-color" content="#101f35">
 <title>منشوراتي المحفوظة | بشار عبدو _ Bashar Abdo</title>
 <style>
-:root{--navy:#111c2b;--blue:#1976d2;--amber:#e5a33b;--paper:#f4f6f8;--ink:#202b38;--muted:#687586;--line:#e1e7ee}
-*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Tahoma,Arial,sans-serif;line-height:1.9}
+:root{--navy:#111c2b;--navy2:#1b3048;--blue:#1976d2;--amber:#e5a33b;--paper:#f2f6fb;--ink:#202b38;--muted:#687586;--line:#dce6f0}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#edf4fb 0,#f6f8fb 260px,var(--paper) 100%);color:var(--ink);font-family:Tahoma,Arial,sans-serif;line-height:1.9}
 .wrap{width:min(760px,94%);margin:auto}
-header{background:#fff;border-bottom:1px solid var(--line);padding:14px 0}
+header{position:sticky;top:0;z-index:5;background:#ffffffed;backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:13px 0}
 .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 .brand{font-weight:900;color:var(--navy);text-decoration:none}
-.back{display:inline-flex;align-items:center;justify-content:center;padding:8px 14px;border-radius:11px;background:#203852;color:#f3d69f;text-decoration:none;font-weight:800}
-main{padding:30px 0 50px}
-h1{margin:0;color:var(--navy);font-size:1.7rem}
-.subtitle{margin:4px 0 22px;color:var(--muted)}
-.saved-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 20px;margin:0 0 14px;box-shadow:0 5px 18px #182b400d}
+.back{display:inline-flex;align-items:center;justify-content:center;padding:8px 15px;border-radius:11px;background:var(--blue);color:#fff;text-decoration:none;font-weight:800;box-shadow:0 5px 14px #1976d226;transition:.2s}
+.back:hover{background:#155fae;transform:translateY(-1px)}
+main{padding:34px 0 54px}
+h1{margin:0;color:var(--navy);font-size:1.7rem;position:relative;padding-bottom:9px}
+h1:after{content:"";display:block;width:62px;height:3px;background:var(--amber);border-radius:5px;margin-top:7px}
+.subtitle{margin:7px 0 24px;color:var(--muted)}
+.saved-card{background:#fff;border:1px solid #dfe8f1;border-radius:20px;padding:19px 21px;margin:0 0 15px;box-shadow:0 9px 26px #182b400c;transition:.2s}
+.saved-card:hover{border-color:#b9d2ea;box-shadow:0 13px 30px #182b4014}
 .saved-card .post-top{display:flex;align-items:center;gap:11px;margin-bottom:13px}
-.saved-card .post-avatar{width:45px;height:45px;border-radius:50%;object-fit:cover}
-.saved-card .post-meta strong{display:block;color:#17283d}
+.saved-card .post-avatar{width:45px;height:45px;border-radius:50%;object-fit:cover;border:2px solid #e8f1fa}
+.saved-card .post-meta strong{display:block;color:var(--navy)}
 .saved-card .post-meta small{display:block;color:var(--muted);font-size:.78rem}
-.saved-card .post-text{font-size:1rem;line-height:1.9;overflow-wrap:anywhere}
-.saved-card .post-image{margin:12px 0;border-radius:13px;overflow:hidden}
+.saved-card .post-text{font-size:1rem;line-height:1.9;overflow-wrap:anywhere;color:#263445}
+.saved-card .post-image{margin:12px 0;border-radius:14px;overflow:hidden}
 .saved-card .post-image img{display:block;width:100%;height:auto;max-height:480px;object-fit:contain}
-.saved-controls{display:flex;gap:9px;flex-wrap:wrap;border-top:1px solid #edf0f3;padding-top:12px;margin-top:14px}
-.saved-controls a,.saved-controls button{border:0;border-radius:10px;padding:9px 13px;font:inherit;font-size:.85rem;font-weight:800;cursor:pointer;text-decoration:none}
-.open-original{background:#eaf2fb;color:#155fae}
-.remove-saved{background:#fff0f2;color:#b42345}
-.empty{background:#fff;border:1px dashed #cbd5e1;border-radius:20px;padding:34px 20px;text-align:center;box-shadow:0 8px 24px #182b4008}
-.empty-icon{font-size:2.4rem;margin-bottom:8px}
+.saved-controls{display:flex;gap:9px;flex-wrap:wrap;border-top:1px solid #edf2f7;padding-top:13px;margin-top:15px}
+.saved-controls a,.saved-controls button{border:0;border-radius:11px;padding:9px 14px;font:inherit;font-size:.85rem;font-weight:800;cursor:pointer;text-decoration:none;transition:.18s}
+.open-original{background:#eaf3fc;color:#155fae;border:1px solid #d6e8f8!important}
+.open-original:hover{background:#dcecfb}
+.remove-saved{background:#fff1f1;color:#b33b4a;border:1px solid #f5dada!important}
+.remove-saved:hover{background:#ffe5e5}
+.empty{background:linear-gradient(145deg,#fff,#f8fbff);border:1px solid #dce8f3;border-radius:22px;padding:38px 20px;text-align:center;box-shadow:0 12px 30px #182b400c}
+.empty-icon{font-size:2.5rem;margin-bottom:8px;filter:drop-shadow(0 3px 4px #e5a33b35)}
 .empty h2{margin:0 0 6px;color:var(--navy);font-size:1.25rem}
 .empty p{margin:0;color:var(--muted)}
 .status{color:var(--muted);text-align:center;padding:24px}
-footer{text-align:center;color:#8792a1;padding:20px;font-size:.82rem}
-@media(max-width:560px){.saved-card{padding:15px 13px;border-radius:14px}.top{align-items:flex-start}.back{font-size:.83rem}}
+footer{text-align:center;color:#7a8797;padding:20px;font-size:.82rem}
+@media(max-width:560px){.saved-card{padding:15px 13px;border-radius:16px}.top{align-items:center}.back{font-size:.83rem}main{padding-top:25px}h1{font-size:1.45rem}}
 </style>
 </head>
 <body>
