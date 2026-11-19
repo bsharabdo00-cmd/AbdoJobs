@@ -2536,6 +2536,13 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape')closeEngagem
  });
  function render(){
   visibleCards=cards.filter(card=>currentFilter==='all'||categoryFor(card)===currentFilter);
+  if(currentFilter==='all'){
+   cards.forEach(card=>card.hidden=false);
+   pagination.replaceChildren();
+   pagination.style.display='none';
+   return;
+  }
+  pagination.style.display='flex';
   const pages=Math.max(1,Math.ceil(visibleCards.length/pageSize));
   currentPage=Math.min(currentPage,pages);
   cards.forEach(card=>card.hidden=true);
