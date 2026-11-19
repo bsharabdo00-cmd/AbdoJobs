@@ -1098,11 +1098,21 @@ footer .footer-copy{padding-top:12px;border-top:1px solid #ffffff20}
 @keyframes engagementPanelIn{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
 @media(prefers-reduced-motion:reduce){.post-engagement-info-backdrop,.post-engagement-info-panel{animation:none}}
 </style>
+
+<style id="site-live-clock-style">
+.nav{flex-wrap:wrap}
+.site-live-clock{display:flex;align-items:center;gap:9px;direction:rtl;margin-inline-start:auto;padding:6px 11px;border:1px solid #e5eaf0;border-radius:12px;background:linear-gradient(135deg,#fff,#f5f8fc);box-shadow:0 3px 10px rgba(17,28,43,.06);white-space:nowrap;line-height:1.35}
+.site-live-date{font-size:.72rem;font-weight:650;color:#687586}
+.site-live-time{font-size:.88rem;font-weight:850;letter-spacing:.04em;font-variant-numeric:tabular-nums;color:#173653}
+.site-live-time:before{content:"";display:inline-block;width:6px;height:6px;margin-left:7px;border-radius:50%;background:#27a36a;vertical-align:middle;box-shadow:0 0 0 3px #27a36a1c}
+@media(max-width:560px){header .nav{gap:7px;min-height:58px}.brand{font-size:.88rem}.site-live-clock{gap:5px;padding:5px 7px;border-radius:10px}.site-live-date{font-size:.61rem}.site-live-time{font-size:.73rem}}
+@media(max-width:370px){.site-live-clock{width:100%;justify-content:center;margin:0 0 7px}.brand{margin-inline:auto}}
+</style>
 </head>
 <body>
 <header><div class="wrap nav">
 <a class="brand" href="#home">بشار عبدو <span>_ Bashar Abdo</span></a>
-
+<div class="site-live-clock" id="site-live-clock" aria-label="التاريخ والوقت المحليان"><span class="site-live-date" id="site-live-date">--</span><span class="site-live-time" id="site-live-time">--:--:--</span></div>
 </div></header>
 <main>
 <section class="hero" id="home" data-view-panel="home"><div class="wrap"><div class="hero-box">
@@ -2267,5 +2277,22 @@ function openEngagementInfo(){
  layer.querySelector('button').focus();
 }
 document.addEventListener('keydown',event=>{if(event.key==='Escape')closeEngagementInfo();});
+</script>
+
+<script id="site-live-clock-script">
+(function(){
+ const dateNode=document.getElementById('site-live-date');
+ const timeNode=document.getElementById('site-live-time');
+ if(!dateNode||!timeNode)return;
+ const dateFormat=new Intl.DateTimeFormat('ar',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+ const timeFormat=new Intl.DateTimeFormat('en-GB',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
+ function updateSiteClock(){
+  const now=new Date();
+  dateNode.textContent=dateFormat.format(now);
+  timeNode.textContent=timeFormat.format(now);
+ }
+ updateSiteClock();
+ setInterval(updateSiteClock,1000);
+})();
 </script>
 </body></html>
