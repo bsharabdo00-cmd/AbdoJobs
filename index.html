@@ -896,6 +896,8 @@ footer .footer-copy{padding-top:12px;border-top:1px solid #ffffff20}
 <style id="post-follow-styles">
 #posts .post-meta .post-follow-btn{display:inline-flex;align-items:center;justify-content:center;margin:0 9px 0 0;padding:4px 11px;border:1px solid #c9d9eb;border-radius:999px;background:#edf5ff;color:#1769aa;font:inherit;font-size:.76rem;font-weight:800;line-height:1.4;cursor:pointer;vertical-align:middle;white-space:nowrap}
 #posts .post-meta .post-follow-btn.is-following{background:#f2f4f7;color:#344054;border-color:#d0d5dd}
+#posts .post-meta .post-follow-btn.is-following{flex-direction:column;align-items:center;gap:3px;padding:4px 9px}
+#posts .post-meta .post-follow-btn.is-following::after{content:'✓ تمت المتابعة بنجاح';display:block;padding:2px 7px;border-radius:999px;background:#e7f6ec;color:#16803d;border:1px solid #b7e4c7;font-size:.62rem;font-weight:900;line-height:1.35;white-space:nowrap}
 #posts .post-meta strong{display:inline-block}
 .post-follow-dialog-backdrop{position:fixed;inset:0;z-index:10050;display:grid;place-items:center;padding:20px;background:#10182888}
 .post-follow-dialog{width:min(100%,340px);padding:22px;border-radius:18px;background:#fff;box-shadow:0 18px 55px #0004;text-align:center;color:#17283d}
