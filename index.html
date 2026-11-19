@@ -807,17 +807,27 @@ footer .footer-copy{padding-top:12px;border-top:1px solid #ffffff20}
 }
 #posts .post-hashtag:hover{text-decoration:underline}
 
-/* Per-post options menu */
+/* Facebook-inspired post options menu */
 #posts .post-card{position:relative}
-#posts .post-options-wrap{position:absolute;left:14px;top:13px;z-index:20;direction:rtl}
-#posts .post-options-trigger{width:36px;height:36px;border:1px solid #e5eaf0;border-radius:50%;background:#fff;color:#637187;display:grid;place-items:center;font-size:22px;line-height:1;cursor:pointer;box-shadow:0 2px 8px #14263b0d}
-#posts .post-options-trigger:hover,#posts .post-options-trigger[aria-expanded="true"]{background:#f1f5f9;color:#17324f}
-#posts .post-options-menu{position:absolute;left:0;top:42px;width:205px;padding:6px;background:#fff;border:1px solid #e4e9ef;border-radius:13px;box-shadow:0 12px 30px #14263b24;display:none}
+#posts .post-options-wrap{position:absolute;left:15px;top:14px;z-index:30;direction:rtl}
+#posts .post-options-trigger{width:38px;height:38px;border:0;border-radius:50%;background:transparent;color:#606770;display:grid;place-items:center;font-size:0;line-height:1;cursor:pointer;transition:background .16s ease}
+#posts .post-options-trigger:before{content:"";width:4px;height:4px;border-radius:50%;background:currentColor;box-shadow:0 -7px 0 currentColor,0 7px 0 currentColor}
+#posts .post-options-trigger:hover,#posts .post-options-trigger[aria-expanded="true"]{background:#f0f2f5;color:#1c1e21}
+#posts .post-options-trigger:focus-visible{outline:2px solid #1877f2;outline-offset:2px}
+#posts .post-options-menu{position:absolute;left:0;top:43px;width:min(290px,calc(100vw - 42px));padding:8px;background:#fff;border:1px solid #e4e6eb;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.18),0 2px 6px rgba(0,0,0,.08);display:none;transform-origin:top left;animation:postMenuIn .14s ease-out}
 #posts .post-options-wrap.open .post-options-menu{display:block}
-#posts .post-options-menu button{width:100%;display:flex;align-items:center;gap:9px;padding:11px 10px;border:0;border-radius:8px;background:transparent;color:#26364a;text-align:right;font:inherit;font-size:.86rem;cursor:pointer}
-#posts .post-options-menu button:hover{background:#f1f5f9}
-#posts .post-top{padding-left:42px}
-@media(max-width:500px){#posts .post-options-wrap{left:9px;top:9px}#posts .post-options-trigger{width:33px;height:33px}#posts .post-top{padding-left:38px}}
+#posts .post-options-menu button{width:100%;min-height:54px;display:flex;align-items:center;gap:12px;padding:8px 10px;border:0;border-radius:8px;background:transparent;color:#1c1e21;text-align:right;font:inherit;font-size:.9rem;font-weight:650;cursor:pointer;transition:background .14s ease}
+#posts .post-options-menu button:hover,#posts .post-options-menu button:focus-visible{background:#f0f2f5;outline:none}
+#posts .post-options-menu .post-option-icon{width:36px;height:36px;flex:0 0 36px;display:grid;place-items:center;border-radius:50%;background:#e4e6eb;color:#303338}
+#posts .post-options-menu .post-option-icon svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+#posts .post-options-menu .post-option-copy{display:flex;flex-direction:column;gap:2px;min-width:0}
+#posts .post-options-menu .post-option-copy small{font-size:.74rem;font-weight:400;color:#65676b}
+#posts .post-options-menu [data-post-option="save"] .post-option-icon{background:#e7f3ff;color:#1877f2}
+#posts .post-options-menu [data-post-option="share"] .post-option-icon{background:#e7f8ef;color:#16834a}
+#posts .post-options-menu [data-post-option="copy"] .post-option-icon{background:#f0f2f5;color:#4b5563}
+#posts .post-top{padding-left:44px}
+@keyframes postMenuIn{from{opacity:0;transform:translateY(-5px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:500px){#posts .post-options-wrap{left:8px;top:8px}#posts .post-options-trigger{width:35px;height:35px}#posts .post-top{padding-left:40px}#posts .post-options-menu{top:39px}}
 </style>
 </head>
 <body>
@@ -1392,7 +1402,7 @@ function setupPostOptions(){
  document.querySelectorAll('#posts article.post-card').forEach(card=>{
   if(card.querySelector('.post-options-wrap'))return;
   const wrap=document.createElement('div');wrap.className='post-options-wrap';
-  wrap.innerHTML='<button class="post-options-trigger" type="button" aria-label="خيارات المنشور" aria-expanded="false">⋯</button><div class="post-options-menu" role="menu"><button type="button" data-post-option="copy">🔗 <span>نسخ رابط المنشور</span></button><button type="button" data-post-option="save">🔖 <span>حفظ المنشور</span></button><button type="button" data-post-option="share">↗ <span>مشاركة المنشور</span></button></div>';
+  wrap.innerHTML='<button class="post-options-trigger" type="button" aria-label="فتح خيارات المنشور" aria-expanded="false" aria-haspopup="true">خيارات</button><div class="post-options-menu" role="menu" aria-label="خيارات المنشور"><button type="button" role="menuitem" data-post-option="save"><span class="post-option-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4.8A1.8 1.8 0 0 1 7.8 3h8.4A1.8 1.8 0 0 1 18 4.8V21l-6-4-6 4Z"/></svg></span><span class="post-option-copy"><span>حفظ المنشور</span><small>أضِفه إلى قائمة منشوراتك المحفوظة</small></span></button><button type="button" role="menuitem" data-post-option="share"><span class="post-option-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5l7 7-7 7"/><path d="M21 12H9a6 6 0 0 0-6 6"/></svg></span><span class="post-option-copy"><span>مشاركة المنشور</span><small>أرسله إلى أصدقائك أو تطبيقاتك</small></span></button><button type="button" role="menuitem" data-post-option="copy"><span class="post-option-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg></span><span class="post-option-copy"><span>نسخ رابط المنشور</span><small>انسخ رابطاً مباشراً لهذا المنشور</small></span></button></div>';
   card.appendChild(wrap);
   const trigger=wrap.querySelector('.post-options-trigger');
   trigger.addEventListener('click',event=>{
