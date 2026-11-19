@@ -2637,6 +2637,7 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape')closeEngagem
 </script>
 
 <style id="field-aid-teaser-style">
+#field-aid-player,#field-aid-player *{-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 #field-aid-player .field-teaser-scene{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:22px;direction:rtl;opacity:0;visibility:hidden;transition:opacity .65s ease;background:linear-gradient(135deg,#101b2b,#152e45 55%,#050b13)}
 #field-aid-player .field-teaser-scene.active{opacity:1;visibility:visible}
 #field-aid-player .field-teaser-kicker{color:#f2c66d;font-weight:900;font-size:14px;letter-spacing:.4px}
@@ -2680,6 +2681,9 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape')closeEngagem
  player.appendChild(scenes);
  const sceneNodes=[...scenes.querySelectorAll('[data-scene]')],flash=scenes.querySelector('.field-teaser-flash'),failure=scenes.querySelector('.field-teaser-controls');
  const placeholder=document.createComment('field video position');player.parentNode.insertBefore(placeholder,player);
+ // Prevent Android's native copy/select popup from appearing over the video.
+ ['contextmenu','selectstart','dragstart'].forEach(type=>player.addEventListener(type,event=>{event.preventDefault();event.stopPropagation();},true));
+ player.addEventListener('click',event=>{event.stopPropagation();},true);
  const lightbox=document.createElement('div');lightbox.className='field-video-lightbox';lightbox.innerHTML='<button type="button" class="field-video-lightbox-close" aria-label="إغلاق الفيديو">×</button><div class="field-video-lightbox-inner"></div>';document.body.appendChild(lightbox);
  const lightboxInner=lightbox.querySelector('.field-video-lightbox-inner'),closeButton=lightbox.querySelector('.field-video-lightbox-close');
  function openLightbox(){if(!lightbox.classList.contains('open')){lightbox.classList.add('open');lightboxInner.appendChild(player);document.body.style.overflow='hidden';closeButton.focus();}}
