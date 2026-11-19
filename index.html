@@ -917,6 +917,11 @@ footer .footer-copy{padding-top:12px;border-top:1px solid #ffffff20}
 .post-follow-dialog .follow-signature span{display:block;color:#667085;font-size:.78rem}
 .post-follow-dialog .close{margin:0;background:#1b3048;color:#fff}
 .post-follow-dialog .unfollow{margin-top:8px;background:#fff0f0;color:#b42318}
+.post-follow-dialog .follow-goodbye-icon{width:66px;height:66px;border-radius:50%;display:grid;place-items:center;margin:0 auto 14px;background:#fdf0f1;color:#c24152;font-size:2rem}
+.post-follow-dialog .goodbye-welcome{color:#8b5360;font-weight:800;margin:0 0 10px}
+.post-follow-dialog .goodbye-copy{margin:0 auto 16px;max-width:330px;line-height:1.8}
+.post-follow-dialog .goodbye-note{padding:12px 14px;border-radius:14px;background:#f2f4f7;color:#344054;font-weight:800;margin:0 0 14px}
+.post-follow-dialog .goodbye-done{margin:0;background:#1b3048;color:#fff}
 @keyframes followSheetIn{from{transform:translateY(100%);opacity:.7}to{transform:translateY(0);opacity:1}}
 @keyframes followBackdropIn{from{opacity:0}to{opacity:1}}
 @media(prefers-reduced-motion:reduce){.post-follow-dialog,.post-follow-dialog-backdrop{animation:none}}
@@ -2236,10 +2241,12 @@ setupPostOptions();
    const thanks=kind==='thanks';
    backdrop.innerHTML=thanks
     ? '<div class="post-follow-dialog" role="dialog" aria-modal="true" aria-labelledby="post-follow-title"><div class="follow-thanks-icon" aria-hidden="true">♡</div><h3 id="post-follow-title">شكراً لمتابعتك! 💚</h3><p class="follow-welcome">أهلاً بك في مجتمع بشار عبدو</p><p class="follow-copy">يسعدني وجودك معنا، تابعنا لتبقى على اطلاع بكل جديد.</p><div class="follow-success">✓ تمت المتابعة بنجاح</div><div class="follow-signature"><strong>بشار عبدو _ Bashar Abdo</strong><span>المكتب الإعلامي</span></div><button type="button" class="close">يسعدني وجودك</button></div>'
+    : kind==='goodbye'
+    ? '<div class="post-follow-dialog" role="dialog" aria-modal="true" aria-labelledby="post-follow-title"><div class="follow-goodbye-icon" aria-hidden="true">💔</div><h3 id="post-follow-title">رح نشتاق لوجودك!</h3><p class="goodbye-welcome">نأسف لمغادرتك مجتمع بشار عبدو</p><p class="goodbye-copy">نتمنى نشوفك معنا من جديد، ونتمنى لك كل الخير.</p><div class="follow-success">✓ تم إلغاء المتابعة</div><div class="goodbye-note">وجودك كان يسعدنا 💚</div><button type="button" class="close goodbye-done">حسناً</button></div>'
     : '<div class="post-follow-dialog" role="dialog" aria-modal="true" aria-labelledby="post-follow-title"><h3 id="post-follow-title">تتابع الموقع</h3><p>ابقَ على اطلاع بكل جديد</p><button type="button" class="unfollow">إلغاء المتابعة</button><button type="button" class="close">إغلاق</button></div>';
    backdrop.addEventListener('click',e=>{
      if(e.target===backdrop||e.target.closest('.close')){closeDialog();return;}
-     if(e.target.closest('.unfollow')){localStorage.removeItem(key);refresh();closeDialog();}
+     if(e.target.closest('.unfollow')){localStorage.removeItem(key);refresh();openDialog('goodbye');}
    });
    document.body.appendChild(backdrop);
  }
