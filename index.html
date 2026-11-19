@@ -2650,6 +2650,9 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape')closeEngagem
 #field-aid-player .field-teaser-controls{position:absolute;inset:0;z-index:7;display:none;align-items:center;justify-content:center;background:#000b;color:#fff;text-align:center;padding:20px;direction:rtl}
 #field-aid-player .field-teaser-controls strong{font-size:16px}
 #field-aid-player .field-teaser-controls small{display:block;color:#aeb8c5;margin-top:8px}
+#field-aid-player .field-disconnect-spinner{width:38px;height:38px;margin:0 auto 15px;border:3px solid #ffffff35;border-top-color:#f2c66d;border-radius:50%;animation:fieldDisconnectSpin 1s linear infinite}
+#field-aid-player .field-teaser-controls .field-disconnect-caption{color:#aeb8c5;font-size:12px;margin-top:10px}
+@keyframes fieldDisconnectSpin{to{transform:rotate(360deg)}}
 #field-aid-player .field-video-controls{z-index:8}
 #field-aid-player .field-video-start{z-index:9}
 @keyframes fieldLightning{0%{opacity:0}12%{opacity:.95}28%{opacity:0}43%{opacity:.65}58%{opacity:0}100%{opacity:0}}
@@ -2670,7 +2673,7 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape')closeEngagem
  '<div class="field-teaser-scene" data-scene="1"><div><div class="field-teaser-kicker">الفريق الإعلامي</div><div class="field-teaser-title">الصورة أمانة<br>والحكاية مسؤولية</div><div class="field-teaser-sub">نقترب من التفاصيل لننقل أثر العطاء</div></div></div>'+
  '<div class="field-teaser-scene" data-scene="2"><div><div class="field-teaser-camera">📹　📦　🤝</div><div class="field-teaser-title">من خلف الكاميرا<br>إلى أيادي الخير</div><div class="field-teaser-sub">عدسة توثّق.. وفريق يرافق.. وعطاء يصل</div></div></div>'+
  '<div class="field-teaser-scene" data-scene="3"><div><div class="field-teaser-orbit"><span class="field-teaser-dot"></span></div><div class="field-teaser-sign">المكتب الإعلامي:<br>بشار عبدو_ Bashar Abdo</div></div></div>'+
- '<div class="field-teaser-flash"></div><div class="field-teaser-controls"><div><strong>توقفت المعاينة</strong><small>تعذّر تحميل بقية المقطع · 15:43</small></div></div>';
+ '<div class="field-teaser-flash"></div><div class="field-teaser-controls"><div><div class="field-disconnect-spinner" aria-hidden="true"></div><strong>انقطع الاتصال</strong><small>جارٍ محاولة إعادة الاتصال...</small><div class="field-disconnect-caption">15:43</div></div></div>';
  player.appendChild(scenes);
  const sceneNodes=[...scenes.querySelectorAll('[data-scene]')],flash=scenes.querySelector('.field-teaser-flash'),failure=scenes.querySelector('.field-teaser-controls');
  let timers=[],ended=false,playing=false,elapsed=0;
