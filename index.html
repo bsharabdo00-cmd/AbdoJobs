@@ -563,6 +563,87 @@ footer .footer-copy{padding-top:12px;border-top:1px solid #ffffff20}
   #posts .post-card,#posts .post-action,#posts .post-image .zoomable-post-image{transition:none}
 }
 
+
+/* Clear, colorful and touch-friendly post interaction buttons */
+#posts .post-actions{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:9px;
+  padding:14px 0 2px;
+  border-top:1px solid #e8edf3;
+}
+#posts .post-action{
+  min-width:0;
+  min-height:48px;
+  padding:9px 7px;
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  border:1px solid #e4eaf1;
+  border-radius:13px;
+  background:#f8fafc;
+  color:#40536a;
+  font-family:inherit;
+  font-size:.86rem;
+  font-weight:800;
+  line-height:1.2;
+  cursor:pointer;
+  box-shadow:0 2px 5px rgba(25,48,72,.035);
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .16s ease,background .16s ease,border-color .16s ease,box-shadow .16s ease;
+}
+#posts .post-action svg{
+  width:19px;height:19px;flex:0 0 19px;
+  fill:none;stroke:currentColor;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+#posts .post-action strong{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:24px;
+  min-height:22px;
+  padding:2px 6px;
+  border-radius:7px;
+  background:rgba(255,255,255,.8);
+  color:inherit;
+  font-size:.76rem;
+  font-weight:900;
+  font-variant-numeric:tabular-nums;
+}
+#posts .post-action:hover{
+  transform:translateY(-2px);
+  box-shadow:0 5px 12px rgba(25,48,72,.09);
+}
+#posts .post-action:active{transform:scale(.97)}
+#posts .post-action:focus-visible{outline:3px solid #8bbcff;outline-offset:2px}
+#posts .action-like{background:#fff3f6;border-color:#f8dce5;color:#d92e62}
+#posts .action-like svg{stroke:#d92e62}
+#posts .action-like.active{background:#ffe1e9;border-color:#f4aabd;color:#bd174b}
+#posts .action-like.active svg{fill:#e52e66}
+#posts .action-repost{background:#effaf4;border-color:#d7efdf;color:#168653}
+#posts .action-repost.active{background:#dff5e8;border-color:#a9dfbf;color:#087443}
+#posts .action-save{background:#f2f5f9;border-color:#dfe6ee;color:#42546b}
+#posts .action-save.active{background:#e4ebf3;border-color:#bdcad9;color:#1f344c}
+#posts .action-save.active svg{fill:#42546b}
+#posts .action-share{background:#eef5ff;border-color:#d8e7fb;color:#176bc0}
+#posts .action-share:hover{background:#deecff;border-color:#b8d5fa;color:#1057a4}
+@media(max-width:560px){
+  #posts .post-actions{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding-top:12px}
+  #posts .post-action{
+    min-height:46px;
+    padding:9px 8px;
+    flex-direction:row;
+    gap:7px;
+    font-size:.82rem;
+    border-radius:12px;
+  }
+  #posts .post-action svg{width:19px;height:19px;flex-basis:19px}
+  #posts .post-action strong{font-size:.75rem;min-width:25px}
+}
+
 </style>
 </head>
 <body>
