@@ -2635,28 +2635,68 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape')closeEngagem
 })();
 </script>
 
+<style id="field-aid-teaser-style">
+#field-aid-player .field-teaser-scene{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:22px;direction:rtl;opacity:0;visibility:hidden;transition:opacity .7s ease;background:radial-gradient(circle at 50% 45%,#234f78,#071522 72%)}
+#field-aid-player .field-teaser-scene.active{opacity:1;visibility:visible}
+#field-aid-player .field-teaser-kicker{color:#f2c66d;font-weight:900;font-size:14px;letter-spacing:.4px}
+#field-aid-player .field-teaser-title{font-size:clamp(23px,5vw,38px);font-weight:900;line-height:1.6;text-shadow:0 4px 20px #000}
+#field-aid-player .field-teaser-sub{color:#dbeafe;font-size:clamp(12px,2.5vw,16px);margin-top:8px}
+#field-aid-player .field-teaser-camera{font-size:clamp(42px,9vw,76px);filter:drop-shadow(0 8px 18px #0008);animation:fieldCameraFloat 2s ease-in-out infinite}
+#field-aid-player .field-teaser-orbit{width:100px;height:100px;border:2px solid #e5a33b;border-radius:50%;display:grid;place-items:center;animation:fieldOrbit 2s linear infinite;box-shadow:0 0 35px #e5a33b55}
+#field-aid-player .field-teaser-dot{width:13px;height:13px;border-radius:50%;background:#f6c443;box-shadow:0 0 20px #f6c443;animation:fieldDot 1.3s ease-in-out infinite}
+#field-aid-player .field-teaser-sign{font-size:clamp(17px,3.8vw,27px);font-weight:900;color:#fff;margin-top:18px}
+#field-aid-player .field-teaser-flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
+#field-aid-player .field-teaser-flash.blink{animation:fieldLightning .65s ease-out}
+#field-aid-player .field-teaser-controls{position:absolute;inset:0;z-index:7;display:none;align-items:center;justify-content:center;background:#000b;color:#fff;text-align:center;padding:20px;direction:rtl}
+#field-aid-player .field-teaser-controls strong{font-size:16px}
+#field-aid-player .field-teaser-controls small{display:block;color:#aeb8c5;margin-top:8px}
+#field-aid-player .field-video-controls{z-index:8}
+#field-aid-player .field-video-start{z-index:9}
+@keyframes fieldLightning{0%{opacity:0}12%{opacity:.95}28%{opacity:0}43%{opacity:.65}58%{opacity:0}100%{opacity:0}}
+@keyframes fieldOrbit{to{transform:rotate(360deg)}}
+@keyframes fieldDot{0%,100%{transform:translateX(-34px)}50%{transform:translateX(34px)}}
+@keyframes fieldCameraFloat{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-8px) rotate(3deg)}}
+</style>
 <script id="field-aid-player-script">
 (function(){
  const player=document.getElementById('field-aid-player');if(!player||player.dataset.ready)return;player.dataset.ready='1';
- const start=player.querySelector('.field-video-start');
- const loading=player.querySelector('.field-video-loading');
- const controls=player.querySelector('.field-video-controls');
- const time=player.querySelector('.field-video-time');
- const toggle=player.querySelector('.field-video-toggle');
- const seek=player.querySelector('.field-video-seek');
- const note=document.createElement('div');
- note.textContent='ملف الفيديو الأصلي غير مرفق بعد — أرسل الفيديو لإضافة المونتاج وتشغيله فعلياً';
- note.style.cssText='position:absolute;z-index:6;inset:auto 12px 62px;background:#111e;color:#fff;text-align:center;padding:10px;border-radius:8px;font: bold 13px Tahoma,Arial;direction:rtl;display:none';
- player.appendChild(note);
- if(controls)controls.style.display='none';
- if(time)time.textContent='بانتظار ملف الفيديو';
- if(toggle){toggle.disabled=true;toggle.style.opacity='.45'}
- if(seek){seek.disabled=true;seek.style.opacity='.45'}
- start.addEventListener('click',()=>{
-  loading.style.display='none';
-  note.style.display='block';
-  start.setAttribute('aria-label','الفيديو غير مرفق');
- });
+ const poster=player.querySelector('.field-video-poster'),start=player.querySelector('.field-video-start');
+ const loading=player.querySelector('.field-video-loading'),controls=player.querySelector('.field-video-controls');
+ const time=player.querySelector('.field-video-time'),toggle=player.querySelector('.field-video-toggle');
+ const seek=player.querySelector('.field-video-seek'),back=player.querySelector('.field-video-back'),forward=player.querySelector('.field-video-forward');
+ const black=player.querySelector('.field-video-black');
+ const scenes=document.createElement('div');scenes.style.cssText='position:absolute;inset:0;z-index:2;overflow:hidden';
+ scenes.innerHTML='<div class="field-teaser-scene" data-scene="0"><div><div class="field-teaser-kicker">تغطية ميدانية خاصة</div><div class="field-teaser-title">حين يصل العطاء<br>تبدأ الحكاية</div><div class="field-teaser-sub">توثيق إنساني من قلب الميدان</div></div></div>'+
+ '<div class="field-teaser-scene" data-scene="1"><div><div class="field-teaser-kicker">الفريق الإعلامي</div><div class="field-teaser-title">الصورة أمانة<br>والحكاية مسؤولية</div><div class="field-teaser-sub">نقترب من التفاصيل لننقل أثر العطاء</div></div></div>'+
+ '<div class="field-teaser-scene" data-scene="2"><div><div class="field-teaser-camera">📹　📦　🤝</div><div class="field-teaser-title">من خلف الكاميرا<br>إلى أيادي الخير</div><div class="field-teaser-sub">عدسة توثّق.. وفريق يرافق.. وعطاء يصل</div></div></div>'+
+ '<div class="field-teaser-scene" data-scene="3"><div><div class="field-teaser-orbit"><span class="field-teaser-dot"></span></div><div class="field-teaser-sign">المكتب الإعلامي:<br>بشار عبدو_ Bashar Abdo</div></div></div>'+
+ '<div class="field-teaser-flash"></div><div class="field-teaser-controls"><div><strong>توقفت المعاينة</strong><small>تعذّر تحميل بقية المقطع · 15:43</small></div></div>';
+ player.appendChild(scenes);
+ const sceneNodes=[...scenes.querySelectorAll('[data-scene]')],flash=scenes.querySelector('.field-teaser-flash'),failure=scenes.querySelector('.field-teaser-controls');
+ let timers=[],ended=false,playing=false,elapsed=0;
+ function clearTimers(){timers.forEach(clearTimeout);timers=[]}
+ function showScene(index){sceneNodes.forEach((node,i)=>node.classList.toggle('active',i===index));}
+ function setTime(seconds){elapsed=seconds;if(time)time.textContent='00:'+String(Math.floor(seconds)).padStart(2,'0')+' / 15:43';if(seek)seek.value=String(seconds);}
+ function stopAtBlack(){
+  ended=true;playing=false;showScene(-1);black.style.display='block';failure.style.display='flex';
+  if(controls)controls.style.display='flex';if(toggle){toggle.textContent='▶';toggle.setAttribute('aria-label','إعادة المعاينة');}
+  setTime(15);
+ }
+ function playTeaser(){
+  clearTimers();ended=false;playing=true;elapsed=0;black.style.display='none';failure.style.display='none';
+  poster.style.display='none';loading.style.display='none';if(controls)controls.style.display='flex';
+  if(toggle){toggle.textContent='Ⅱ';toggle.setAttribute('aria-label','إيقاف مؤقت');}
+  showScene(0);setTime(0);
+  flash.classList.remove('blink');void flash.offsetWidth;flash.classList.add('blink');
+  timers.push(setTimeout(()=>{showScene(1);setTime(5);},5000));
+  timers.push(setTimeout(()=>{showScene(2);setTime(9);},9000));
+  timers.push(setTimeout(()=>{showScene(3);setTime(12);},12000));
+  timers.push(setTimeout(stopAtBlack,15500));
+ }
+ start.addEventListener('click',playTeaser);
+ if(toggle)toggle.addEventListener('click',()=>{if(!ended){clearTimers();stopAtBlack();}else{stopAtBlack();}});
+ [back,forward].forEach(button=>{if(button)button.addEventListener('click',stopAtBlack);});
+ if(seek)seek.addEventListener('input',()=>{clearTimers();stopAtBlack();});
 })();
 </script>
 </body></html>
